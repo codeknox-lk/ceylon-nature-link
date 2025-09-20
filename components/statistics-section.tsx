@@ -96,7 +96,7 @@ export default function StatisticsSection() {
           {statistics.map((stat, index) => (
             <Card
               key={stat.id}
-              className="group hover:shadow-xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/80 backdrop-blur-sm"
+              className="group hover:shadow-xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm"
             >
               <CardContent className="p-8 text-center">
                 <div className="text-4xl mb-4 animate-bounce group-hover:scale-110 transition-transform duration-300">

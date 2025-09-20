@@ -91,7 +91,7 @@ export default function ProductsSection() {
           {productCategories.map((category, index) => (
             <Card
               key={category.id}
-              className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card"
+              className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm premium-card"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -100,7 +100,7 @@ export default function ProductsSection() {
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-4 left-4 bg-white bg-opacity-90 rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg">
+                <div className="absolute top-4 left-4 bg-white dark:bg-gray-700 bg-opacity-90 rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg">
                   {category.icon}
                 </div>
                 <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
@@ -158,7 +158,7 @@ export default function ProductsSection() {
                   <Link href="/contact">
                     <Button
                       size="sm"
-                      className="w-full border border-primary bg-white text-primary hover:bg-white hover:scale-105 transition-all duration-300"
+                      className="w-full border border-primary bg-white dark:bg-gray-800 text-primary dark:text-primary-light hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105 transition-all duration-300"
                     >
                       Request Quote
                     </Button>
