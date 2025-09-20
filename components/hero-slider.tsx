@@ -7,19 +7,8 @@ import Link from "next/link";
 const slides = [
   {
     id: 1,
-    image: "/sri-lankan-tea-plantation.png",
-    title: "Premium Ceylon Tea",
-    subtitle: "From the highlands of Sri Lanka",
-    description:
-      "Experience the world's finest tea, handpicked from the misty mountains of Ceylon. Each cup tells a story of tradition and excellence.",
-    ctaText: "Explore Tea Collection",
-    ctaLink: "/products",
-    badge: "World's Best Tea",
-  },
-  {
-    id: 2,
-    image: "/sri-lankan-spice-market.png",
-    title: "Authentic Spices",
+    image: "/photo-01.png",
+    title: "Premium Ceylon Spices",
     subtitle: "Traditional flavors, premium quality",
     description:
       "Discover the authentic taste of Sri Lanka with our premium spices. From cinnamon to cardamom, every spice carries the essence of our heritage.",
@@ -28,30 +17,19 @@ const slides = [
     badge: "100% Natural",
   },
   {
-    id: 3,
-    image: "/sri-lankan-dehydrated-fruits.png",
+    id: 2,
+    image: "/photo-02.png",
     title: "Dehydrated Fruits",
     subtitle: "Nature's sweetness preserved",
     description:
-      "Taste the tropics in every bite. Our naturally dehydrated fruits preserve the authentic flavors and nutrients of Sri Lanka's finest produce.",
+      "Taste the tropics in every bite. Our dehydrated fruits preserve the authentic flavors and nutrients of Sri Lanka's finest produce.",
     ctaText: "View Fruits",
     ctaLink: "/products",
     badge: "No Preservatives",
   },
   {
-    id: 4,
-    image: "/sri-lankan-herbal-plants.png",
-    title: "Herbal Products",
-    subtitle: "Ancient wisdom, modern wellness",
-    description:
-      "Embrace the healing power of traditional Ayurvedic herbs. Our herbal products combine ancient wisdom with modern quality standards.",
-    ctaText: "Discover Herbs",
-    ctaLink: "/products",
-    badge: "Ayurvedic",
-  },
-  {
-    id: 5,
-    image: "/sri-lankan-countryside.png",
+    id: 3,
+    image: "/photo-03.png",
     title: "Natural Heritage",
     subtitle: "Sustainably sourced from nature",
     description:
@@ -61,8 +39,8 @@ const slides = [
     badge: "Sustainable",
   },
   {
-    id: 6,
-    image: "/sri-lankan-export-quality.png",
+    id: 4,
+    image: "/photo-04.png",
     title: "Export Quality",
     subtitle: "Bringing Sri Lanka to the world",
     description:

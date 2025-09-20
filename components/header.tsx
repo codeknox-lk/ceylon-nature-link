@@ -43,7 +43,7 @@ export default function Header() {
           <Link href="/" className="flex items-center group relative z-10">
             <div className="relative">
               <img
-                src="/cnl-logo.png"
+                src="/ceylon-nature-link-logo.png"
                 alt="Ceylon Nature Link"
                 className="w-16 h-16 lg:w-20 lg:h-20 transition-all duration-500 group-hover:scale-110 drop-shadow-2xl"
               />
