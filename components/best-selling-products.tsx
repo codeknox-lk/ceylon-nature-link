@@ -135,7 +135,7 @@ export default function BestSellingProducts() {
             ref={scrollRef}
             className="flex gap-6 transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * 280}px)`,
+              transform: `translateX(-${currentIndex * 304}px)`,
             }}
           >
             {duplicatedProducts.map((product, index) => (
