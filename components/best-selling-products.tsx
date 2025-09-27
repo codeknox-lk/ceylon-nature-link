@@ -147,19 +147,30 @@ export default function BestSellingProducts() {
             {duplicatedProducts.map((product, index) => (
               <div
                 key={`${product.id}-${index}`}
-                className="flex-shrink-0 w-64 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="flex-shrink-0 w-64 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100"
               >
-                <div className="bg-gray-100 h-48 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 h-48 rounded-t-2xl flex items-center justify-center overflow-hidden relative">
                   <img
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-t-2xl"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-t-2xl"></div>
                 </div>
-                <div className="space-y-2 p-4">
-                  <h3 className="font-bold text-black text-lg">{product.name}</h3>
-                  <p className="text-gray-600 text-sm">{product.variant}</p>
-                  <p className="font-bold text-black text-lg">{product.price}</p>
+                <div className="p-6 space-y-3">
+                  <div className="space-y-1">
+                    <h3 className="font-bold text-gray-800 text-lg leading-tight">{product.name}</h3>
+                    <p className="text-gray-500 text-sm font-medium">{product.variant}</p>
+                  </div>
+                  <div className="flex items-center justify-between pt-2">
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-green-600 text-xs font-semibold">Premium Quality</span>
+                    </div>
+                    <div className="text-xs text-gray-400 font-medium">
+                      Sri Lankan
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
