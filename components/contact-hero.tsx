@@ -260,35 +260,34 @@ export default function ContactHero() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">Find Us</h2>
             <p className="text-xl text-gray-600">
-              Visit our offices in Colombo and Kelaniya
+              Visit our office and factory in Colombo
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Head Office Map */}
+          <div className="max-w-4xl mx-auto">
             <div className="bg-gray-100 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Head Office</h3>
-              <div className="bg-gray-200 h-64 rounded-xl flex items-center justify-center mb-4">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-green-600 text-2xl">📍</span>
-                  </div>
-                  <p className="text-gray-600">Interactive Map</p>
-                  <p className="text-sm text-gray-500">Level 8, Valiant Towers<br/>46/7, Nawam Mawatha, Colombo 02</p>
-                </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Our Location</h3>
+              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8!2d79.8!3d6.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTQnMDAuMCJOIDc5wrA0OCcwMC4wIkU!5e0!3m2!1sen!2slk!4v1234567890"
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ceylon Nature Link Location"
+                ></iframe>
               </div>
-            </div>
-            
-            {/* Factory Map */}
-            <div className="bg-gray-100 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Factory</h3>
-              <div className="bg-gray-200 h-64 rounded-xl flex items-center justify-center mb-4">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-green-600 text-2xl">🏭</span>
+              <div className="mt-6 text-center">
+                <div className="inline-flex items-center bg-green-50 px-6 py-3 rounded-xl">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-green-600 text-lg">📍</span>
                   </div>
-                  <p className="text-gray-600">Interactive Map</p>
-                  <p className="text-sm text-gray-500">364/5, Kelanitissa Mawatha<br/>Wanawasala, Kelaniya</p>
+                  <div className="text-left">
+                    <p className="font-semibold text-gray-800">Level 8, Valiant Towers</p>
+                    <p className="text-sm text-gray-600">46/7, Nawam Mawatha, Colombo 02</p>
+                  </div>
                 </div>
               </div>
             </div>
