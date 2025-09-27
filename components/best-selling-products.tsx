@@ -76,7 +76,7 @@ export default function BestSellingProducts() {
         {/* Header */}
         <div className="flex items-center justify-between mb-12">
           <div>
-            <p className="text-gray-500 text-sm mb-2">Tagline</p>
+            <p className="text-gray-500 text-sm mb-2">Best Selling Products</p>
             <h2 className="text-4xl font-bold text-black mb-4">Products</h2>
             <p className="text-gray-600 max-w-2xl">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
