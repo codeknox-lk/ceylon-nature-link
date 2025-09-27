@@ -59,7 +59,7 @@ export default function BrandsSection() {
         </div>
 
         {/* Brands Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-20 max-w-5xl mx-auto">
           {brands.map((brand, index) => (
             <Card
               key={brand.id}
@@ -72,9 +72,9 @@ export default function BrandsSection() {
                     <Image
                       src={brand.logo || "/placeholder.svg"}
                       alt={`${brand.name} logo`}
-                      width={160}
-                      height={160}
-                      className="mx-auto h-32 lg:h-40 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                      width={120}
+                      height={120}
+                      className="mx-auto h-24 lg:h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                   <h3 className="font-heading font-bold text-xl lg:text-2xl text-primary-dark mb-4 group-hover:text-primary transition-colors duration-300">
@@ -183,45 +183,36 @@ export default function BrandsSection() {
                 Established in 2025, <strong>Ceylon Nature Link (Pvt) Ltd</strong> was founded with a mission to bring Sri Lanka's timeless agricultural treasures to the global stage. From the lush highlands that produce world-famous spices to the tropical orchards that yield fruits of unrivaled sweetness, we transform these gifts of nature into premium dehydrated fruits, spices, and herbal products—crafted to enrich lives and honor our heritage.
               </p>
               
-              <div className="flex items-start space-x-4">
-                <div className="bg-primary/10 rounded-full p-3 mt-1">
+              <div className="flex items-center space-x-4">
+                <div className="bg-primary/10 rounded-full p-3">
                   <span className="text-primary text-xl">🍃</span>
                 </div>
                 <div>
-                  <h4 className="text-gray-700 font-semibold text-lg mb-2">
+                  <h4 className="text-gray-700 font-semibold text-lg">
                     Rooted in Heritage, Grown with Care
                   </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Our journey begins with the farmers of Sri Lanka, who nurture every crop using sustainable and traditional methods passed down through generations. By partnering directly with these communities, we ensure authenticity, purity, and fairness at every step. Each product carries the story of our land, our people, and their dedication to natural excellence.
-                  </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="bg-primary/10 rounded-full p-3 mt-1">
+              <div className="flex items-center space-x-4">
+                <div className="bg-primary/10 rounded-full p-3">
                   <span className="text-primary text-xl">🔥</span>
                 </div>
                 <div>
-                  <h4 className="text-gray-700 font-semibold text-lg mb-2">
+                  <h4 className="text-gray-700 font-semibold text-lg">
                     Crafted with Innovation, Preserved with Purity
                   </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    At CNL, we blend ancient wisdom with modern technology. Our advanced dehydration and processing methods lock in natural flavors, vibrant colors, and vital nutrients—without chemicals or additives. The result is a collection of products that embody the essence of Sri Lanka: bold in taste, rich in aroma, and uncompromising in quality.
-                  </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="bg-primary/10 rounded-full p-3 mt-1">
+              <div className="flex items-center space-x-4">
+                <div className="bg-primary/10 rounded-full p-3">
                   <span className="text-primary text-xl">🌍</span>
                 </div>
                 <div>
-                  <h4 className="text-gray-700 font-semibold text-lg mb-2">
+                  <h4 className="text-gray-700 font-semibold text-lg">
                     Connecting Sri Lanka to the World
                   </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Though deeply rooted in Sri Lankan soil, our vision is global. With a focus on ethical trade, eco-friendly packaging, and premium quality, we aim to share the island's bounty with health-conscious consumers, retailers, and culinary creators worldwide. Each shipment from CNL is more than a product—it's an invitation to experience Sri Lanka's rich natural heritage.
-                  </p>
                 </div>
               </div>
 
