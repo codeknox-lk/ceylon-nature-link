@@ -97,14 +97,14 @@ export default function BestSellingProducts() {
   const nextSlide = () => {
     const cardWidth = 280
     const gap = 24
-    const scrollAmount = (cardWidth + gap) * 2 // Move 2 cards at once
+    const scrollAmount = (cardWidth + gap) * 3 // Move 2 cards at once
     setScrollPosition((prev) => (prev + scrollAmount) % (cardWidth * products.length))
   }
 
   const prevSlide = () => {
     const cardWidth = 280
     const gap = 24
-    const scrollAmount = (cardWidth + gap) * 2 // Move 2 cards at once
+    const scrollAmount = (cardWidth + gap) * 3 // Move 3 cards at once
     setScrollPosition((prev) => (prev - scrollAmount + (cardWidth * products.length)) % (cardWidth * products.length))
   }
 
