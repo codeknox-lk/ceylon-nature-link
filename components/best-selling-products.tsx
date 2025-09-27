@@ -147,27 +147,30 @@ export default function BestSellingProducts() {
             {duplicatedProducts.map((product, index) => (
               <div
                 key={`${product.id}-${index}`}
-                className="flex-shrink-0 w-64 bg-white/20 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-white/30 overflow-hidden"
+                className="flex-shrink-0 w-64 relative"
               >
-                <div className="h-48 flex items-center justify-center overflow-hidden">
-                  <img
-                    src={product.image || "/placeholder.svg"}
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6 space-y-3 bg-white/10 backdrop-blur-sm">
-                  <div className="space-y-1">
-                    <h3 className="font-bold text-gray-800 text-lg leading-tight">{product.name}</h3>
-                    <p className="text-gray-600 text-sm font-medium">{product.variant}</p>
+                <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-white/20 overflow-hidden">
+                  <div className="h-48 relative">
+                    <img
+                      src={product.image || "/placeholder.svg"}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
-                  <div className="flex items-center justify-between pt-2">
-                    <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-green-600 text-xs font-semibold">Premium Quality</span>
+                  <div className="p-6 space-y-3">
+                    <div className="space-y-1">
+                      <h3 className="font-bold text-gray-800 text-lg leading-tight">{product.name}</h3>
+                      <p className="text-gray-600 text-sm font-medium">{product.variant}</p>
                     </div>
-                    <div className="text-xs text-gray-500 font-medium">
-                      {product.brand}
+                    <div className="flex items-center justify-between pt-2">
+                      <div className="flex items-center space-x-1">
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span className="text-green-600 text-xs font-semibold">Premium Quality</span>
+                      </div>
+                      <div className="text-xs text-gray-500 font-medium">
+                        {product.brand}
+                      </div>
                     </div>
                   </div>
                 </div>
