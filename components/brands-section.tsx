@@ -8,19 +8,19 @@ const brands = [
   {
     id: 1,
     name: "Saadambara",
-    description: "Premium tea blends from the finest estates",
+    description: "Premium Spices from the Heart of Sri Lanka",
     longDescription:
-      "Saadambara represents the pinnacle of Sri Lankan tea excellence. Our teas are sourced from the highest elevations of the central highlands, where the cool mountain air and rich soil create the perfect conditions for producing world-class tea.",
+      "Saadambara is a premium Sri Lankan spice brand that represents the true excellence of Ceylon spices. Our spices are carefully sourced from the finest farms across Sri Lanka, where fertile soil and tropical climates produce the most aromatic and flavorful harvests.",
     logo: "/ceylon-gold-logo.png",
-    products: ["Black Tea", "Green Tea", "Earl Grey", "Herbal Blends"],
+    products: ["Black Pepper", "Cinnamon", "Cloves", "Cardamom"],
     features: [
-      "Highland Grown",
-      "Handpicked",
-      "Traditional Processing",
-      "Export Quality",
+      "Premium Spices",
+      "Advanced Processing",
+      "Farm to Table Traceability",
+      "Export Standards",
     ],
-    yearEstablished: "1998",
-    certifications: ["ISO 22000", "HACCP", "Organic"],
+    yearEstablished: "2025",
+    certifications: ["GMP (Under Process)"],
   },
   {
     id: 2,
