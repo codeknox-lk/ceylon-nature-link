@@ -45,7 +45,7 @@ export default function Header() {
               <img
                 src="/ceylon-nature-link-logo.png"
                 alt="Ceylon Nature Link"
-                className="w-16 h-16 lg:w-20 lg:h-20 transition-all duration-500 group-hover:scale-110 drop-shadow-2xl"
+                className="w-16 h-16 lg:w-20 lg:h-20 transition-all duration-500 group-hover:scale-110 drop-shadow-2xl object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-accent/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-150"></div>
             </div>
