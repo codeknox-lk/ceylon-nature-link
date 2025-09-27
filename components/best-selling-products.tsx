@@ -1,10 +1,9 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import { Card, CardContent } from "@/components/ui/card"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 
-const bestSellingProducts = [
+const products = [
   {
     id: 1,
     name: "Ceylon Cinnamon Sticks",
@@ -51,11 +50,8 @@ const bestSellingProducts = [
 
 export default function BestSellingProducts() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
-  const trackRef = useRef<HTMLDivElement>(null)
-
   const itemsPerPage = 5
-  const totalPages = Math.ceil(bestSellingProducts.length / itemsPerPage)
+  const totalPages = Math.ceil(products.length / itemsPerPage)
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % totalPages)
@@ -69,7 +65,7 @@ export default function BestSellingProducts() {
     setCurrentIndex(index)
   }
 
-  const currentProducts = bestSellingProducts.slice(
+  const currentProducts = products.slice(
     currentIndex * itemsPerPage,
     (currentIndex + 1) * itemsPerPage
   )
@@ -95,26 +91,18 @@ export default function BestSellingProducts() {
         </div>
 
         {/* Product Grid */}
-        <div className="relative mb-8">
-          <div
-            ref={trackRef}
-            className="flex gap-6 transition-transform duration-300 ease-in-out"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
-            }}
-          >
-            {bestSellingProducts.map((product) => (
+        <div className="relative mb-8 overflow-hidden">
+          <div className="flex gap-6 transition-transform duration-300 ease-in-out">
+            {currentProducts.map((product) => (
               <div
                 key={product.id}
                 className="flex-shrink-0 w-64 bg-white"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
               >
-                <div className="bg-gray-100 h-48 rounded-lg mb-4 flex items-center justify-center">
+                <div className="bg-gray-100 h-48 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
                   <img
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="space-y-2">
