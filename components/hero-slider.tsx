@@ -7,7 +7,7 @@ import Link from "next/link";
 const slides = [
   {
     id: 1,
-    image: "/sri-lankan-spices.png",
+    image: "/photo-01.png",
     title: "Premium Ceylon Spices",
     subtitle: "Traditional flavors, premium quality",
     description:
@@ -18,7 +18,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "/sri-lankan-dehydrated-fruits.png",
+    image: "/photo-02.png",
     title: "Dehydrated Fruits",
     subtitle: "Nature's sweetness preserved",
     description:
@@ -29,7 +29,18 @@ const slides = [
   },
   {
     id: 3,
-    image: "/sri-lankan-tea-plantation.png",
+    image: "/photo-03.png",
+    title: "Ayurvedic Herb",
+    subtitle: "Ancient wisdom, modern wellness",
+    description:
+      "Embrace the healing power of traditional Ayurvedic herbs. Our herbal products combine ancient wisdom with modern quality standards.",
+    ctaText: "Explore Herbs",
+    ctaLink: "/products",
+    badge: "Traditional",
+  },
+  {
+    id: 4,
+    image: "/photo-04.png",
     title: "Natural Heritage",
     subtitle: "Sustainably sourced from nature",
     description:
@@ -39,12 +50,12 @@ const slides = [
     badge: "Sustainable",
   },
   {
-    id: 4,
-    image: "/sri-lankan-countryside.png",
+    id: 5,
+    image: "/photo-05.png",
     title: "Export Quality",
     subtitle: "Bringing Sri Lanka to the world",
     description:
-      "Trusted by global partners for over 25 years. We deliver premium Sri Lankan products to customers worldwide with unmatched quality.",
+      "We deliver premium Sri Lankan products to customers worldwide with unmatched quality.",
     ctaText: "Partner With Us",
     ctaLink: "/contact",
     badge: "Global Partner",
