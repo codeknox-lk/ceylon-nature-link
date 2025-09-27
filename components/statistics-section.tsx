@@ -16,7 +16,7 @@ const statistics = [
     number: "20+",
     label: "Products",
     description: "Premium natural products across key categories",
-    icon: "🌿",
+    icon: "📦",
   },
   {
     id: 3,
