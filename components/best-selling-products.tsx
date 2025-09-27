@@ -158,17 +158,17 @@ export default function BestSellingProducts() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
-                  <div className="p-6 space-y-3">
+                  <div className="p-6 space-y-3 min-h-[120px] flex flex-col justify-between">
                     <div className="space-y-1">
-                      <h3 className="font-bold text-gray-800 text-lg leading-tight">{product.name}</h3>
-                      <p className="text-gray-600 text-sm font-medium">{product.variant}</p>
+                      <h3 className="font-bold text-gray-800 text-lg leading-tight truncate">{product.name}</h3>
+                      <p className="text-gray-600 text-sm font-medium truncate">{product.variant}</p>
                     </div>
                     <div className="flex items-center justify-between pt-2">
                       <div className="flex items-center space-x-1">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span className="text-green-600 text-xs font-semibold">Premium Quality</span>
+                        <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                        <span className="text-green-600 text-xs font-semibold whitespace-nowrap">Premium Quality</span>
                       </div>
-                      <div className="text-xs text-gray-500 font-medium">
+                      <div className="text-xs text-gray-500 font-medium truncate ml-2">
                         {product.brand}
                       </div>
                     </div>
@@ -183,13 +183,13 @@ export default function BestSellingProducts() {
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 border border-gray-300 rounded-full flex items-center justify-center hover:bg-white shadow-lg transition-all duration-300 z-10"
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center hover:bg-white/95 shadow-xl transition-all duration-300 z-20"
               >
                 ←
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 border border-gray-300 rounded-full flex items-center justify-center hover:bg-white shadow-lg transition-all duration-300 z-10"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center hover:bg-white/95 shadow-xl transition-all duration-300 z-20"
               >
                 →
               </button>
