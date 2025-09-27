@@ -22,7 +22,7 @@ const products = [
     id: 3,
     name: "Dried Mango Strips",
     variant: "Natural Dried",
-    image: "/dried-mango-strips.png",
+    image: "/sri-lankan-dehydrated-fruits.png",
     brand: "Trekola",
   },
   {
@@ -160,15 +160,15 @@ export default function BestSellingProducts() {
                   </div>
                   <div className="p-6 space-y-3 min-h-[120px] flex flex-col justify-between">
                     <div className="space-y-1">
-                      <h3 className="font-bold text-gray-800 text-lg leading-tight truncate">{product.name}</h3>
-                      <p className="text-gray-600 text-sm font-medium truncate">{product.variant}</p>
+                      <h3 className="font-bold text-gray-800 text-lg leading-tight line-clamp-2">{product.name}</h3>
+                      <p className="text-gray-600 text-sm font-medium line-clamp-1">{product.variant}</p>
                     </div>
                     <div className="flex items-center justify-between pt-2">
                       <div className="flex items-center space-x-1">
                         <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
                         <span className="text-green-600 text-xs font-semibold whitespace-nowrap">Premium Quality</span>
                       </div>
-                      <div className="text-xs text-gray-500 font-medium truncate ml-2">
+                      <div className="text-xs text-gray-500 font-medium line-clamp-1 ml-2">
                         {product.brand}
                       </div>
                     </div>
