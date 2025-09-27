@@ -7,7 +7,7 @@ export default function BrandsPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <main className="pt-20 lg:pt-24">
+      <main>
         <BrandsHero />
         <BrandsShowcase />
       </main>
