@@ -105,7 +105,7 @@ export default function BestSellingProducts() {
   }
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">
@@ -147,7 +147,7 @@ export default function BestSellingProducts() {
             {duplicatedProducts.map((product, index) => (
               <div
                 key={`${product.id}-${index}`}
-                className="flex-shrink-0 w-64 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100 overflow-hidden"
+                className="flex-shrink-0 w-64 bg-white/20 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-white/30 overflow-hidden"
               >
                 <div className="h-48 flex items-center justify-center overflow-hidden">
                   <img
@@ -156,17 +156,17 @@ export default function BestSellingProducts() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-6 space-y-3">
+                <div className="p-6 space-y-3 bg-white/10 backdrop-blur-sm">
                   <div className="space-y-1">
                     <h3 className="font-bold text-gray-800 text-lg leading-tight">{product.name}</h3>
-                    <p className="text-gray-500 text-sm font-medium">{product.variant}</p>
+                    <p className="text-gray-600 text-sm font-medium">{product.variant}</p>
                   </div>
                   <div className="flex items-center justify-between pt-2">
                     <div className="flex items-center space-x-1">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-green-600 text-xs font-semibold">Premium Quality</span>
                     </div>
-                    <div className="text-xs text-gray-400 font-medium">
+                    <div className="text-xs text-gray-500 font-medium">
                       {product.brand}
                     </div>
                   </div>
