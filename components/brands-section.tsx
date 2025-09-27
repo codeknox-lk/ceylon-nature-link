@@ -227,11 +227,6 @@ export default function BrandsSection() {
                 </div>
               </div>
               
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <p className="text-center text-gray-700 text-xl md:text-2xl font-semibold italic">
-                  <strong>Ceylon Nature Link – Nature's Legacy, Shared with the World.</strong>
-                </p>
-              </div>
             </div>
           </div>
 
@@ -265,6 +260,15 @@ export default function BrandsSection() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      
+      {/* Full-width company tagline */}
+      <div className="w-full bg-gradient-to-r from-gray-50 to-gray-100 py-16">
+        <div className="w-full">
+          <p className="text-center text-gray-700 text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide px-4" style={{ fontFamily: 'Georgia, serif' }}>
+            <strong>Ceylon Nature Link – Nature's Legacy, Shared with the World.</strong>
+          </p>
         </div>
       </div>
     </section>
