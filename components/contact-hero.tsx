@@ -242,14 +242,14 @@ export default function ContactHero() {
             
             {/* Right side - Map */}
             <div className="flex flex-col">
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className="p-6">
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-full">
+                <div className="p-6 flex flex-col h-full">
                   <h3 className="text-2xl font-bold text-gray-800 mb-4">Find Us</h3>
-                  <div className="bg-gray-100 rounded-xl overflow-hidden">
+                  <div className="bg-gray-100 rounded-xl overflow-hidden flex-1">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.1234567890123!2d80.6304681!3d7.6309457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3535e13333a71%3A0x224371cd3dfc86fd!2sCeylon%20Nature%20Link%20(Pvt)%20Ltd!5e0!3m2!1sen!2slk!4v1630000000000!5m2!1sen!2slk"
                       width="100%"
-                      height="400"
+                      height="100%"
                       style={{ border: 0 }}
                       allowFullScreen
                       loading="lazy"
@@ -277,3 +277,4 @@ export default function ContactHero() {
     </section>
   )
 }
+
