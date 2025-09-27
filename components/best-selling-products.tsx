@@ -141,7 +141,7 @@ export default function BestSellingProducts() {
         >
           <div 
             ref={scrollRef}
-            className="flex gap-6 px-4 sm:px-6 lg:px-8"
+            className="flex gap-3 px-4 sm:px-6 lg:px-8"
             style={{
               transform: `translateX(-${scrollPosition}px)`,
               width: `${duplicatedProducts.length * 272}px`,
