@@ -257,17 +257,6 @@ export default function ContactHero() {
                       title="Ceylon Nature Link Location - Koholanwala"
                     ></iframe>
                   </div>
-                  <div className="mt-4">
-                    <div className="flex items-center bg-green-50 px-4 py-3 rounded-lg">
-                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                        <span className="text-green-600 text-lg">📍</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-gray-800">Ceylon Nature Link (Pvt) Ltd</p>
-                        <p className="text-sm text-gray-600">Koholanwala, Homapola Road, 21000</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
