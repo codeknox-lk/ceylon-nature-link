@@ -44,10 +44,10 @@ const brands = [
 
 export default function BrandsSection() {
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 to-white nature-texture">
+    <section className="py-16 bg-gradient-to-br from-gray-50 to-white nature-texture">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-20 animate-fade-in-up">
+        <div className="text-center mb-12 animate-fade-in-up">
           <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-primary-dark mb-8">
             Our Premium Brands
           </h2>
@@ -59,51 +59,51 @@ export default function BrandsSection() {
         </div>
 
         {/* Brands Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-20 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 max-w-6xl mx-auto">
           {brands.map((brand, index) => (
             <Card
               key={brand.id}
               className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card h-full"
             >
-              <CardContent className="p-6 lg:p-8 h-full flex flex-col">
+              <CardContent className="p-6 h-full flex flex-col">
                 {/* Logo and Basic Info */}
-                <div className="text-center mb-8">
-                  <div className="mb-6">
+                <div className="text-center mb-6">
+                  <div className="mb-4">
                     <Image
                       src={brand.logo || "/placeholder.svg"}
                       alt={`${brand.name} logo`}
-                      width={120}
-                      height={120}
-                      className="mx-auto h-24 lg:h-28 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                      width={100}
+                      height={100}
+                      className="mx-auto h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
-                  <h3 className="font-heading font-bold text-xl lg:text-2xl text-primary-dark mb-4 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="font-heading font-bold text-xl text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">
                     {brand.name}
                   </h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed text-sm lg:text-base">
+                  <p className="text-gray-600 mb-3 leading-relaxed text-sm">
                     {brand.description}
                   </p>
-                  <div className="flex items-center justify-center space-x-4 text-xs lg:text-sm text-gray-500">
+                  <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
                     <span>Est. {brand.yearEstablished}</span>
                     <span>•</span>
                     <span>Premium Quality</span>
                   </div>
                 </div>
 
-                {/* Long Description */}
-                <div className="mb-6 flex-grow">
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                {/* Short Description */}
+                <div className="mb-4 flex-grow">
+                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
                     {brand.longDescription}
                   </p>
                 </div>
 
                 {/* Products */}
-                <div className="mb-6">
-                  <p className="text-gray-500 text-xs font-semibold mb-3 uppercase tracking-wide">
+                <div className="mb-4">
+                  <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
                     Popular Products:
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {brand.products.map((product, idx) => (
+                  <div className="flex flex-wrap gap-1">
+                    {brand.products.slice(0, 3).map((product, idx) => (
                       <span
                         key={idx}
                         className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full font-medium"
@@ -111,30 +111,41 @@ export default function BrandsSection() {
                         {product}
                       </span>
                     ))}
+                    {brand.products.length > 3 && (
+                      <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full font-medium">
+                        +{brand.products.length - 3} more
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 {/* Features */}
-                <div className="mb-6">
-                  <p className="text-gray-500 text-xs font-semibold mb-3 uppercase tracking-wide">
+                <div className="mb-4">
+                  <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
                     Key Features:
                   </p>
-                  <div className="space-y-2">
-                    {brand.features.map((feature, idx) => (
+                  <div className="space-y-1">
+                    {brand.features.slice(0, 3).map((feature, idx) => (
                       <div key={idx} className="flex items-center space-x-2">
                         <span className="text-primary text-sm">✓</span>
-                        <span className="text-gray-600 text-sm">{feature}</span>
+                        <span className="text-gray-600 text-xs">{feature}</span>
                       </div>
                     ))}
+                    {brand.features.length > 3 && (
+                      <div className="flex items-center space-x-2">
+                        <span className="text-gray-400 text-sm">+</span>
+                        <span className="text-gray-500 text-xs">{brand.features.length - 3} more features</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 {/* Certifications */}
-                <div className="mb-8">
-                  <p className="text-gray-500 text-xs font-semibold mb-3 uppercase tracking-wide">
+                <div className="mb-4">
+                  <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
                     Certifications:
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1">
                     {brand.certifications.map((cert, idx) => (
                       <span
                         key={idx}
