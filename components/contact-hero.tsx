@@ -1,4 +1,40 @@
+"use client";
+
+import type React from "react";
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
 export default function ContactHero() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    subject: "",
+    message: "",
+    inquiryType: "general",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    alert("Thank you for your inquiry! We'll get back to you soon.");
+  };
+
   return (
     <section className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
@@ -72,58 +108,190 @@ export default function ContactHero() {
         </div>
       </div>
       
-      {/* Services Section */}
+      {/* Contact Form Section */}
       <div className="bg-gray-50 py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">What We Do</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We specialize in premium Sri Lankan natural products, offering comprehensive solutions for global distribution and private labeling.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">🌿</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Premium Products</h3>
-              <p className="text-gray-600">Dehydrated fruits, authentic spices, and traditional herbal products from Sri Lanka.</p>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">Send Us a Message</h2>
+              <p className="text-xl text-gray-600">
+                Fill out the form below and we'll respond to your inquiry within 24 hours during business days.
+              </p>
             </div>
             
-            <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">🌍</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Global Distribution</h3>
-              <p className="text-gray-600">Worldwide shipping and distribution solutions for your business needs.</p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">🏷️</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Private Labeling</h3>
-              <p className="text-gray-600">Custom branding and packaging solutions for your products.</p>
-            </div>
+            <Card className="shadow-lg">
+              <CardContent className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Inquiry Type */}
+                  <div>
+                    <label htmlFor="inquiryType" className="block text-sm font-medium text-gray-700 mb-2">
+                      Inquiry Type
+                    </label>
+                    <select
+                      id="inquiryType"
+                      name="inquiryType"
+                      value={formData.inquiryType}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white"
+                    >
+                      <option value="general">General Inquiry</option>
+                      <option value="product">Product Information</option>
+                      <option value="quote">Request Quote</option>
+                      <option value="export">Export Services</option>
+                      <option value="private-label">Private Label</option>
+                      <option value="partnership">Partnership</option>
+                    </select>
+                  </div>
+
+                  {/* Name and Email */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        Full Name *
+                      </label>
+                      <Input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="focus:ring-green-500 focus:border-green-500 rounded-xl"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address *
+                      </label>
+                      <Input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="focus:ring-green-500 focus:border-green-500 rounded-xl"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Phone and Company */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                        Phone Number
+                      </label>
+                      <Input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="focus:ring-green-500 focus:border-green-500 rounded-xl"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                        Company Name
+                      </label>
+                      <Input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="focus:ring-green-500 focus:border-green-500 rounded-xl"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Subject */}
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                      Subject *
+                    </label>
+                    <Input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="focus:ring-green-500 focus:border-green-500 rounded-xl"
+                    />
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Message *
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={6}
+                      className="focus:ring-green-500 focus:border-green-500 rounded-xl"
+                      placeholder="Tell us about your requirements..."
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="text-center">
+                    <Button
+                      type="submit"
+                      className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors"
+                    >
+                      Send Message
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
       
-      {/* CTA Section */}
-      <div className="bg-green-600 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">Ready to Partner with Us?</h2>
-          <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
-            Join our network of satisfied customers and experience the quality of Sri Lankan natural products.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact" className="bg-white text-green-600 px-8 py-4 rounded-2xl font-semibold hover:bg-green-50 transition-colors">
-              Get Quote
-            </a>
-            <a href="/marketplace" className="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white hover:text-green-600 transition-colors">
-              View Marketplace
-            </a>
+      {/* Map Section */}
+      <div className="bg-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Find Us</h2>
+            <p className="text-xl text-gray-600">
+              Visit our offices in Colombo and Kelaniya
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Head Office Map */}
+            <div className="bg-gray-100 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Head Office</h3>
+              <div className="bg-gray-200 h-64 rounded-xl flex items-center justify-center mb-4">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-green-600 text-2xl">📍</span>
+                  </div>
+                  <p className="text-gray-600">Interactive Map</p>
+                  <p className="text-sm text-gray-500">Level 8, Valiant Towers<br/>46/7, Nawam Mawatha, Colombo 02</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Factory Map */}
+            <div className="bg-gray-100 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Factory</h3>
+              <div className="bg-gray-200 h-64 rounded-xl flex items-center justify-center mb-4">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-green-600 text-2xl">🏭</span>
+                  </div>
+                  <p className="text-gray-600">Interactive Map</p>
+                  <p className="text-sm text-gray-500">364/5, Kelanitissa Mawatha<br/>Wanawasala, Kelaniya</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
