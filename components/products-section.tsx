@@ -26,7 +26,7 @@ const productCategories = [
     description: "Traditional Ayurvedic herbs and wellness products",
     longDescription:
       "Embrace the healing power of traditional Ayurvedic herbs. Our herbal products combine ancient wisdom with modern quality standards, offering natural solutions for wellness and vitality.",
-    image: "/herbal-wellness-tea.png",
+    image: "/sri-lankan-herbal-plants.png",
     icon: "",
     features: ["Ayurvedic", "Traditional Recipes", "Wellness Focus"],
     products: [
