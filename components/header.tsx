@@ -38,7 +38,7 @@ export default function Header() {
       <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/3 to-white/5 backdrop-blur-xl"></div>
 
       <div className="container mx-auto px-4 relative">
-        <div className="flex items-center justify-between h-20 lg:h-24">
+        <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center group relative z-10">
             <div className="relative">
