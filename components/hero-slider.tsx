@@ -7,7 +7,7 @@ import Link from "next/link";
 const slides = [
   {
     id: 1,
-    image: "/photo-01.png",
+    image: "/sri-lankan-spices.png",
     title: "Premium Ceylon Spices",
     subtitle: "Traditional flavors, premium quality",
     description:
@@ -18,7 +18,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "/photo-02.png",
+    image: "/sri-lankan-dehydrated-fruits.png",
     title: "Dehydrated Fruits",
     subtitle: "Nature's sweetness preserved",
     description:
@@ -29,7 +29,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "/photo-03.png",
+    image: "/sri-lankan-herbal-plants.png",
     title: "Ayurvedic Herb",
     subtitle: "Ancient wisdom, modern wellness",
     description:
@@ -40,7 +40,7 @@ const slides = [
   },
   {
     id: 4,
-    image: "/photo-04.png",
+    image: "/sri-lankan-countryside.png",
     title: "Natural Heritage",
     subtitle: "Sustainably sourced from nature",
     description:
@@ -51,7 +51,7 @@ const slides = [
   },
   {
     id: 5,
-    image: "/photo-05.png",
+    image: "/sri-lankan-export-quality.png",
     title: "Export Quality",
     subtitle: "Bringing Sri Lanka to the world",
     description:
@@ -86,7 +86,7 @@ export default function HeroSlider() {
   };
 
   return (
-    <section className="relative h-[75vh] sm:h-[85vh] md:h-[90vh] lg:h-[95vh] overflow-hidden">
+    <section className="relative h-screen overflow-hidden">
       {/* Slides */}
       <div className="relative h-full">
         {slides.map((slide, index) => (
@@ -100,11 +100,13 @@ export default function HeroSlider() {
               src={slide.image || "/placeholder.svg"}
               alt={slide.title}
               className="w-full h-full object-cover"
+              loading="eager"
+              sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />
 
             {/* Content Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center pt-20 lg:pt-24">
               <div className="container mx-auto px-4">
                 <div className="max-w-4xl mx-auto text-center">
                   {/* Badge */}
