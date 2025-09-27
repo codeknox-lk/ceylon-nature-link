@@ -147,13 +147,13 @@ export default function BestSellingProducts() {
             {duplicatedProducts.map((product, index) => (
               <div
                 key={`${product.id}-${index}`}
-                className="flex-shrink-0 w-64 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100"
+                className="flex-shrink-0 w-64 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100 overflow-hidden"
               >
-                <div className="bg-white h-48 rounded-t-2xl flex items-center justify-center overflow-hidden relative">
+                <div className="h-48 flex items-center justify-center overflow-hidden">
                   <img
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
-                    className="w-full h-full object-cover rounded-t-2xl"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-6 space-y-3">
