@@ -269,7 +269,7 @@ export default function ContactHero() {
               <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Our Location</h3>
               <div className="bg-white rounded-xl overflow-hidden shadow-lg">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8!2d79.8!3d6.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTQnMDAuMCJOIDc5wrA0OCcwMC4wIkU!5e0!3m2!1sen!2slk!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8994!2d79.8606!3d6.9271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae258e2b2b2b2b2%3A0x1234567890abcdef!2sValiant%20Towers%2C%2046%2F7%2C%20Nawam%20Mawatha%2C%20Colombo%2002%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1234567890"
                   width="100%"
                   height="400"
                   style={{ border: 0 }}
