@@ -184,7 +184,7 @@ export default function BrandsSection() {
               </p>
               
               <div className="flex items-center space-x-4">
-                <div className="bg-primary/10 rounded-full p-3">
+                <div>
                   <span className="text-primary text-xl">🍃</span>
                 </div>
                 <div>
@@ -195,7 +195,7 @@ export default function BrandsSection() {
               </div>
 
               <div className="flex items-center space-x-4">
-                <div className="bg-primary/10 rounded-full p-3">
+                <div>
                   <span className="text-primary text-xl">🔥</span>
                 </div>
                 <div>
@@ -206,7 +206,7 @@ export default function BrandsSection() {
               </div>
 
               <div className="flex items-center space-x-4">
-                <div className="bg-primary/10 rounded-full p-3">
+                <div>
                   <span className="text-primary text-xl">🌍</span>
                 </div>
                 <div>
@@ -217,7 +217,7 @@ export default function BrandsSection() {
               </div>
 
               <div className="flex items-center space-x-4">
-                <div className="bg-primary/10 rounded-full p-3">
+                <div>
                   <span className="text-primary text-xl">✨</span>
                 </div>
                 <div>
