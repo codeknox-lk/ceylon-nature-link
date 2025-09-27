@@ -265,15 +265,9 @@ export default function BrandsSection() {
         
         <div className="w-full relative z-10">
           <div className="text-center">
-            <p className="text-3xl md:text-4xl lg:text-5xl font-light italic tracking-wide px-4 leading-relaxed" 
-               style={{ 
-                 fontFamily: 'Georgia, serif',
-                 background: 'linear-gradient(135deg, #16a34a, #22c55e, #16a34a)',
-                 WebkitBackgroundClip: 'text',
-                 WebkitTextFillColor: 'transparent',
-                 backgroundClip: 'text'
-               }}>
-              <span className="relative inline-block transform hover:scale-105 transition-all duration-700 hover:drop-shadow-lg">
+            <p className="text-3xl md:text-4xl lg:text-5xl font-light italic tracking-wide px-4 leading-relaxed text-green-600" 
+               style={{ fontFamily: 'Georgia, serif' }}>
+              <span className="relative inline-block transform hover:scale-105 transition-all duration-700 hover:text-green-700 hover:drop-shadow-lg">
                 Ceylon Nature Link
                 <span className="block text-2xl md:text-3xl lg:text-4xl mt-2 font-normal">
                   Nature's Legacy, Shared with the World.
