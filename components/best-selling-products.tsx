@@ -79,7 +79,7 @@ export default function BestSellingProducts() {
         setScrollPosition((prev) => {
           const cardWidth = 280 // 256px card + 24px gap
           const maxScroll = cardWidth * products.length
-          return (prev + 0.5) % maxScroll // Smooth continuous scroll
+          return (prev + 1.5) % maxScroll // Faster continuous scroll
         })
       }
       animationRef.current = requestAnimationFrame(animate)
