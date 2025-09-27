@@ -278,9 +278,9 @@ export default function BrandsSection() {
         </div>
         
         <div className="w-full relative z-10">
-          <p className="text-center text-gray-700 text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide px-4 animate-pulse hover:animate-none transition-all duration-300" 
+          <p className="text-center text-green-600 text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide px-4 animate-pulse hover:animate-none transition-all duration-300" 
              style={{ fontFamily: 'Georgia, serif' }}>
-            <strong className="relative inline-block transform hover:scale-105 transition-transform duration-500">
+            <strong className="relative inline-block transform hover:scale-105 transition-transform duration-500 hover:text-green-700">
               Ceylon Nature Link – Nature's Legacy, Shared with the World.
               <span className="absolute -top-2 -right-2 text-green-500 text-xl animate-bounce">🌿</span>
             </strong>
