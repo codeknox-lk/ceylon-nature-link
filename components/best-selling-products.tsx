@@ -69,14 +69,15 @@ export default function BestSellingProducts() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Duplicate products for seamless scrolling
-  const duplicatedProducts = [...products, ...products]
+  // Show only 5 cards at a time to avoid cropping
+  const cardsPerView = 5
+  const totalSlides = Math.ceil(products.length / cardsPerView)
 
   // Auto-scroll functionality
   useEffect(() => {
     if (!isPaused && !isHovered) {
       intervalRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % products.length)
+        setCurrentIndex((prev) => (prev + 1) % totalSlides)
       }, 3000) // Scroll every 3 seconds
     } else {
       if (intervalRef.current) {
@@ -89,14 +90,21 @@ export default function BestSellingProducts() {
         clearInterval(intervalRef.current)
       }
     }
-  }, [isPaused, isHovered])
+  }, [isPaused, isHovered, totalSlides])
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % products.length)
+    setCurrentIndex((prev) => (prev + 1) % totalSlides)
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length)
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides)
+  }
+
+  // Get current products to display
+  const getCurrentProducts = () => {
+    const startIndex = currentIndex * cardsPerView
+    const endIndex = startIndex + cardsPerView
+    return products.slice(startIndex, endIndex)
   }
 
   return (
@@ -133,12 +141,9 @@ export default function BestSellingProducts() {
         >
           <div 
             ref={scrollRef}
-            className="flex gap-6 transition-transform duration-500 ease-in-out"
-            style={{
-              transform: `translateX(-${currentIndex * 304}px)`,
-            }}
+            className="flex gap-6 transition-transform duration-500 ease-in-out justify-center"
           >
-            {duplicatedProducts.map((product, index) => (
+            {getCurrentProducts().map((product, index) => (
               <div
                 key={`${product.id}-${index}`}
                 className="flex-shrink-0 w-64 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
@@ -180,7 +185,7 @@ export default function BestSellingProducts() {
 
         {/* Pagination Dots */}
         <div className="flex justify-center space-x-2">
-          {products.map((_, index) => (
+          {Array.from({ length: totalSlides }).map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
