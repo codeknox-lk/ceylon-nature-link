@@ -227,9 +227,11 @@ export default function BrandsSection() {
                 </div>
               </div>
               
-              <p className="text-gray-600 text-sm mt-4 font-medium italic">
-                <strong>Ceylon Nature Link – Nature's Legacy, Shared with the World.</strong>
-              </p>
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <p className="text-center text-gray-700 text-xl md:text-2xl font-semibold italic">
+                  <strong>Ceylon Nature Link – Nature's Legacy, Shared with the World.</strong>
+                </p>
+              </div>
             </div>
           </div>
 
