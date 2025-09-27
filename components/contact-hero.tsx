@@ -95,6 +95,7 @@ export default function ContactHero() {
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
                     <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12h18" />
                     </svg>
                   </div>
                   <h3 className="font-semibold text-lg text-gray-800">Website</h3>
@@ -239,7 +240,7 @@ export default function ContactHero() {
                     <div className="text-center">
                       <Button
                         type="submit"
-                        className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                        className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-8 py-3 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0"
                       >
                         Send Message
                       </Button>
