@@ -30,10 +30,8 @@ const productCategories = [
     icon: "",
     features: ["Ayurvedic", "Traditional Recipes"],
     products: [
-      "Herbal Teas",
-      "Wellness Powders",
-      "Medicinal Herbs",
-      "Essential Oils",
+      "Moringa Tea",
+      "Cinnamon Tea",
     ],
   },
   {
@@ -46,10 +44,8 @@ const productCategories = [
     icon: "",
     features: ["No Preservatives", "Rich in Nutrients"],
     products: [
-      "Mango Strips",
-      "Pineapple Rings",
-      "Banana Chips",
-      "Mixed Fruits",
+      "Dehydrated Mango",
+      "Dehydrated Jackfruit",
     ],
   },
 ];
