@@ -186,13 +186,13 @@ export default function BestSellingProducts() {
           <>
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center hover:bg-white/95 shadow-xl transition-all duration-300 z-20"
+              className="absolute left-8 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center hover:bg-white/95 shadow-xl transition-all duration-300 z-20"
             >
               ←
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center hover:bg-white/95 shadow-xl transition-all duration-300 z-20"
+              className="absolute right-8 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center hover:bg-white/95 shadow-xl transition-all duration-300 z-20"
             >
               →
             </button>
