@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 
 const products = [
@@ -46,32 +46,61 @@ const products = [
     image: "/sri-lankan-spices.png",
     price: "$19.99",
   },
+  {
+    id: 7,
+    name: "Black Pepper",
+    variant: "Whole Peppercorns",
+    image: "/sri-lankan-spices.png",
+    price: "$16.99",
+  },
+  {
+    id: 8,
+    name: "Clove",
+    variant: "Whole Cloves",
+    image: "/sri-lankan-spices.png",
+    price: "$14.99",
+  },
 ]
 
 export default function BestSellingProducts() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const itemsPerPage = 5
-  const totalPages = Math.ceil(products.length / itemsPerPage)
+  const [isHovered, setIsHovered] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Duplicate products for seamless scrolling
+  const duplicatedProducts = [...products, ...products]
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!isPaused && !isHovered) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % products.length)
+      }, 3000) // Scroll every 3 seconds
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+  }, [isPaused, isHovered])
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalPages)
+    setCurrentIndex((prev) => (prev + 1) % products.length)
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages)
+    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length)
   }
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index)
-  }
-
-  const currentProducts = products.slice(
-    currentIndex * itemsPerPage,
-    (currentIndex + 1) * itemsPerPage
-  )
 
   return (
-    <section className="py-16 bg-white border-2 border-red-500">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">
@@ -79,7 +108,7 @@ export default function BestSellingProducts() {
             <p className="text-gray-500 text-sm mb-2">Best Selling Products</p>
             <h2 className="text-4xl font-bold text-black mb-4">Products</h2>
             <p className="text-gray-600 max-w-2xl">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Discover our premium Sri Lankan products with authentic quality and traditional heritage.
             </p>
           </div>
           <Button
@@ -90,13 +119,29 @@ export default function BestSellingProducts() {
           </Button>
         </div>
 
-        {/* Product Grid */}
-        <div className="relative mb-8 overflow-hidden">
-          <div className="flex gap-6 transition-transform duration-300 ease-in-out">
-            {currentProducts.map((product) => (
+        {/* Auto-scrolling Product Carousel */}
+        <div 
+          className="relative mb-8 overflow-hidden"
+          onMouseEnter={() => {
+            setIsHovered(true)
+            setIsPaused(true)
+          }}
+          onMouseLeave={() => {
+            setIsHovered(false)
+            setIsPaused(false)
+          }}
+        >
+          <div 
+            ref={scrollRef}
+            className="flex gap-6 transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(-${currentIndex * 280}px)`,
+            }}
+          >
+            {duplicatedProducts.map((product, index) => (
               <div
-                key={product.id}
-                className="flex-shrink-0 w-64 bg-white"
+                key={`${product.id}-${index}`}
+                className="flex-shrink-0 w-64 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
               >
                 <div className="bg-gray-100 h-48 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
                   <img
@@ -105,7 +150,7 @@ export default function BestSellingProducts() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 p-4">
                   <h3 className="font-bold text-black text-lg">{product.name}</h3>
                   <p className="text-gray-600 text-sm">{product.variant}</p>
                   <p className="font-bold text-black text-lg">{product.price}</p>
@@ -113,38 +158,37 @@ export default function BestSellingProducts() {
               </div>
             ))}
           </div>
+
+          {/* Hidden Arrow Buttons - Only show on hover */}
+          {isHovered && (
+            <>
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 border border-gray-300 rounded-full flex items-center justify-center hover:bg-white shadow-lg transition-all duration-300 z-10"
+              >
+                ←
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 border border-gray-300 rounded-full flex items-center justify-center hover:bg-white shadow-lg transition-all duration-300 z-10"
+              >
+                →
+              </button>
+            </>
+          )}
         </div>
 
-        {/* Navigation Controls */}
-        <div className="flex items-center justify-between">
-          {/* Pagination Dots */}
-          <div className="flex space-x-2">
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-black' : 'bg-gray-300'
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Navigation Arrows */}
-          <div className="flex space-x-2">
+        {/* Pagination Dots */}
+        <div className="flex justify-center space-x-2">
+          {products.map((_, index) => (
             <button
-              onClick={prevSlide}
-              className="w-8 h-8 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors"
-            >
-              ←
-            </button>
-            <button
-              onClick={nextSlide}
-              className="w-8 h-8 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors"
-            >
-              →
-            </button>
-          </div>
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                index === currentIndex ? 'bg-black' : 'bg-gray-300'
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
