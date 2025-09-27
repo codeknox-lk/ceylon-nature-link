@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 const brands = [
   {
@@ -68,9 +69,11 @@ export default function BrandsSection() {
                 {/* Logo and Basic Info */}
                 <div className="text-center mb-8">
                   <div className="mb-6">
-                    <img
+                    <Image
                       src={brand.logo || "/placeholder.svg"}
                       alt={`${brand.name} logo`}
+                      width={80}
+                      height={80}
                       className="mx-auto h-16 lg:h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
