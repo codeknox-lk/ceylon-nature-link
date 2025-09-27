@@ -153,30 +153,38 @@ export default function BestSellingProducts() {
               key={`${product.id}-${index}`}
               className="flex-shrink-0 w-64 h-96 relative"
             >
-                <div className="bg-white/20 backdrop-blur-lg rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-white/30 overflow-hidden h-full flex flex-col relative">
-                  <div className="h-48 relative flex-shrink-0 rounded-t-3xl overflow-hidden">
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
+                  <div className="h-48 relative flex-shrink-0 overflow-hidden">
                     <img
                       src={product.image || "/placeholder.svg"}
                       alt={product.name}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    <div className="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                      Premium
+                    </div>
                   </div>
-                  <div className="p-6 pb-12 space-y-4 flex-1 flex flex-col justify-between relative">
-                    <div className="space-y-1 h-[72px] flex flex-col justify-start">
+                  <div className="p-6 flex-1 flex flex-col justify-between">
+                    <div className="space-y-2 mb-4">
                       <h3 className="font-bold text-gray-800 text-lg leading-tight line-clamp-2">{product.name}</h3>
                       <p className="text-gray-600 text-sm font-medium line-clamp-1">{product.variant}</p>
                     </div>
-                    <div className="flex items-center justify-between pt-2">
-                      <div className="flex items-center space-x-1">
-                        <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
-                        <span className="text-green-600 text-xs font-semibold whitespace-nowrap">Premium Quality</span>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-1">
+                          <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                          <span className="text-green-600 text-xs font-semibold">Premium Quality</span>
+                        </div>
+                        <div className="text-xs text-gray-500 font-medium">
+                          {product.brand}
+                        </div>
                       </div>
-                      <div className="text-xs text-gray-500 font-medium line-clamp-1 ml-2">
-                        {product.brand}
+                      <div className="pt-2">
+                        <button className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
+                          View Details
+                        </button>
                       </div>
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-t from-white/10 to-transparent rounded-b-3xl"></div>
                   </div>
                 </div>
               </div>
