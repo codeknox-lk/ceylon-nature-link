@@ -162,7 +162,7 @@ export default function BestSellingProducts() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
                   <div className="p-6 pb-8 space-y-3 flex-1 flex flex-col justify-between relative">
-                    <div className="space-y-1">
+                    <div className="space-y-1 h-[72px] flex flex-col justify-start">
                       <h3 className="font-bold text-gray-800 text-lg leading-tight line-clamp-2">{product.name}</h3>
                       <p className="text-gray-600 text-sm font-medium line-clamp-1">{product.variant}</p>
                     </div>
