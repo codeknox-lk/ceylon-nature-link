@@ -49,14 +49,6 @@ export default function Header() {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-accent/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-150"></div>
             </div>
-            <div className="ml-3 hidden sm:block">
-              <h1 className="font-heading font-bold text-lg lg:text-xl text-primary-dark group-hover:text-primary transition-colors duration-300">
-                Ceylon Nature Link
-              </h1>
-              <p className="text-xs text-gray-600 group-hover:text-primary/70 transition-colors duration-300">
-                Naturally Sri Lankan
-              </p>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
