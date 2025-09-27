@@ -26,9 +26,9 @@ const productCategories = [
     description: "Traditional Ayurvedic herbs and wellness products",
     longDescription:
       "Embrace the healing power of traditional Ayurvedic herbs. Our herbal products combine ancient wisdom with modern quality standards, offering natural solutions for wellness and vitality.",
-    image: "/sri-lankan-herbal-collection.png",
+    image: "/herbal-wellness-tea.png",
     icon: "",
-    features: ["Ayurvedic", "Traditional Recipes"],
+    features: ["Ayurvedic", "Traditional Recipes", "Wellness Focus"],
     products: [
       "Moringa Tea",
       "Cinnamon Tea",
@@ -42,7 +42,7 @@ const productCategories = [
       "Taste the tropics in every bite with our naturally dehydrated fruits. We preserve the authentic flavors and nutrients of Sri Lanka's finest produce using traditional drying methods.",
     image: "/sri-lankan-dehydrated-fruits.png",
     icon: "",
-    features: ["No Preservatives", "Rich in Nutrients"],
+    features: ["No Preservatives", "Rich in Nutrients", "Natural Drying"],
     products: [
       "Dehydrated Mango",
       "Dehydrated Jackfruit",
