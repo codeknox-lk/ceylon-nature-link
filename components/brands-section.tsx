@@ -103,7 +103,7 @@ export default function BrandsSection() {
                     Popular Products:
                   </p>
                   <div className="flex flex-wrap gap-1">
-                    {brand.products.slice(0, 3).map((product, idx) => (
+                    {brand.products.map((product, idx) => (
                       <span
                         key={idx}
                         className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full font-medium"
@@ -111,11 +111,6 @@ export default function BrandsSection() {
                         {product}
                       </span>
                     ))}
-                    {brand.products.length > 3 && (
-                      <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full font-medium">
-                        +{brand.products.length - 3} more
-                      </span>
-                    )}
                   </div>
                 </div>
 
@@ -125,18 +120,12 @@ export default function BrandsSection() {
                     Key Features:
                   </p>
                   <div className="space-y-1">
-                    {brand.features.slice(0, 3).map((feature, idx) => (
+                    {brand.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center space-x-2">
                         <span className="text-primary text-sm">✓</span>
                         <span className="text-gray-600 text-xs">{feature}</span>
                       </div>
                     ))}
-                    {brand.features.length > 3 && (
-                      <div className="flex items-center space-x-2">
-                        <span className="text-gray-400 text-sm">+</span>
-                        <span className="text-gray-500 text-xs">{brand.features.length - 3} more features</span>
-                      </div>
-                    )}
                   </div>
                 </div>
 
