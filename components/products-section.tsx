@@ -7,9 +7,9 @@ const productCategories = [
     id: 1,
     name: "Spices",
     description:
-      "Premium Ceylon spices including cinnamon, cardamom, and pepper",
+      "Premium Ceylon spices including Cinnamon, Cardamom, Clove and Pepper",
     longDescription:
-      "Discover the authentic taste of Sri Lanka with our premium spice collection. From the world-famous Ceylon cinnamon to aromatic cardamom and pungent black pepper, each spice is carefully sourced and processed to maintain its natural flavor and aroma.",
+      "Discover the authentic taste of Sri Lanka with our premium spice collection. From the world-famous Ceylon cinnamon to aromatic cardamom, pungent black pepper, and fragrant cloves, each spice is carefully sourced and processed to maintain its natural flavor and aroma.",
     image: "/photo-01.png",
     icon: "",
     features: ["100% Natural", "Premium Quality", "Export Grade"],
@@ -17,7 +17,7 @@ const productCategories = [
       "Cinnamon Sticks",
       "Cardamom Pods",
       "Black Pepper",
-      "Turmeric Powder",
+      "Clove",
     ],
   },
   {
