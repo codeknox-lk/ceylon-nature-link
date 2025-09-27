@@ -72,9 +72,9 @@ export default function BrandsSection() {
                     <Image
                       src={brand.logo || "/placeholder.svg"}
                       alt={`${brand.name} logo`}
-                      width={80}
-                      height={80}
-                      className="mx-auto h-16 lg:h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                      width={160}
+                      height={160}
+                      className="mx-auto h-32 lg:h-40 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                   <h3 className="font-heading font-bold text-xl lg:text-2xl text-primary-dark mb-4 group-hover:text-primary transition-colors duration-300">
