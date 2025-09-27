@@ -173,20 +173,6 @@ export default function HeroSlider() {
         </svg>
       </button>
 
-      {/* Navigation dots */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-4 h-4 rounded-full transition-all duration-300 hover:scale-125 ${
-              index === currentSlide
-                ? "bg-white scale-125 shadow-lg"
-                : "bg-white/60 hover:bg-white/80"
-            }`}
-          />
-        ))}
-      </div>
 
       {/* Progress bar */}
       <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 z-20">
