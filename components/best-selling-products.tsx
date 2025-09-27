@@ -128,7 +128,7 @@ export default function BestSellingProducts() {
 
         {/* Auto-scrolling Product Carousel */}
         <div 
-          className="relative mb-32 overflow-hidden w-full"
+          className="relative mb-8 overflow-hidden w-full"
           style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
           onMouseEnter={() => {
             setIsHovered(true)
