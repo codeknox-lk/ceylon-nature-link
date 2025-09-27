@@ -10,7 +10,7 @@ const productCategories = [
       "Premium Ceylon spices including Cinnamon, Cardamom, Clove and Pepper",
     longDescription:
       "Discover the authentic taste of Sri Lanka with our premium spice collection. From the world-famous Ceylon cinnamon to aromatic cardamom, pungent black pepper, and fragrant cloves, each spice is carefully sourced and processed to maintain its natural flavor and aroma.",
-    image: "/photo-01.png",
+    image: "/sri-lankan-spices.png",
     icon: "",
     features: ["100% Natural", "Premium Quality", "Export Grade"],
     products: [
@@ -26,7 +26,7 @@ const productCategories = [
     description: "Traditional Ayurvedic herbs and wellness products",
     longDescription:
       "Embrace the healing power of traditional Ayurvedic herbs. Our herbal products combine ancient wisdom with modern quality standards, offering natural solutions for wellness and vitality.",
-    image: "/photo-02.png",
+    image: "/sri-lankan-herbal-collection.png",
     icon: "",
     features: ["Ayurvedic", "Traditional Recipes"],
     products: [
@@ -40,7 +40,7 @@ const productCategories = [
     description: "Naturally dried tropical fruits preserving authentic flavors",
     longDescription:
       "Taste the tropics in every bite with our naturally dehydrated fruits. We preserve the authentic flavors and nutrients of Sri Lanka's finest produce using traditional drying methods.",
-    image: "/photo-03.png",
+    image: "/sri-lankan-dehydrated-fruits.png",
     icon: "",
     features: ["No Preservatives", "Rich in Nutrients"],
     products: [
