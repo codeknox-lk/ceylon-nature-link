@@ -7,10 +7,7 @@ export default function ContactHero() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Text content */}
             <div className="text-center lg:text-left">
-              <div className="flex items-center justify-center mx-auto lg:mx-0 mb-6">
-                <span className="text-4xl">📧</span>
-              </div>
-              <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-purple-800 mb-6">
+              <h1 className="font-bold text-6xl md:text-7xl lg:text-8xl mb-6 text-green-600" style={{ fontFamily: 'Georgia, serif' }}>
                 Contact Us
               </h1>
               <p className="text-xl md:text-2xl text-purple-700/80 leading-relaxed">
@@ -20,7 +17,7 @@ export default function ContactHero() {
             
             {/* Right side - Contact image */}
             <div className="flex justify-center lg:justify-end">
-              <div className="relative w-96 h-96 lg:w-[32rem] lg:h-[32rem]">
+              <div className="relative w-[28rem] h-[28rem] lg:w-[36rem] lg:h-[36rem]">
                 <img
                   src="/contact.png"
                   alt="Person with phone"
