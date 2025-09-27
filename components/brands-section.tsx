@@ -266,7 +266,7 @@ export default function BrandsSection() {
       {/* Full-width company tagline */}
       <div className="w-full bg-gradient-to-r from-gray-50 to-gray-100 py-16 relative overflow-hidden">
         {/* Nature-themed background elements */}
-        <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 opacity-10">
           <div className="absolute top-4 left-8 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
           <div className="absolute top-12 right-16 w-1 h-1 bg-green-500 rounded-full animate-ping"></div>
           <div className="absolute bottom-8 left-1/4 w-1.5 h-1.5 bg-green-300 rounded-full animate-pulse"></div>
@@ -275,28 +275,14 @@ export default function BrandsSection() {
         </div>
         
         <div className="w-full relative z-10">
-          <p className="text-center text-gray-700 text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide px-4 animate-pulse" 
-             style={{ 
-               fontFamily: 'Georgia, serif',
-               animation: 'breathing 4s ease-in-out infinite, gentle-glow 3s ease-in-out infinite alternate'
-             }}>
-            <strong className="relative">
+          <p className="text-center text-gray-700 text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide px-4 animate-pulse hover:animate-none transition-all duration-300" 
+             style={{ fontFamily: 'Georgia, serif' }}>
+            <strong className="relative inline-block transform hover:scale-105 transition-transform duration-500">
               Ceylon Nature Link – Nature's Legacy, Shared with the World.
-              <span className="absolute -top-1 -right-1 text-green-500 text-lg animate-bounce">🌿</span>
+              <span className="absolute -top-2 -right-2 text-green-500 text-xl animate-bounce">🌿</span>
             </strong>
           </p>
         </div>
-        
-        <style jsx>{`
-          @keyframes breathing {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-          }
-          @keyframes gentle-glow {
-            0% { text-shadow: 0 0 5px rgba(34, 197, 94, 0.1); }
-            100% { text-shadow: 0 0 20px rgba(34, 197, 94, 0.3), 0 0 30px rgba(34, 197, 94, 0.1); }
-          }
-        `}</style>
       </div>
     </section>
   );
