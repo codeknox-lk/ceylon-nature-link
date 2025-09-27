@@ -153,7 +153,7 @@ export default function BestSellingProducts() {
               key={`${product.id}-${index}`}
               className="flex-shrink-0 w-64 h-96 relative"
             >
-                <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
+                <div className="bg-white rounded-2xl transition-all duration-300 overflow-hidden h-full flex flex-col border border-gray-100">
                   <div className="h-48 relative flex-shrink-0 overflow-hidden">
                     <img
                       src={product.image || "/placeholder.svg"}
@@ -180,7 +180,7 @@ export default function BestSellingProducts() {
                         </div>
                       </div>
                       <div className="pt-2">
-                        <button className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
+                        <button className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105">
                           View Details
                         </button>
                       </div>
