@@ -153,12 +153,12 @@ export default function BestSellingProducts() {
               key={`${product.id}-${index}`}
               className="flex-shrink-0 w-64 h-96 relative"
             >
-                <div className="bg-white/20 backdrop-blur-lg rounded-3xl transition-all duration-500 hover:scale-105 border border-white/30 border-b-2 border-b-gray-200 overflow-hidden h-full flex flex-col shadow-sm hover:border-b-gray-300 hover:border-b-4">
-                  <div className="h-48 relative flex-shrink-0 rounded-t-3xl overflow-hidden">
+                <div className="bg-white/20 backdrop-blur-lg rounded-3xl transition-all duration-500 border border-white/30 border-b-2 border-b-gray-200 overflow-hidden h-full flex flex-col shadow-sm hover:border-b-green-500 hover:border-b-4">
+                  <div className="h-48 relative flex-shrink-0 rounded-t-3xl overflow-hidden group">
                     <img
                       src={product.image || "/placeholder.svg"}
                       alt={product.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
