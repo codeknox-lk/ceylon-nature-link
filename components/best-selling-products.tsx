@@ -109,14 +109,14 @@ export default function BestSellingProducts() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
-          <div className="flex items-start justify-between mb-4">
+          <div className="flex items-center justify-between mb-6">
             <div className="flex-1">
               <p className="text-gray-500 text-sm mb-2">Best Selling Products</p>
-              <h2 className="text-4xl font-bold text-black mb-4">Products</h2>
+              <h2 className="text-4xl font-bold text-black">Products</h2>
             </div>
             <Button
               variant="outline"
-              className="border border-gray-300 text-black hover:bg-gray-50 px-6 py-2 rounded-lg flex-shrink-0 ml-6"
+              className="border border-gray-300 text-black hover:bg-gray-50 px-6 py-2 rounded-lg flex-shrink-0 ml-8"
             >
               View all
             </Button>
@@ -128,7 +128,7 @@ export default function BestSellingProducts() {
 
         {/* Auto-scrolling Product Carousel */}
         <div 
-          className="relative mb-8 overflow-hidden"
+          className="relative mb-8 overflow-hidden w-full"
           style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
           onMouseEnter={() => {
             setIsHovered(true)
@@ -145,6 +145,7 @@ export default function BestSellingProducts() {
             style={{
               transform: `translateX(-${scrollPosition}px)`,
               width: `${duplicatedProducts.length * 272}px`,
+              minWidth: '100vw'
             }}
           >
             {duplicatedProducts.map((product, index) => (
