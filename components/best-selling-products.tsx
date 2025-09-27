@@ -63,48 +63,45 @@ const products = [
 ]
 
 export default function BestSellingProducts() {
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
+  const [scrollPosition, setScrollPosition] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+  const animationRef = useRef<number>()
 
-  // Show only 5 cards at a time to avoid cropping
-  const cardsPerView = 5
-  const totalSlides = Math.ceil(products.length / cardsPerView)
+  // Duplicate products for seamless marquee effect
+  const duplicatedProducts = [...products, ...products, ...products]
 
-  // Auto-scroll functionality
+  // Auto-scroll marquee functionality
   useEffect(() => {
-    if (!isPaused && !isHovered) {
-      intervalRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % totalSlides)
-      }, 3000) // Scroll every 3 seconds
-    } else {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
+    const animate = () => {
+      if (!isPaused && !isHovered) {
+        setScrollPosition((prev) => {
+          const cardWidth = 280 // 256px card + 24px gap
+          const maxScroll = cardWidth * products.length
+          return (prev + 0.5) % maxScroll // Smooth continuous scroll
+        })
       }
+      animationRef.current = requestAnimationFrame(animate)
     }
+
+    animationRef.current = requestAnimationFrame(animate)
 
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [isPaused, isHovered, totalSlides])
+  }, [isPaused, isHovered, products.length])
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides)
+    const cardWidth = 280
+    setScrollPosition((prev) => (prev + cardWidth) % (cardWidth * products.length))
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides)
-  }
-
-  // Get current products to display
-  const getCurrentProducts = () => {
-    const startIndex = currentIndex * cardsPerView
-    const endIndex = startIndex + cardsPerView
-    return products.slice(startIndex, endIndex)
+    const cardWidth = 280
+    setScrollPosition((prev) => (prev - cardWidth + (cardWidth * products.length)) % (cardWidth * products.length))
   }
 
   return (
@@ -141,9 +138,13 @@ export default function BestSellingProducts() {
         >
           <div 
             ref={scrollRef}
-            className="flex gap-6 transition-transform duration-500 ease-in-out justify-center"
+            className="flex gap-6"
+            style={{
+              transform: `translateX(-${scrollPosition}px)`,
+              width: `${duplicatedProducts.length * 280}px`,
+            }}
           >
-            {getCurrentProducts().map((product, index) => (
+            {duplicatedProducts.map((product, index) => (
               <div
                 key={`${product.id}-${index}`}
                 className="flex-shrink-0 w-64 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
@@ -185,12 +186,15 @@ export default function BestSellingProducts() {
 
         {/* Pagination Dots */}
         <div className="flex justify-center space-x-2">
-          {Array.from({ length: totalSlides }).map((_, index) => (
+          {products.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => {
+                const cardWidth = 280
+                setScrollPosition(index * cardWidth)
+              }}
               className={`w-2 h-2 rounded-full transition-colors ${
-                index === currentIndex ? 'bg-black' : 'bg-gray-300'
+                Math.floor(scrollPosition / 280) % products.length === index ? 'bg-black' : 'bg-gray-300'
               }`}
             />
           ))}
