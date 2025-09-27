@@ -31,11 +31,15 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "bg-white/10 backdrop-blur-2xl shadow-2xl border-b border-white/20"
-          : "bg-transparent"
+          : "bg-white/5 backdrop-blur-sm"
       }`}
     >
       {/* Background blur effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/3 to-white/5 backdrop-blur-xl"></div>
+      <div className={`absolute inset-0 transition-all duration-500 ${
+        isScrolled 
+          ? "bg-gradient-to-r from-white/5 via-white/3 to-white/5 backdrop-blur-xl"
+          : "bg-gradient-to-r from-white/10 via-white/5 to-white/10 backdrop-blur-md"
+      }`}></div>
 
       <div className="container mx-auto px-4 relative">
         <div className="flex items-center justify-between h-16 lg:h-20 py-2">
