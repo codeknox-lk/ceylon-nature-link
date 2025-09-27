@@ -170,7 +170,7 @@ export default function ProductsGrid() {
                   <Button className="flex-1 bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
                     View Details
                   </Button>
-                  <Button className="flex-1 border border-primary bg-white dark:bg-gray-800 text-primary dark:text-primary-light hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105 transition-all duration-300">
+                  <Button className="flex-1 border border-primary bg-white text-primary hover:bg-white hover:scale-105 transition-all duration-300">
                     Request Quote
                   </Button>
                 </div>

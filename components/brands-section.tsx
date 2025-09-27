@@ -62,7 +62,7 @@ export default function BrandsSection() {
           {brands.map((brand, index) => (
             <Card
               key={brand.id}
-              className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm premium-card h-full"
+              className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card h-full"
             >
               <CardContent className="p-6 lg:p-8 h-full flex flex-col">
                 {/* Logo and Basic Info */}
@@ -158,7 +158,7 @@ export default function BrandsSection() {
                   <Link href="/contact">
                     <Button
                       size="sm"
-                      className="w-full border border-primary bg-white dark:bg-gray-800 text-primary dark:text-primary-light hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105 transition-all duration-300"
+                      className="w-full border border-primary bg-white text-primary hover:bg-white hover:scale-105 transition-all duration-300"
                     >
                       Request Samples
                     </Button>
@@ -246,7 +246,7 @@ export default function BrandsSection() {
                 <Link href="/contact">
                   <Button
                     size="lg"
-                    className="w-full border border-primary bg-white dark:bg-gray-800 text-primary dark:text-primary-light hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105 font-semibold transition-all duration-300"
+                    className="w-full border border-primary bg-white text-primary hover:bg-white hover:scale-105 font-semibold transition-all duration-300"
                   >
                     Become a Partner
                   </Button>

@@ -113,7 +113,7 @@ export default function ServicesGrid() {
           {services.map((service, index) => (
             <Card
               key={service.id}
-              className={`premium-card group bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl border-0 overflow-hidden animate-fade-in-up stagger-${
+              className={`premium-card group bg-white shadow-lg hover:shadow-2xl border-0 overflow-hidden animate-fade-in-up stagger-${
                 index + 1
               }`}
             >
@@ -174,7 +174,7 @@ export default function ServicesGrid() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="flex-1 border-2 border-primary text-primary dark:text-primary-light hover:bg-primary hover:text-white text-xs font-semibold transition-all duration-300 rounded-full"
+                    className="flex-1 border-2 border-primary text-primary hover:bg-primary hover:text-white text-xs font-semibold transition-all duration-300 rounded-full"
                   >
                     Get Quote
                   </Button>

@@ -96,7 +96,7 @@ export default function ServicesSection() {
           {services.map((service, index) => (
             <Card
               key={service.id}
-              className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm premium-card"
+              className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card"
             >
               <CardContent className="p-8 text-center">
                 <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -235,7 +235,7 @@ export default function ServicesSection() {
                 <Link href="/services">
                   <Button
                     size="lg"
-                    className="w-full border border-primary bg-white dark:bg-gray-800 text-primary dark:text-primary-light hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105 font-semibold transition-all duration-300"
+                    className="w-full border border-primary bg-white text-primary hover:bg-white hover:scale-105 font-semibold transition-all duration-300"
                   >
                     View All Services
                   </Button>

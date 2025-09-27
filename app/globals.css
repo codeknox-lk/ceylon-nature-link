@@ -362,10 +362,6 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.dark .hover-lift:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
 .hover-scale {
   transition: transform 0.3s ease;
 }
@@ -390,10 +386,6 @@
 .premium-card:hover {
   transform: translateY(-8px) rotateX(5deg);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 20px rgba(117, 193, 74, 0.1);
-}
-
-.dark .premium-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(117, 193, 74, 0.2);
 }
 
 .glass-effect {
@@ -507,41 +499,6 @@
 .text-responsive-base {
   font-size: 1rem;
   line-height: 1.5rem;
-}
-
-/* Dark mode specific utilities */
-.dark .text-gray-600 {
-  color: rgb(156 163 175);
-}
-
-.dark .text-gray-700 {
-  color: rgb(209 213 219);
-}
-
-.dark .text-gray-800 {
-  color: rgb(243 244 246);
-}
-
-.dark .text-gray-900 {
-  color: rgb(255 255 255);
-}
-
-/* Fix for white text on white background in dark mode */
-.dark .hover\:bg-white:hover {
-  background-color: rgb(55 65 81) !important;
-}
-
-.dark .bg-white {
-  background-color: rgb(31 41 55) !important;
-}
-
-/* Dark mode button fixes */
-.dark .border-primary {
-  border-color: rgb(117 193 74);
-}
-
-.dark .text-primary {
-  color: rgb(139 198 63);
 }
 
 .text-responsive-lg {
