@@ -7,8 +7,8 @@ export default function BrandsHero() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Text content */}
             <div className="text-center lg:text-left">
-              <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-6">
-                <span className="text-2xl">🏷️</span>
+              <div className="flex items-center justify-center mx-auto lg:mx-0 mb-6">
+                <span className="text-4xl">🏷️</span>
               </div>
               <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-emerald-800 mb-6">
                 Our Brands
