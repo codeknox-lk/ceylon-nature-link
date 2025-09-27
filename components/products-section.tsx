@@ -69,9 +69,9 @@ export default function ProductsSection() {
           {productCategories.map((category, index) => (
             <Card
               key={category.id}
-              className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card"
+              className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-2xl bg-white/20 backdrop-blur-lg rounded-3xl hover:scale-105 border border-white/30 premium-card"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden rounded-t-3xl">
                 <img
                   src={category.image || "/placeholder.svg"}
                   alt={category.name}
@@ -88,7 +88,7 @@ export default function ProductsSection() {
                 </div>
               </div>
 
-              <CardContent className="p-6">
+              <CardContent className="p-6 rounded-b-3xl">
                 <h3 className="font-heading font-bold text-xl text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">
                   {category.name}
                 </h3>
