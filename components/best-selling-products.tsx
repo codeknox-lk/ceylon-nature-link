@@ -128,8 +128,8 @@ export default function BestSellingProducts() {
 
         {/* Auto-scrolling Product Carousel */}
         <div 
-          className="relative mb-8 overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8"
-          style={{ width: 'calc(100% + 2rem)' }}
+          className="relative mb-8 overflow-hidden"
+          style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
           onMouseEnter={() => {
             setIsHovered(true)
             setIsPaused(true)
