@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -41,11 +42,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20 py-2">
           {/* Logo */}
           <Link href="/" className="flex items-center group relative z-10">
-            <div className="relative">
-              <img
+            <div className="relative w-24 h-24 lg:w-32 lg:h-32">
+              <Image
                 src="/ceylon-nature-link-logo.png"
                 alt="Ceylon Nature Link"
-                className="w-24 h-24 lg:w-32 lg:h-32 transition-all duration-500 group-hover:scale-110 drop-shadow-2xl object-contain"
+                width={128}
+                height={128}
+                priority
+                className="w-full h-full transition-all duration-500 group-hover:scale-110 drop-shadow-2xl object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-accent/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-150"></div>
             </div>
