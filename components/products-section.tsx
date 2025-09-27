@@ -10,8 +10,8 @@ const productCategories = [
       "Premium Ceylon spices including cinnamon, cardamom, and pepper",
     longDescription:
       "Discover the authentic taste of Sri Lanka with our premium spice collection. From the world-famous Ceylon cinnamon to aromatic cardamom and pungent black pepper, each spice is carefully sourced and processed to maintain its natural flavor and aroma.",
-    image: "/sri-lankan-spices.png",
-    icon: "🌶️",
+    image: "/photo-01.png",
+    icon: "",
     features: ["100% Natural", "Premium Quality", "Export Grade"],
     products: [
       "Cinnamon Sticks",
@@ -26,8 +26,8 @@ const productCategories = [
     description: "Traditional Ayurvedic herbs and wellness products",
     longDescription:
       "Embrace the healing power of traditional Ayurvedic herbs. Our herbal products combine ancient wisdom with modern quality standards, offering natural solutions for wellness and vitality.",
-    image: "/sri-lankan-herbal-collection.png",
-    icon: "🌿",
+    image: "/photo-02.png",
+    icon: "",
     features: ["Ayurvedic", "Traditional Recipes"],
     products: [
       "Herbal Teas",
@@ -42,8 +42,8 @@ const productCategories = [
     description: "Naturally dried tropical fruits preserving authentic flavors",
     longDescription:
       "Taste the tropics in every bite with our naturally dehydrated fruits. We preserve the authentic flavors and nutrients of Sri Lanka's finest produce using traditional drying methods.",
-    image: "/tropical-dehydrated-fruits.png",
-    icon: "🥭",
+    image: "/photo-03.png",
+    icon: "",
     features: ["No Preservatives", "Rich in Nutrients"],
     products: [
       "Mango Strips",
@@ -69,7 +69,7 @@ export default function ProductsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {productCategories.map((category, index) => (
             <Card
               key={category.id}
@@ -82,9 +82,11 @@ export default function ProductsSection() {
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-4 left-4 bg-white bg-opacity-90 rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg">
-                  {category.icon}
-                </div>
+                {category.icon && (
+                  <div className="absolute top-4 left-4 bg-white bg-opacity-90 rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg">
+                    {category.icon}
+                  </div>
+                )}
                 <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
                   Premium
                 </div>
