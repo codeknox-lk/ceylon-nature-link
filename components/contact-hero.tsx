@@ -63,7 +63,7 @@ export default function ContactHero() {
                   </div>
                   <h3 className="font-semibold text-lg text-gray-800">Our Location</h3>
                 </div>
-                <p className="text-gray-600">Koholanwala, Homapola Road<br/>21000, Sri Lanka</p>
+                <p className="text-gray-600">Homapola Road, Koholanwala<br/>Matale, Sri Lanka</p>
               </div>
               
               <div className="bg-green-50 p-6 rounded-2xl border border-green-100">
@@ -75,7 +75,7 @@ export default function ContactHero() {
                   </div>
                   <h3 className="font-semibold text-lg text-gray-800">Phone</h3>
                 </div>
-                <p className="text-gray-600">071 100 5969</p>
+                <p className="text-gray-600">+94 66 222 7474<br/>+94 71 100 5969</p>
               </div>
               
               <div className="bg-green-50 p-6 rounded-2xl border border-green-100">
@@ -87,7 +87,7 @@ export default function ContactHero() {
                   </div>
                   <h3 className="font-semibold text-lg text-gray-800">Email</h3>
                 </div>
-                <p className="text-gray-600">info@ceylonnaturelink.com</p>
+                <p className="text-gray-600">info@ceylonnaturelink.com<br/>sales@ceylonnaturelink.com</p>
               </div>
               
               <div className="bg-green-50 p-6 rounded-2xl border border-green-100">

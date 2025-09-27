@@ -22,28 +22,22 @@ const contactMethods = [
 ]
 
 const businessHours = [
-  { day: "Saturday - Thursday", hours: "8:00 AM - 5:00 PM" },
-  { day: "Friday", hours: "Closed" },
+  { day: "Monday - Saturday", hours: "8:00 AM - 5:00 PM" },
+  { day: "Sunday", hours: "Closed" },
 ]
 
 const departments = [
   {
-    name: "Sales & Exports",
-    email: "info@ceylonnaturelink.com",
-    phone: "071 100 5969",
+    name: "Sales",
+    email: "sales@ceylonnaturelink.com",
+    phone: "+94 71 100 5969",
     description: "Product inquiries, quotes, and export orders",
   },
   {
     name: "Customer Service",
-    email: "info@ceylonnaturelink.com",
-    phone: "071 100 5969",
+    email: "support@ceylonnaturelink.com",
+    phone: "+94 66 222 7474",
     description: "General support and order assistance",
-  },
-  {
-    name: "Quality Assurance",
-    email: "info@ceylonnaturelink.com",
-    phone: "071 100 5969",
-    description: "Quality concerns and certifications",
   },
 ]
 

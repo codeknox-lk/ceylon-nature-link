@@ -94,14 +94,14 @@ export default function Footer() {
                 <span className="text-2xl mt-1">📍</span>
                 <div>
                   <p className="font-semibold text-white text-lg">Our Location</p>
-                  <p className="text-gray-400">Koholanwala, Homapola Road, 21000</p>
+                  <p className="text-gray-400">Homapola Road, Koholanwala, Matale</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4 text-gray-300">
                 <span className="text-2xl mt-1">📞</span>
                 <div>
-                  <p className="font-semibold text-white text-lg">071 100 5969</p>
-                  <p className="text-gray-400">Sat - Thu, 8AM - 5PM</p>
+                  <p className="font-semibold text-white text-lg">+94 66 222 7474</p>
+                  <p className="text-gray-400">Mon - Sat, 8AM - 5PM</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4 text-gray-300">
