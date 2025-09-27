@@ -25,19 +25,19 @@ const brands = [
   {
     id: 2,
     name: "Trekola",
-    description: "Authentic Sri Lankan spices and seasonings",
+    description: "Authentic Sri Lankan Herbal Teas & Dehydrated Fruits",
     longDescription:
-      "Trekola brings you the authentic flavors of Sri Lanka. Our spices are carefully sourced from local farmers and processed using traditional methods to preserve their natural aroma and medicinal properties.",
+      "Trekola brings you the authentic goodness of Sri Lanka through a unique range of herbal teas and dehydrated fruits. Carefully harvested from trusted farms, our products are processed using modern dehydration technology to lock in natural taste, nutrients, and aroma—while preserving their health benefits.",
     logo: "/spice-island-logo.png",
-    products: ["Cinnamon", "Cardamom", "Black Pepper", "Turmeric"],
+    products: ["Moringa Tea", "Cinnamon Tea", "Dehydrated Mango", "Dehydrated Jackfruit"],
     features: [
       "100% Natural",
-      "Traditional Methods",
-      "Premium Quality",
-      "Medicinal Properties",
+      "Nutrient-Rich Processing",
+      "Authentic Sri Lankan Taste",
+      "Premium Export Quality",
     ],
-    yearEstablished: "2002",
-    certifications: ["ISO 22000", "HALAL", "Kosher"],
+    yearEstablished: "2025",
+    certifications: ["GMP (Under Process)"],
   },
 ];
 
