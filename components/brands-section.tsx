@@ -263,6 +263,9 @@ export default function BrandsSection() {
         </div>
       </div>
       
+      {/* Spacer between sections */}
+      <div className="h-16 lg:h-20"></div>
+      
       {/* Full-width company tagline */}
       <div className="w-full bg-gradient-to-r from-gray-50 to-gray-100 py-16 relative overflow-hidden">
         {/* Nature-themed background elements */}
