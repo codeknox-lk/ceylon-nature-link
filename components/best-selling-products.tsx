@@ -126,7 +126,8 @@ export default function BestSellingProducts() {
 
         {/* Auto-scrolling Product Carousel */}
         <div 
-          className="relative mb-8 overflow-hidden w-full -mx-2 sm:-mx-4 lg:-mx-6"
+          className="relative mb-8 overflow-hidden"
+          style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
           onMouseEnter={() => {
             setIsHovered(true)
             setIsPaused(true)
@@ -138,7 +139,7 @@ export default function BestSellingProducts() {
         >
           <div 
             ref={scrollRef}
-            className="flex gap-4 px-2 sm:px-4 lg:px-6"
+            className="flex gap-4 px-4 sm:px-6 lg:px-8"
             style={{
               transform: `translateX(-${scrollPosition}px)`,
               width: `${duplicatedProducts.length * 272}px`,
