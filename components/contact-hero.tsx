@@ -58,19 +58,9 @@ export default function ContactHero() {
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
                     <span className="text-green-600 text-xl">📍</span>
                   </div>
-                  <h3 className="font-semibold text-lg text-gray-800">Head Office</h3>
+                  <h3 className="font-semibold text-lg text-gray-800">Our Location</h3>
                 </div>
-                <p className="text-gray-600">Level 8, Valiant Towers<br/>46/7, Nawam Mawatha<br/>Colombo 02</p>
-              </div>
-              
-              <div className="bg-green-50 p-6 rounded-2xl border border-green-100">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-green-600 text-xl">🏭</span>
-                  </div>
-                  <h3 className="font-semibold text-lg text-gray-800">Factory</h3>
-                </div>
-                <p className="text-gray-600">364/5, Kelanitissa Mawatha<br/>Wanawasala, Kelaniya</p>
+                <p className="text-gray-600">Koholanwala, Homapola Road<br/>21000, Sri Lanka</p>
               </div>
               
               <div className="bg-green-50 p-6 rounded-2xl border border-green-100">
@@ -80,7 +70,7 @@ export default function ContactHero() {
                   </div>
                   <h3 className="font-semibold text-lg text-gray-800">Phone</h3>
                 </div>
-                <p className="text-gray-600">+94 77 958 9371</p>
+                <p className="text-gray-600">071 100 5969</p>
               </div>
               
               <div className="bg-green-50 p-6 rounded-2xl border border-green-100">
@@ -90,7 +80,17 @@ export default function ContactHero() {
                   </div>
                   <h3 className="font-semibold text-lg text-gray-800">Email</h3>
                 </div>
-                <p className="text-gray-600">info@winloflavors.com</p>
+                <p className="text-gray-600">info@ceylonnaturelink.com</p>
+              </div>
+              
+              <div className="bg-green-50 p-6 rounded-2xl border border-green-100">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-green-600 text-xl">🌐</span>
+                  </div>
+                  <h3 className="font-semibold text-lg text-gray-800">Website</h3>
+                </div>
+                <p className="text-gray-600">ceylonnaturelink.com</p>
               </div>
             </div>
           </div>
@@ -247,7 +247,7 @@ export default function ContactHero() {
                   <h3 className="text-2xl font-bold text-gray-800 mb-4">Find Us</h3>
                   <div className="bg-gray-100 rounded-xl overflow-hidden">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8994!2d79.8606!3d6.9271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae258e2b2b2b2b2%3A0x1234567890abcdef!2sValiant%20Towers%2C%2046%2F7%2C%20Nawam%20Mawatha%2C%20Colombo%2002%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1234567890"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8!2d80.5!3d7.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sKoholanwala%2C%20Homapola%20Road%2C%2021000%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1234567890"
                       width="100%"
                       height="400"
                       style={{ border: 0 }}
@@ -263,8 +263,8 @@ export default function ContactHero() {
                         <span className="text-green-600 text-lg">📍</span>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-800">Level 8, Valiant Towers</p>
-                        <p className="text-sm text-gray-600">46/7, Nawam Mawatha, Colombo 02</p>
+                        <p className="font-semibold text-gray-800">Ceylon Nature Link (Pvt) Ltd</p>
+                        <p className="text-sm text-gray-600">Koholanwala, Homapola Road, 21000</p>
                       </div>
                     </div>
                   </div>
