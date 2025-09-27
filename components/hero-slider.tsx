@@ -7,7 +7,7 @@ import Link from "next/link";
 const slides = [
   {
     id: 1,
-    image: "/photo-01.png",
+    image: "/sri-lankan-spices.png",
     title: "Premium Ceylon Spices",
     subtitle: "Traditional flavors, premium quality",
     description:
@@ -18,7 +18,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "/photo-02.png",
+    image: "/sri-lankan-dehydrated-fruits.png",
     title: "Dehydrated Fruits",
     subtitle: "Nature's sweetness preserved",
     description:
@@ -29,7 +29,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "/photo-03.png",
+    image: "/sri-lankan-tea-plantation.png",
     title: "Natural Heritage",
     subtitle: "Sustainably sourced from nature",
     description:
@@ -40,7 +40,7 @@ const slides = [
   },
   {
     id: 4,
-    image: "/photo-04.png",
+    image: "/sri-lankan-countryside.png",
     title: "Export Quality",
     subtitle: "Bringing Sri Lanka to the world",
     description:
