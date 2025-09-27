@@ -216,16 +216,6 @@ export default function BrandsSection() {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <div>
-                  <span className="text-primary text-xl">✨</span>
-                </div>
-                <div>
-                  <h4 className="text-gray-700 font-semibold text-lg">
-                    Our Commitment
-                  </h4>
-                </div>
-              </div>
               
             </div>
           </div>
@@ -267,15 +257,32 @@ export default function BrandsSection() {
       <div className="h-16 lg:h-20"></div>
       
       {/* Full-width company tagline */}
-      <div className="w-full bg-white py-16">
-        <div className="w-full">
-          <p className="text-center text-green-600 text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide px-4" 
-             style={{ fontFamily: 'Georgia, serif' }}>
-            <strong className="relative inline-block transform hover:scale-105 transition-transform duration-500 hover:text-green-700">
-              Ceylon Nature Link – Nature's Legacy, Shared with the World.
-              <span className="absolute -top-2 -right-2 text-green-500 text-xl animate-bounce">🌿</span>
-            </strong>
-          </p>
+      <div className="w-full bg-gradient-to-br from-green-50 via-white to-green-50 py-20 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-r from-green-100/20 via-transparent to-green-100/20"></div>
+        <div className="absolute top-10 left-10 w-20 h-20 bg-green-200/30 rounded-full blur-xl"></div>
+        <div className="absolute bottom-10 right-10 w-32 h-32 bg-green-300/20 rounded-full blur-2xl"></div>
+        
+        <div className="w-full relative z-10">
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl lg:text-5xl font-light italic tracking-wide px-4 leading-relaxed" 
+               style={{ 
+                 fontFamily: 'Georgia, serif',
+                 background: 'linear-gradient(135deg, #16a34a, #22c55e, #16a34a)',
+                 WebkitBackgroundClip: 'text',
+                 WebkitTextFillColor: 'transparent',
+                 backgroundClip: 'text'
+               }}>
+              <span className="relative inline-block transform hover:scale-105 transition-all duration-700 hover:drop-shadow-lg">
+                Ceylon Nature Link
+                <span className="block text-2xl md:text-3xl lg:text-4xl mt-2 font-normal">
+                  Nature's Legacy, Shared with the World.
+                </span>
+                <span className="absolute -top-3 -right-3 text-green-500 text-2xl animate-bounce">🌿</span>
+                <span className="absolute -bottom-2 -left-2 text-green-400 text-lg animate-pulse">✨</span>
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
