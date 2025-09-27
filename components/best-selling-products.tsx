@@ -149,13 +149,12 @@ export default function BestSellingProducts() {
                 key={`${product.id}-${index}`}
                 className="flex-shrink-0 w-64 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100"
               >
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 h-48 rounded-t-2xl flex items-center justify-center overflow-hidden relative">
+                <div className="bg-white h-48 rounded-t-2xl flex items-center justify-center overflow-hidden relative">
                   <img
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
                     className="w-full h-full object-cover rounded-t-2xl"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-t-2xl"></div>
                 </div>
                 <div className="p-6 space-y-3">
                   <div className="space-y-1">
