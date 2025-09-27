@@ -141,7 +141,7 @@ export default function BestSellingProducts() {
         >
           <div 
             ref={scrollRef}
-            className="flex gap-4 px-4 sm:px-6 lg:px-8"
+            className="flex gap-6 px-4 sm:px-6 lg:px-8"
             style={{
               transform: `translateX(-${scrollPosition}px)`,
               width: `${duplicatedProducts.length * 272}px`,
@@ -153,7 +153,7 @@ export default function BestSellingProducts() {
               key={`${product.id}-${index}`}
               className="flex-shrink-0 w-64 h-96 relative"
             >
-                <div className="bg-white/20 backdrop-blur-lg rounded-3xl transition-all duration-500 hover:scale-105 border border-white/30 overflow-hidden h-full flex flex-col">
+                <div className="bg-white/20 backdrop-blur-lg rounded-3xl transition-all duration-500 hover:scale-105 border border-white/30 overflow-hidden h-full flex flex-col shadow-sm">
                   <div className="h-48 relative flex-shrink-0 rounded-t-3xl overflow-hidden">
                     <img
                       src={product.image || "/placeholder.svg"}
