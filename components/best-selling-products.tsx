@@ -128,7 +128,7 @@ export default function BestSellingProducts() {
 
         {/* Auto-scrolling Product Carousel */}
         <div 
-          className="relative mb-8 overflow-hidden w-full"
+          className="relative mb-32 overflow-hidden w-full"
           style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
           onMouseEnter={() => {
             setIsHovered(true)
@@ -151,7 +151,7 @@ export default function BestSellingProducts() {
             {duplicatedProducts.map((product, index) => (
             <div
               key={`${product.id}-${index}`}
-              className="flex-shrink-0 w-64 h-80 relative"
+              className="flex-shrink-0 w-64 h-96 relative"
             >
                 <div className="bg-white/20 backdrop-blur-lg rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-white/30 overflow-hidden h-full flex flex-col relative">
                   <div className="h-48 relative flex-shrink-0 rounded-t-3xl overflow-hidden">
@@ -162,7 +162,7 @@ export default function BestSellingProducts() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
-                  <div className="p-6 pb-8 space-y-3 flex-1 flex flex-col justify-between relative">
+                  <div className="p-6 pb-12 space-y-4 flex-1 flex flex-col justify-between relative">
                     <div className="space-y-1 h-[72px] flex flex-col justify-start">
                       <h3 className="font-bold text-gray-800 text-lg leading-tight line-clamp-2">{product.name}</h3>
                       <p className="text-gray-600 text-sm font-medium line-clamp-1">{product.variant}</p>
