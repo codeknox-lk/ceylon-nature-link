@@ -37,7 +37,7 @@ const bestSellingProducts = [
     id: 5,
     name: "Herbal Wellness Tea",
     description: "Ayurvedic blend for daily wellness",
-    image: "/herbal-wellness-tea.png",
+    image: "/sri-lankan-herbal-plants.png",
     price: "$22.99",
   },
 ]
@@ -92,7 +92,7 @@ export default function BestSellingProducts() {
         </div>
 
         <div
-          className="carousel-container relative mb-16"
+          className="carousel-container relative mb-16 overflow-hidden"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -143,6 +143,14 @@ export default function BestSellingProducts() {
         </div>
 
         <div className="text-center animate-fade-in-up animate-delay-500">
+          <div className="mb-4">
+            <div className="inline-flex items-center space-x-2 text-gray-500">
+              <div className="w-2 h-2 bg-gray-300 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-gray-300 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+              <div className="w-2 h-2 bg-gray-300 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+            </div>
+            <p className="text-sm text-gray-500 mt-2">Scroll to see more products</p>
+          </div>
           <Button
             size="lg"
             className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white px-12 py-4 text-lg premium-button shadow-2xl hover:shadow-3xl"
