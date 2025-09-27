@@ -106,7 +106,7 @@ export default function BestSellingProducts() {
 
   return (
     <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="w-full px-2 sm:px-4 lg:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
           <div className="flex items-start justify-between mb-4">
@@ -128,8 +128,8 @@ export default function BestSellingProducts() {
 
         {/* Auto-scrolling Product Carousel */}
         <div 
-          className="relative mb-8 overflow-hidden"
-          style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
+          className="relative mb-8 overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8"
+          style={{ width: 'calc(100% + 2rem)' }}
           onMouseEnter={() => {
             setIsHovered(true)
             setIsPaused(true)
