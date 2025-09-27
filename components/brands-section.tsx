@@ -17,7 +17,7 @@ const brands = [
       "Premium Spices",
       "Advanced Processing",
       "Farm to Table Traceability",
-      "Export Standards",
+      "Export Standards", // Updated
     ],
     yearEstablished: "2025",
     certifications: ["GMP (Under Process)"],
@@ -27,7 +27,7 @@ const brands = [
     name: "Trekola",
     description: "Authentic Sri Lankan Herbal Teas & Dehydrated Fruits",
     longDescription:
-      "Trekola brings you the authentic goodness of Sri Lanka through a unique range of herbal teas and dehydrated fruits. Carefully harvested from trusted farms, our products are processed using modern dehydration technology to lock in natural taste, nutrients, and aroma—while preserving their health benefits.",
+      "Trekola brings you the authentic goodness of Sri Lanka through a unique range of herbal teas and dehydrated fruits. Carefully harvested from trusted farms, our products are processed using modern dehydration technology to lock in natural taste, nutrients, and aroma while preserving their health benefits.",
     logo: "/brand%20logos/Trekola.png",
     products: ["Moringa Tea", "Cinnamon Tea", "Dehydrated Mango", "Dehydrated Jackfruit"],
     features: [
