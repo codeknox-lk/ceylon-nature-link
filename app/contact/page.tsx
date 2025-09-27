@@ -9,7 +9,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <main className="pt-20 lg:pt-24">
+      <main>
         <ContactHero />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
           <ContactInfo />
