@@ -38,7 +38,7 @@ export default function Header() {
       <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/3 to-white/5 backdrop-blur-xl"></div>
 
       <div className="container mx-auto px-4 relative">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16 lg:h-20 py-2">
           {/* Logo */}
           <Link href="/" className="flex items-center group relative z-10">
             <div className="relative">
@@ -52,7 +52,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8 h-full">
             {navItems.map((item, index) => (
               <Link
                 key={item.href}
