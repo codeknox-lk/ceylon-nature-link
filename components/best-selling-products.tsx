@@ -106,7 +106,7 @@ export default function BestSellingProducts() {
 
   return (
     <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="container mx-auto px-6">
+      <div className="w-full px-2 sm:px-4 lg:px-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">
           <div>
@@ -126,7 +126,7 @@ export default function BestSellingProducts() {
 
         {/* Auto-scrolling Product Carousel */}
         <div 
-          className="relative mb-8 overflow-hidden"
+          className="relative mb-8 overflow-hidden w-full -mx-2 sm:-mx-4 lg:-mx-6"
           onMouseEnter={() => {
             setIsHovered(true)
             setIsPaused(true)
@@ -138,10 +138,10 @@ export default function BestSellingProducts() {
         >
           <div 
             ref={scrollRef}
-            className="flex gap-6"
+            className="flex gap-4 px-2 sm:px-4 lg:px-6"
             style={{
               transform: `translateX(-${scrollPosition}px)`,
-              width: `${duplicatedProducts.length * 280}px`,
+              width: `${duplicatedProducts.length * 272}px`,
             }}
           >
             {duplicatedProducts.map((product, index) => (
