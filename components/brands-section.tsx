@@ -267,18 +267,9 @@ export default function BrandsSection() {
       <div className="h-16 lg:h-20"></div>
       
       {/* Full-width company tagline */}
-      <div className="w-full bg-gradient-to-r from-gray-50 to-gray-100 py-16 relative overflow-hidden">
-        {/* Nature-themed background elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-4 left-8 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-          <div className="absolute top-12 right-16 w-1 h-1 bg-green-500 rounded-full animate-ping"></div>
-          <div className="absolute bottom-8 left-1/4 w-1.5 h-1.5 bg-green-300 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-16 right-1/3 w-1 h-1 bg-green-400 rounded-full animate-ping"></div>
-          <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-        </div>
-        
-        <div className="w-full relative z-10">
-          <p className="text-center text-green-600 text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide px-4 animate-pulse hover:animate-none transition-all duration-300" 
+      <div className="w-full bg-white py-16">
+        <div className="w-full">
+          <p className="text-center text-green-600 text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide px-4" 
              style={{ fontFamily: 'Georgia, serif' }}>
             <strong className="relative inline-block transform hover:scale-105 transition-transform duration-500 hover:text-green-700">
               Ceylon Nature Link – Nature's Legacy, Shared with the World.
