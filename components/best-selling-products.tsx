@@ -8,155 +8,155 @@ const bestSellingProducts = [
   {
     id: 1,
     name: "Ceylon Cinnamon Sticks",
-    description: "Premium quality true cinnamon from Sri Lanka",
+    variant: "Premium Grade",
     image: "/ceylon-cinnamon-sticks.png",
     price: "$24.99",
   },
   {
     id: 2,
     name: "Earl Grey Tea Blend",
-    description: "Classic Ceylon black tea with bergamot",
+    variant: "Classic Blend",
     image: "/earl-grey-tea-blend.png",
     price: "$18.99",
   },
   {
     id: 3,
     name: "Dried Mango Strips",
-    description: "Naturally dehydrated tropical mango",
+    variant: "Natural Dried",
     image: "/dried-mango-strips.png",
     price: "$12.99",
   },
   {
     id: 4,
     name: "Turmeric Powder",
-    description: "Pure Ceylon turmeric with high curcumin",
+    variant: "High Curcumin",
     image: "/ceylon-turmeric-powder.png",
     price: "$15.99",
   },
   {
     id: 5,
     name: "Herbal Wellness Tea",
-    description: "Ayurvedic blend for daily wellness",
+    variant: "Ayurvedic Blend",
     image: "/sri-lankan-herbal-plants.png",
     price: "$22.99",
+  },
+  {
+    id: 6,
+    name: "Cardamom Pods",
+    variant: "Green Cardamom",
+    image: "/sri-lankan-spices.png",
+    price: "$19.99",
   },
 ]
 
 export default function BestSellingProducts() {
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
-  const [currentTransform, setCurrentTransform] = useState(0)
   const trackRef = useRef<HTMLDivElement>(null)
-  const animationRef = useRef<number>()
 
-  const duplicatedProducts = [...bestSellingProducts, ...bestSellingProducts, ...bestSellingProducts]
+  const itemsPerPage = 5
+  const totalPages = Math.ceil(bestSellingProducts.length / itemsPerPage)
 
-  useEffect(() => {
-    let startTime: number
-    const duration = 60000
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalPages)
+  }
 
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp
-      const elapsed = timestamp - startTime
-      const progress = (elapsed % duration) / duration
-      const translateX = -((progress * (duplicatedProducts.length * 320)) / 3)
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages)
+  }
 
-      setCurrentTransform(translateX)
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index)
+  }
 
-      if (!isPaused) {
-        animationRef.current = requestAnimationFrame(animate)
-      }
-    }
-
-    if (!isPaused) {
-      animationRef.current = requestAnimationFrame(animate)
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
-    }
-  }, [isPaused, duplicatedProducts.length])
+  const currentProducts = bestSellingProducts.slice(
+    currentIndex * itemsPerPage,
+    (currentIndex + 1) * itemsPerPage
+  )
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 to-white nature-texture overflow-hidden">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-20 animate-fade-in-up">
-          <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary-dark mb-8 animate-float">
-            Best Selling Products
-          </h2>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-            Discover our most popular products loved by customers worldwide for their exceptional quality and authentic
-            taste
-          </p>
+        {/* Header */}
+        <div className="flex items-center justify-between mb-12">
+          <div>
+            <p className="text-gray-500 text-sm mb-2">Tagline</p>
+            <h2 className="text-4xl font-bold text-black mb-4">Products</h2>
+            <p className="text-gray-600 max-w-2xl">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+          </div>
+          <Button
+            variant="outline"
+            className="border border-gray-300 text-black hover:bg-gray-50 px-6 py-2 rounded-lg"
+          >
+            View all
+          </Button>
         </div>
 
-        <div
-          className="carousel-container relative mb-16 overflow-hidden"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
+        {/* Product Grid */}
+        <div className="relative mb-8">
           <div
             ref={trackRef}
-            className="carousel-track gap-8 flex"
+            className="flex gap-6 transition-transform duration-300 ease-in-out"
             style={{
-              width: `${duplicatedProducts.length * 320}px`,
-              transform: `translateX(${currentTransform}px)`,
-              transition: isPaused ? "none" : "transform 0.1s linear",
+              transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
             }}
           >
-            {duplicatedProducts.map((product, index) => (
-              <Card
-                key={`${product.id}-${index}`}
-                className={`premium-card group bg-white shadow-lg hover:shadow-2xl border-0 overflow-hidden carousel-item stagger-${(index % 6) + 1}`}
-                style={{ width: "300px", flexShrink: 0 }}
+            {bestSellingProducts.map((product) => (
+              <div
+                key={product.id}
+                className="flex-shrink-0 w-64 bg-white"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
               >
-                <div className="relative overflow-hidden">
+                <div className="bg-gray-100 h-48 rounded-lg mb-4 flex items-center justify-center">
                   <img
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
-                    className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover rounded-lg"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    Bestseller
-                  </div>
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="font-heading font-bold text-xl text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">
-                    {product.name}
-                  </h3>
-                  <p className="text-gray-600 text-sm mb-6 leading-relaxed">{product.description}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-2xl text-primary">{product.price}</span>
-                    <Button
-                      size="sm"
-                      className="bg-primary hover:bg-primary-dark text-white premium-button px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                    >
-                      Add to Cart
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                <div className="space-y-2">
+                  <h3 className="font-bold text-black text-lg">{product.name}</h3>
+                  <p className="text-gray-600 text-sm">{product.variant}</p>
+                  <p className="font-bold text-black text-lg">{product.price}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
-        <div className="text-center animate-fade-in-up animate-delay-500">
-          <div className="mb-4">
-            <div className="inline-flex items-center space-x-2 text-gray-500">
-              <div className="w-2 h-2 bg-gray-300 rounded-full animate-pulse"></div>
-              <div className="w-2 h-2 bg-gray-300 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-2 h-2 bg-gray-300 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-            </div>
-            <p className="text-sm text-gray-500 mt-2">Scroll to see more products</p>
+        {/* Navigation Controls */}
+        <div className="flex items-center justify-between">
+          {/* Pagination Dots */}
+          <div className="flex space-x-2">
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex ? 'bg-black' : 'bg-gray-300'
+                }`}
+              />
+            ))}
           </div>
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white px-12 py-4 text-lg premium-button shadow-2xl hover:shadow-3xl"
-          >
-            View All Products
-          </Button>
+
+          {/* Navigation Arrows */}
+          <div className="flex space-x-2">
+            <button
+              onClick={prevSlide}
+              className="w-8 h-8 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors"
+            >
+              ←
+            </button>
+            <button
+              onClick={nextSlide}
+              className="w-8 h-8 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors"
+            >
+              →
+            </button>
+          </div>
         </div>
       </div>
     </section>
