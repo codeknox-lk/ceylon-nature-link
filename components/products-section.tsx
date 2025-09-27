@@ -22,24 +22,6 @@ const productCategories = [
   },
   {
     id: 2,
-    name: "Tea",
-    description: "World-renowned Ceylon tea from the finest highland estates",
-    longDescription:
-      "Experience the world's finest tea from the misty mountains of Ceylon. Our tea collection includes classic black teas, aromatic green teas, and specialty blends that capture the essence of Sri Lanka's tea heritage.",
-    image: "/ceylon-tea-leaves.png",
-    icon: "🍃",
-    features: ["Highland Grown", "Traditional Processing"],
-    products: [
-      "Black Tea",
-      "Green Tea",
-      "Earl Grey",
-      "Herbal Blends",
-      "Masala Tea",
-      "Tetum Tea",
-    ],
-  },
-  {
-    id: 3,
     name: "Herbal Products",
     description: "Traditional Ayurvedic herbs and wellness products",
     longDescription:
@@ -55,7 +37,7 @@ const productCategories = [
     ],
   },
   {
-    id: 4,
+    id: 3,
     name: "Dehydrated Fruits",
     description: "Naturally dried tropical fruits preserving authentic flavors",
     longDescription:
