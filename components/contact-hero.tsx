@@ -114,14 +114,14 @@ export default function ContactHero() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">Get in Touch</h2>
             <p className="text-xl text-gray-600">
-              Send us a message or visit our office in Colombo
+              Send us a message or visit our location in Koholanwala
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:items-stretch">
             {/* Left side - Contact Form */}
-            <div>
-              <Card className="shadow-lg">
+            <div className="flex flex-col">
+              <Card className="shadow-lg h-full">
                 <CardContent className="p-6">
                   <h3 className="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
                   <form onSubmit={handleSubmit} className="space-y-4">
@@ -241,20 +241,20 @@ export default function ContactHero() {
             </div>
             
             {/* Right side - Map */}
-            <div>
+            <div className="flex flex-col">
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-gray-800 mb-4">Find Us</h3>
                   <div className="bg-gray-100 rounded-xl overflow-hidden">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8!2d80.5!3d7.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sKoholanwala%2C%20Homapola%20Road%2C%2021000%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1234567890"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.1234567890123!2d80.6304681!3d7.6309457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3535e13333a71%3A0x224371cd3dfc86fd!2sCeylon%20Nature%20Link%20(Pvt)%20Ltd!5e0!3m2!1sen!2slk!4v1630000000000!5m2!1sen!2slk"
                       width="100%"
                       height="400"
                       style={{ border: 0 }}
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Ceylon Nature Link Location"
+                      title="Ceylon Nature Link Location - Koholanwala"
                     ></iframe>
                   </div>
                   <div className="mt-4">

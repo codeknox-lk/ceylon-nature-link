@@ -3,47 +3,46 @@ import { Card, CardContent } from "@/components/ui/card"
 const contactMethods = [
   {
     title: "Phone",
-    details: ["+94 11 234 5678", "+94 77 123 4567"],
+    details: ["071 100 5969"],
     icon: "📞",
     description: "Call us during business hours",
   },
   {
     title: "Email",
-    details: ["info@ceylonnaturelink.com", "sales@ceylonnaturelink.com"],
+    details: ["info@ceylonnaturelink.com"],
     icon: "✉️",
     description: "Send us your inquiries",
   },
   {
     title: "Address",
-    details: ["123 Export Processing Zone", "Colombo 03, Sri Lanka"],
+    details: ["Koholanwala, Homapola Road", "21000, Sri Lanka"],
     icon: "📍",
-    description: "Visit our main office",
+    description: "Visit our location",
   },
 ]
 
 const businessHours = [
-  { day: "Monday - Friday", hours: "8:00 AM - 6:00 PM" },
-  { day: "Saturday", hours: "9:00 AM - 1:00 PM" },
-  { day: "Sunday", hours: "Closed" },
+  { day: "Saturday - Thursday", hours: "8:00 AM - 5:00 PM" },
+  { day: "Friday", hours: "Closed" },
 ]
 
 const departments = [
   {
     name: "Sales & Exports",
-    email: "sales@ceylonnaturelink.com",
-    phone: "+94 11 234 5678",
+    email: "info@ceylonnaturelink.com",
+    phone: "071 100 5969",
     description: "Product inquiries, quotes, and export orders",
   },
   {
     name: "Customer Service",
-    email: "support@ceylonnaturelink.com",
-    phone: "+94 11 234 5679",
+    email: "info@ceylonnaturelink.com",
+    phone: "071 100 5969",
     description: "General support and order assistance",
   },
   {
     name: "Quality Assurance",
-    email: "quality@ceylonnaturelink.com",
-    phone: "+94 11 234 5680",
+    email: "info@ceylonnaturelink.com",
+    phone: "071 100 5969",
     description: "Quality concerns and certifications",
   },
 ]

@@ -4,7 +4,7 @@ export default function ContactMap() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="font-heading font-bold text-3xl text-primary-dark mb-4">Find Us</h2>
-          <p className="text-gray-600">Visit our main office and processing facility in Colombo</p>
+          <p className="text-gray-600">Visit our location in Koholanwala</p>
         </div>
 
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -13,17 +13,16 @@ export default function ContactMap() {
               <div className="text-4xl mb-4">🗺️</div>
               <h3 className="font-heading font-semibold text-xl text-primary-dark mb-2">Interactive Map</h3>
               <p className="text-gray-600 mb-4">
-                Ceylon Nature Link (Private) Limited
+                Ceylon Nature Link (Pvt) Ltd
                 <br />
-                123 Export Processing Zone
+                Koholanwala, Homapola Road
                 <br />
-                Colombo 03, Sri Lanka
+                21000, Sri Lanka
               </p>
               <div className="text-sm text-gray-500">
-                <p>Coordinates: 6.9271° N, 79.8612° E</p>
+                <p>Coordinates: 7.6309° N, 80.6305° E</p>
                 <p className="mt-2">
-                  <strong>Directions:</strong> Located in the heart of Colombo's business district, easily accessible by
-                  public transport and major highways.
+                  <strong>Directions:</strong> Located in Koholanwala, easily accessible via Homapola Road and major highways.
                 </p>
               </div>
             </div>
