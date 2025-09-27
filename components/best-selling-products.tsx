@@ -9,56 +9,56 @@ const products = [
     name: "Ceylon Cinnamon Sticks",
     variant: "Premium Grade",
     image: "/ceylon-cinnamon-sticks.png",
-    price: "$24.99",
+    brand: "Saadambara",
   },
   {
     id: 2,
     name: "Earl Grey Tea Blend",
     variant: "Classic Blend",
     image: "/earl-grey-tea-blend.png",
-    price: "$18.99",
+    brand: "Trekola",
   },
   {
     id: 3,
     name: "Dried Mango Strips",
     variant: "Natural Dried",
     image: "/dried-mango-strips.png",
-    price: "$12.99",
+    brand: "Trekola",
   },
   {
     id: 4,
     name: "Turmeric Powder",
     variant: "High Curcumin",
     image: "/ceylon-turmeric-powder.png",
-    price: "$15.99",
+    brand: "Saadambara",
   },
   {
     id: 5,
     name: "Herbal Wellness Tea",
     variant: "Ayurvedic Blend",
     image: "/sri-lankan-herbal-plants.png",
-    price: "$22.99",
+    brand: "Trekola",
   },
   {
     id: 6,
     name: "Cardamom Pods",
     variant: "Green Cardamom",
     image: "/sri-lankan-spices.png",
-    price: "$19.99",
+    brand: "Saadambara",
   },
   {
     id: 7,
     name: "Black Pepper",
     variant: "Whole Peppercorns",
     image: "/sri-lankan-spices.png",
-    price: "$16.99",
+    brand: "Saadambara",
   },
   {
     id: 8,
     name: "Clove",
     variant: "Whole Cloves",
     image: "/sri-lankan-spices.png",
-    price: "$14.99",
+    brand: "Saadambara",
   },
 ]
 
@@ -167,7 +167,7 @@ export default function BestSellingProducts() {
                       <span className="text-green-600 text-xs font-semibold">Premium Quality</span>
                     </div>
                     <div className="text-xs text-gray-400 font-medium">
-                      Sri Lankan
+                      {product.brand}
                     </div>
                   </div>
                 </div>
