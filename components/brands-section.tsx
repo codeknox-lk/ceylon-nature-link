@@ -216,25 +216,20 @@ export default function BrandsSection() {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="bg-primary/10 rounded-full p-3 mt-1">
+              <div className="flex items-center space-x-4">
+                <div className="bg-primary/10 rounded-full p-3">
                   <span className="text-primary text-xl">✨</span>
                 </div>
                 <div>
-                  <h4 className="text-gray-700 font-semibold text-lg mb-3">
+                  <h4 className="text-gray-700 font-semibold text-lg">
                     Our Commitment
                   </h4>
-                  <ul className="text-gray-600 text-sm space-y-2">
-                    <li>• To deliver products that are natural, chemical-free, and full of goodness</li>
-                    <li>• To empower farming communities through fair trade and sustainable practices</li>
-                    <li>• To innovate continuously while preserving Sri Lanka's authenticity</li>
-                    <li>• To be a trusted global ambassador of Sri Lankan flavors and wellness</li>
-                  </ul>
-                  <p className="text-gray-600 text-sm mt-4 font-medium italic">
-                    <strong>Ceylon Nature Link – Nature's Legacy, Shared with the World.</strong>
-                  </p>
                 </div>
               </div>
+              
+              <p className="text-gray-600 text-sm mt-4 font-medium italic">
+                <strong>Ceylon Nature Link – Nature's Legacy, Shared with the World.</strong>
+              </p>
             </div>
           </div>
 
