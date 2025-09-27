@@ -11,7 +11,7 @@ const brands = [
     description: "Premium Spices from the Heart of Sri Lanka",
     longDescription:
       "Saadambara is a premium Sri Lankan spice brand that represents the true excellence of Ceylon spices. Our spices are carefully sourced from the finest farms across Sri Lanka, where fertile soil and tropical climates produce the most aromatic and flavorful harvests.",
-    logo: "/ceylon-gold-logo.png",
+    logo: "/brand logos/Saadambara.png",
     products: ["Black Pepper", "Cinnamon", "Cloves", "Cardamom"],
     features: [
       "Premium Spices",
@@ -28,7 +28,7 @@ const brands = [
     description: "Authentic Sri Lankan Herbal Teas & Dehydrated Fruits",
     longDescription:
       "Trekola brings you the authentic goodness of Sri Lanka through a unique range of herbal teas and dehydrated fruits. Carefully harvested from trusted farms, our products are processed using modern dehydration technology to lock in natural taste, nutrients, and aroma—while preserving their health benefits.",
-    logo: "/spice-island-logo.png",
+    logo: "/brand logos/Trekola.png",
     products: ["Moringa Tea", "Cinnamon Tea", "Dehydrated Mango", "Dehydrated Jackfruit"],
     features: [
       "100% Natural",
