@@ -108,20 +108,22 @@ export default function BestSellingProducts() {
     <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="w-full px-2 sm:px-4 lg:px-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-12">
-          <div>
-            <p className="text-gray-500 text-sm mb-2">Best Selling Products</p>
-            <h2 className="text-4xl font-bold text-black mb-4">Products</h2>
-            <p className="text-gray-600 max-w-2xl">
-              Discover our premium Sri Lankan products with authentic quality and traditional heritage.
-            </p>
+        <div className="mb-12">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <p className="text-gray-500 text-sm mb-2">Best Selling Products</p>
+              <h2 className="text-4xl font-bold text-black mb-4">Products</h2>
+            </div>
+            <Button
+              variant="outline"
+              className="border border-gray-300 text-black hover:bg-gray-50 px-6 py-2 rounded-lg flex-shrink-0 ml-6"
+            >
+              View all
+            </Button>
           </div>
-          <Button
-            variant="outline"
-            className="border border-gray-300 text-black hover:bg-gray-50 px-6 py-2 rounded-lg"
-          >
-            View all
-          </Button>
+          <p className="text-gray-600 max-w-2xl">
+            Discover our premium Sri Lankan products with authentic quality and traditional heritage.
+          </p>
         </div>
 
         {/* Auto-scrolling Product Carousel */}
