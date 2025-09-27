@@ -71,7 +71,7 @@ export default function BestSellingProducts() {
   )
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white border-2 border-red-500">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">
