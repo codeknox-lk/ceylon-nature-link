@@ -63,7 +63,7 @@ export default function Header() {
                 <div className="absolute inset-0 bg-primary-dark/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
 
                 {/* Content */}
-                <div className="relative text-gray-700 group-hover:text-primary-dark transition-colors duration-300 font-medium">
+                <div className="relative text-gray-700 group-hover:text-primary-dark transition-colors duration-300 font-medium" style={{ textShadow: '1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white' }}>
                   {item.label}
                 </div>
 
