@@ -18,35 +18,16 @@ export default function ContactHero() {
               </p>
             </div>
             
-            {/* Right side - Person with phone illustration */}
+            {/* Right side - Contact image */}
             <div className="flex justify-center lg:justify-end">
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
                 <div className="absolute inset-0 bg-purple-200/30 rounded-3xl transform rotate-3"></div>
-                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden flex items-center justify-center">
-                  {/* Person with phone illustration */}
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    {/* Person figure */}
-                    <div className="relative">
-                      {/* Head */}
-                      <div className="w-16 h-16 bg-gray-200 rounded-full mb-2"></div>
-                      {/* Body */}
-                      <div className="w-20 h-24 bg-gray-300 rounded-lg"></div>
-                      {/* Arms */}
-                      <div className="absolute -left-2 top-8 w-6 h-16 bg-gray-300 rounded-full transform -rotate-12"></div>
-                      <div className="absolute -right-2 top-8 w-6 h-16 bg-gray-300 rounded-full transform rotate-12"></div>
-                      {/* Legs */}
-                      <div className="absolute -left-1 bottom-0 w-8 h-12 bg-gray-300 rounded-full transform -rotate-6"></div>
-                      <div className="absolute -right-1 bottom-0 w-8 h-12 bg-gray-300 rounded-full transform rotate-6"></div>
-                    </div>
-                    
-                    {/* Phone */}
-                    <div className="absolute -right-8 top-1/2 transform -translate-y-1/2">
-                      <div className="w-12 h-20 bg-red-500 rounded-lg transform rotate-12 shadow-lg">
-                        <div className="w-8 h-12 bg-red-600 rounded-sm mx-auto mt-2"></div>
-                        <div className="w-6 h-1 bg-red-700 rounded-full mx-auto mt-1"></div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
+                  <img
+                    src="/contact.png"
+                    alt="Person with phone"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
