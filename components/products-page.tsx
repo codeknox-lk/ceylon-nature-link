@@ -7,93 +7,54 @@ const products = [
   {
     id: 1,
     category: "Spices",
-    name: "Premium Ceylon Spices",
+    name: "Spices",
     description:
-      "Authentic Sri Lankan spices including cinnamon, cardamom, pepper, and cloves. Hand-selected from the finest estates and processed using traditional methods to preserve their natural oils and flavors.",
+      "Premium Ceylon spices including Cinnamon, Cardamom, Clove and Pepper",
     image: "/sri-lankan-spices.png",
-    price: "From $15.99",
     features: [
-      "100% Pure Ceylon Origin",
-      "Hand-Selected Quality",
-      "Traditional Processing",
+      "100% Natural",
+      "Premium Quality",
       "Export Grade",
     ],
     products: [
-      "Ceylon Cinnamon",
+      "Cinnamon Sticks",
+      "Cardamom Pods",
       "Black Pepper",
-      "Cardamom",
-      "Cloves",
-      "Nutmeg",
-      "Turmeric",
+      "Clove",
     ],
   },
   {
     id: 2,
-    category: "Tea",
-    name: "Ceylon Tea Collection",
+    category: "Herbal Products",
+    name: "Herbal Products",
     description:
-      "World-renowned Ceylon tea from the highland estates of Sri Lanka. Our collection includes black tea, green tea, and specialty blends that capture the unique terroir of our mountain regions.",
-    image: "/ceylon-tea-leaves.png",
-    price: "From $18.99",
+      "Traditional Ayurvedic herbs and wellness products",
+    image: "/sri-lankan-herbal-plants.png",
     features: [
-      "Highland Estate Tea",
-      "Single Origin",
-      "BOPF Grade",
-      "Sustainable Sourcing",
+      "Ayurvedic",
+      "Traditional Recipes",
+      "Wellness Focus",
     ],
     products: [
-      "Earl Grey",
-      "English Breakfast",
-      "Green Tea",
-      "White Tea",
-      "Herbal Blends",
-      "Flavored Teas",
+      "Moringa Tea",
+      "Cinnamon Tea",
     ],
   },
   {
     id: 3,
-    category: "Herbal Products",
-    name: "Ayurvedic Herbal Products",
-    description:
-      "Traditional Sri Lankan herbal products based on ancient Ayurvedic wisdom. Our range includes medicinal herbs, wellness teas, and natural remedies that have been used for centuries in Sri Lankan traditional medicine.",
-    image: "/sri-lankan-herbal-plants.png",
-    price: "From $12.99",
-    features: [
-      "Traditional Ayurvedic",
-      "Medicinal Properties",
-      "Natural Processing",
-      "Wellness Focus",
-    ],
-    products: [
-      "Moringa Powder",
-      "Cinnamon Tea",
-      "Herbal Teas",
-      "Medicinal Herbs",
-      "Wellness Blends",
-      "Natural Remedies",
-    ],
-  },
-  {
-    id: 4,
     category: "Dehydrated Fruits",
-    name: "Tropical Dehydrated Fruits",
+    name: "Dehydrated Fruits",
     description:
-      "Premium dehydrated fruits from Sri Lanka's tropical paradise. Our fruits are carefully selected and processed using advanced dehydration technology to preserve their natural taste, nutrients, and vibrant colors.",
+      "Naturally dried tropical fruits preserving authentic flavors",
     image: "/sri-lankan-dehydrated-fruits.png",
-    price: "From $9.99",
     features: [
-      "Tropical Fruits",
+      "No Preservatives",
+      "Rich in Nutrients",
       "Natural Drying",
-      "Nutrient Preservation",
-      "No Additives",
     ],
     products: [
       "Dehydrated Mango",
       "Dehydrated Jackfruit",
-      "Coconut Chips",
-      "Pineapple Slices",
-      "Banana Chips",
-      "Mixed Fruit Mix",
     ],
   },
 ];
@@ -160,9 +121,6 @@ export default function ProductsPage() {
                     <h3 className="font-heading font-bold text-2xl text-white mb-2 drop-shadow-lg">
                       {product.name}
                     </h3>
-                    <p className="text-orange-200 font-semibold text-lg">
-                      {product.price}
-                    </p>
                   </div>
                 </div>
 
@@ -203,13 +161,13 @@ export default function ProductsPage() {
 
                   <div className="flex gap-4">
                     <Button className="flex-1 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
-                      View Details
+                      View Products
                     </Button>
                     <Button
                       variant="outline"
                       className="flex-1 border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white font-semibold transition-all duration-300"
                     >
-                      Get Quote
+                      Request Quote
                     </Button>
                   </div>
                 </CardContent>
