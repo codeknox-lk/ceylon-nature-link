@@ -173,11 +173,10 @@ export default function ServicesSection() {
                 </div>
                 <div>
                   <h4 className="font-heading font-semibold text-lg text-primary-dark mb-2">
-                    25+ Years Experience
+                    Fresh Vision, Trusted Roots
                   </h4>
                   <p className="text-gray-600 leading-relaxed">
-                    Decades of expertise in Sri Lankan natural products and
-                    international trade.
+                    Founded in 2025, built on Sri Lanka's timeless spice and fruit legacy.
                   </p>
                 </div>
               </div>
@@ -191,8 +190,7 @@ export default function ServicesSection() {
                     Global Reach
                   </h4>
                   <p className="text-gray-600 leading-relaxed">
-                    Serving customers in over 50 countries with reliable
-                    shipping and logistics.
+                    Delivering premium dehydrated fruits, spices, and herbs worldwide with reliable logistics.
                   </p>
                 </div>
               </div>
@@ -203,11 +201,10 @@ export default function ServicesSection() {
                 </div>
                 <div>
                   <h4 className="font-heading font-semibold text-lg text-primary-dark mb-2">
-                    Quality Guaranteed
+                    Quality Assured
                   </h4>
                   <p className="text-gray-600 leading-relaxed">
-                    Every product meets international quality standards with
-                    comprehensive testing.
+                    Strict sourcing, hygienic processing, and testing ensure freshness, purity, and global standards.
                   </p>
                 </div>
               </div>
