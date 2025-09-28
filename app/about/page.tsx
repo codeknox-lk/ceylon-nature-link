@@ -1,17 +1,13 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import AboutHero from "@/components/about-hero";
-import CompanyTimeline from "@/components/company-timeline";
-import CompanyProfile from "@/components/company-profile";
+import AboutPageComponent from "@/components/about-page";
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <main>
-        <AboutHero />
-        <CompanyTimeline />
-        <CompanyProfile />
+        <AboutPageComponent />
       </main>
       <Footer />
     </div>
