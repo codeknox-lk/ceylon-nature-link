@@ -43,7 +43,7 @@ const brands = [
 
 export default function BrandsPage() {
   return (
-    <section className="pt-20 lg:pt-24 min-h-screen bg-white">
+    <div className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Elements */}
@@ -351,6 +351,6 @@ export default function BrandsPage() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
