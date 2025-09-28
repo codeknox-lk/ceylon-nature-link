@@ -54,7 +54,7 @@ export default function BrandsPage() {
                 Our Brands
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-                Each brand represents our commitment to quality, authenticity, and the rich heritage of Sri Lankan natural products.
+                Discover our carefully curated collection of premium Sri Lankan brands, each representing the finest quality and authentic heritage. Every brand tells a story of tradition, quality, and excellence.
               </p>
             </div>
           </div>
@@ -78,11 +78,6 @@ export default function BrandsPage() {
       {/* Brands Showcase */}
       <div className="py-20 bg-gradient-to-br from-white to-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-emerald-800 mb-6">
-              Our Brands
-            </h2>
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {brands.map((brand) => (
@@ -91,18 +86,17 @@ export default function BrandsPage() {
                 className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card h-full"
               >
                 <CardContent className="p-8">
-                  {/* Brand Logo */}
-                  <div className="flex items-center mb-6">
-                    <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-2xl">🏷️</span>
-                    </div>
-                    <div>
-                      <h3 className="font-heading font-bold text-2xl text-emerald-800 mb-1">
-                        {brand.name}
-                      </h3>
-                      <p className="text-sm text-emerald-600 font-medium">
-                        Est. {brand.yearEstablished}
-                      </p>
+                  {/* Brand Header */}
+                  <div className="mb-6">
+                    <h3 className="font-heading font-bold text-2xl text-emerald-800 mb-2">
+                      {brand.name}
+                    </h3>
+                    <p className="text-emerald-600 font-medium mb-2">
+                      {brand.description}
+                    </p>
+                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <span>Est. {brand.yearEstablished}</span>
+                      <span>Premium Quality</span>
                     </div>
                   </div>
 
@@ -111,10 +105,10 @@ export default function BrandsPage() {
                     {brand.longDescription}
                   </p>
 
-                  {/* Products */}
+                  {/* Popular Products */}
                   <div className="mb-6">
                     <h4 className="font-heading font-semibold text-lg text-emerald-800 mb-3">
-                      Featured Products
+                      Popular Products
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {brand.products.map((product, index) => (
@@ -128,7 +122,7 @@ export default function BrandsPage() {
                     </div>
                   </div>
 
-                  {/* Features */}
+                  {/* Key Features */}
                   <div className="mb-6">
                     <h4 className="font-heading font-semibold text-lg text-emerald-800 mb-3">
                       Key Features
@@ -145,9 +139,6 @@ export default function BrandsPage() {
 
                   {/* Certifications */}
                   <div className="mb-6">
-                    <h4 className="font-heading font-semibold text-lg text-emerald-800 mb-3">
-                      Certifications
-                    </h4>
                     <div className="flex flex-wrap gap-2">
                       {brand.certifications.map((cert, index) => (
                         <span
@@ -163,13 +154,13 @@ export default function BrandsPage() {
                   {/* Action Buttons */}
                   <div className="flex gap-4">
                     <Button className="flex-1 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
-                      Learn More
+                      Explore {brand.name}
                     </Button>
                     <Button
                       variant="outline"
                       className="flex-1 border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-semibold transition-all duration-300"
                     >
-                      Contact Us
+                      Request Samples
                     </Button>
                   </div>
                 </CardContent>
