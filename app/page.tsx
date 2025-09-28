@@ -6,7 +6,6 @@ import ProductsSection from "@/components/products-section";
 import BestSellingProducts from "@/components/best-selling-products";
 import ServicesSection from "@/components/services-section";
 import StatisticsSection from "@/components/statistics-section";
-import TestimonialsSection from "@/components/testimonials-section";
 import CallToActionSection from "@/components/call-to-action-section";
 
 export default function HomePage() {
@@ -20,7 +19,6 @@ export default function HomePage() {
         <ProductsSection />
         <BestSellingProducts />
         <ServicesSection />
-        <TestimonialsSection />
         <CallToActionSection />
       </main>
       <Footer />
