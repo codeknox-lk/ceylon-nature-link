@@ -78,17 +78,6 @@ export default function BrandsPage() {
       {/* Brands Showcase */}
       <div className="py-16 bg-gradient-to-br from-gray-50 to-white nature-texture">
         <div className="container mx-auto px-4">
-          {/* Section Header */}
-          <div className="text-center mb-12 animate-fade-in-up">
-            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-primary-dark mb-8">
-              Our Premium Brands
-            </h2>
-            <p className="text-gray-600 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
-              Discover our carefully curated collection of premium Sri Lankan
-              brands, each representing the finest quality and authentic heritage.
-              Every brand tells a story of tradition, quality, and excellence.
-            </p>
-          </div>
 
           {/* Brands Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 max-w-6xl mx-auto">
