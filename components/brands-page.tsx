@@ -51,7 +51,7 @@ export default function BrandsPage() {
           <div className="space-y-8">
             <div>
               <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-emerald-600 mb-6">
-                Our Brands
+                Our Premium Brands
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
                 Discover our carefully curated collection of premium Sri Lankan brands, each representing the finest quality and authentic heritage. Every brand tells a story of tradition, quality, and excellence.
@@ -194,36 +194,62 @@ export default function BrandsPage() {
                   Established in 2025, <strong>Ceylon Nature Link (Pvt) Ltd</strong> was founded with a mission to bring Sri Lanka's timeless agricultural treasures to the global stage. From the lush highlands that produce world-famous spices to the tropical orchards that yield fruits of unrivaled sweetness, we transform these gifts of nature into premium dehydrated fruits, spices, and herbal products—crafted to enrich lives and honor our heritage.
                 </p>
                 
-                <div className="flex items-center space-x-4">
+                <div className="flex items-start space-x-4">
                   <div>
                     <span className="text-primary text-xl">🍃</span>
                   </div>
                   <div>
-                    <h4 className="text-gray-700 font-semibold text-lg">
+                    <h4 className="text-gray-700 font-semibold text-lg mb-2">
                       Rooted in Heritage, Grown with Care
                     </h4>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      Our journey begins with the farmers of Sri Lanka, who nurture every crop using sustainable and traditional methods passed down through generations. By partnering directly with these communities, we ensure authenticity, purity, and fairness at every step. Each product carries the story of our land, our people, and their dedication to natural excellence.
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
+                <div className="flex items-start space-x-4">
                   <div>
                     <span className="text-primary text-xl">🔥</span>
                   </div>
                   <div>
-                    <h4 className="text-gray-700 font-semibold text-lg">
-                      Crafted with Passion, Delivered with Pride
+                    <h4 className="text-gray-700 font-semibold text-lg mb-2">
+                      Crafted with Innovation, Preserved with Purity
                     </h4>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      At CNL, we blend ancient wisdom with modern technology. Our advanced dehydration and processing methods lock in natural flavors, vibrant colors, and vital nutrients—without chemicals or additives. The result is a collection of products that embody the essence of Sri Lanka: bold in taste, rich in aroma, and uncompromising in quality.
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
+                <div className="flex items-start space-x-4">
                   <div>
                     <span className="text-primary text-xl">🌍</span>
                   </div>
                   <div>
-                    <h4 className="text-gray-700 font-semibold text-lg">
-                      From Sri Lanka to the World
+                    <h4 className="text-gray-700 font-semibold text-lg mb-2">
+                      Connecting Sri Lanka to the World
                     </h4>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      Though deeply rooted in Sri Lankan soil, our vision is global. With a focus on ethical trade, eco-friendly packaging, and premium quality, we aim to share the island's bounty with health-conscious consumers, retailers, and culinary creators worldwide. Each shipment from CNL is more than a product—it's an invitation to experience Sri Lanka's rich natural heritage.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div>
+                    <span className="text-primary text-xl">✨</span>
+                  </div>
+                  <div>
+                    <h4 className="text-gray-700 font-semibold text-lg mb-2">
+                      Our Commitment
+                    </h4>
+                    <ul className="text-gray-600 text-sm leading-relaxed space-y-1">
+                      <li>• To deliver products that are natural, chemical-free, and full of goodness</li>
+                      <li>• To empower farming communities through fair trade and sustainable practices</li>
+                      <li>• To innovate continuously while preserving Sri Lanka's authenticity</li>
+                      <li>• To be a trusted global ambassador of Sri Lankan flavors and wellness</li>
+                    </ul>
                   </div>
                 </div>
               </div>
