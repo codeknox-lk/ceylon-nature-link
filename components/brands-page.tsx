@@ -101,9 +101,11 @@ export default function BrandsPage() {
                   {/* Logo and Basic Info */}
                   <div className="text-center mb-6">
                     <div className="mb-4">
-                      <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto">
-                        <span className="text-2xl">🏷️</span>
-                      </div>
+                      <img
+                        src={brand.logo || "/placeholder.svg"}
+                        alt={`${brand.name} logo`}
+                        className="mx-auto h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                      />
                     </div>
                     <h3 className="font-heading font-bold text-xl text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">
                       {brand.name}
