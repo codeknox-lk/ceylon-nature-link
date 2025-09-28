@@ -104,76 +104,73 @@ export default function ServicesPage() {
       {/* Services Grid */}
       <div className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-blue-800 mb-6">
-              Our Services
-            </h2>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <Card
                 key={service.id}
-                className={`premium-card group bg-white shadow-lg hover:shadow-2xl border-0 overflow-hidden`}
+                className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card h-full"
               >
                 <div className="relative overflow-hidden">
                   <img
                     src={service.image || "/placeholder.svg"}
                     alt={service.title}
-                    className="w-full h-52 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 gradient-overlay opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                  <div className="absolute top-6 left-6 glass-effect rounded-full w-14 h-14 flex items-center justify-center text-3xl">
-                    {service.icon}
+                  <div className="absolute top-4 left-4 bg-white/90 rounded-full p-3 shadow-md">
+                    <span className="text-2xl">{service.icon}</span>
                   </div>
 
-                  <div className="absolute bottom-4 left-6 right-6">
-                    <h3 className="font-heading font-bold text-xl text-white mb-2 drop-shadow-lg">
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="font-heading font-bold text-2xl text-white mb-2 drop-shadow-lg">
                       {service.title}
                     </h3>
                   </div>
                 </div>
 
-                <CardContent className="p-6">
-                  <p className="text-gray-700 text-sm mb-6 leading-relaxed line-clamp-3">
-                    {service.description}
-                  </p>
+                <CardContent className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <p className="text-gray-700 mb-6 leading-relaxed">
+                      {service.description}
+                    </p>
 
-                  <div className="mb-6">
-                    <h4 className="font-heading font-semibold text-sm text-blue-800 mb-3">
-                      Key Features:
-                    </h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {service.features.map((feature, featureIndex) => (
-                        <div
-                          key={featureIndex}
-                          className="flex items-center text-xs text-gray-600"
-                        >
-                          <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-                          {feature}
-                        </div>
-                      ))}
+                    <div className="mb-6">
+                      <h4 className="font-heading font-semibold text-lg text-blue-800 mb-3">
+                        Key Features:
+                      </h4>
+                      <div className="grid grid-cols-2 gap-2">
+                        {service.features.map((feature, featureIndex) => (
+                          <div
+                            key={featureIndex}
+                            className="flex items-center text-sm text-gray-600"
+                          >
+                            <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                            {feature}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg mb-6 border-l-4 border-blue-500">
+                      <p className="text-sm text-gray-700 font-medium italic">
+                        {service.benefits}
+                      </p>
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg mb-6 border-l-4 border-blue-500">
-                    <p className="text-xs text-gray-700 font-medium italic">
-                      {service.benefits}
-                    </p>
-                  </div>
-
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 mt-auto">
                     <Button
                       size="sm"
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-xs font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 rounded-full"
+                      className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 rounded-full"
                     >
                       Learn More
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-1 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-xs font-semibold transition-all duration-300 rounded-full"
+                      className="flex-1 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold transition-all duration-300 rounded-full"
                     >
                       Get Quote
                     </Button>

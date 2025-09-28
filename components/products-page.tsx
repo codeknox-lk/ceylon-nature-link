@@ -135,11 +135,6 @@ export default function ProductsPage() {
       {/* Products Grid */}
       <div className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="font-heading font-bold text-4xl md:text-5xl text-orange-800 mb-6">
-              Our Products
-            </h2>
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {products.map((product) => (
