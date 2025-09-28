@@ -76,45 +76,65 @@ export default function BrandsPage() {
       </div>
 
       {/* Brands Showcase */}
-      <div className="py-20 bg-gradient-to-br from-white to-gray-50">
+      <div className="py-16 bg-gradient-to-br from-gray-50 to-white nature-texture">
         <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <div className="text-center mb-12 animate-fade-in-up">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-primary-dark mb-8">
+              Our Premium Brands
+            </h2>
+            <p className="text-gray-600 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
+              Discover our carefully curated collection of premium Sri Lankan
+              brands, each representing the finest quality and authentic heritage.
+              Every brand tells a story of tradition, quality, and excellence.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {brands.map((brand) => (
+          {/* Brands Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 max-w-6xl mx-auto">
+            {brands.map((brand, index) => (
               <Card
                 key={brand.id}
                 className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card h-full"
               >
-                <CardContent className="p-8">
-                  {/* Brand Header */}
-                  <div className="mb-6">
-                    <h3 className="font-heading font-bold text-2xl text-emerald-800 mb-2">
+                <CardContent className="p-6 h-full flex flex-col">
+                  {/* Logo and Basic Info */}
+                  <div className="text-center mb-6">
+                    <div className="mb-4">
+                      <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto">
+                        <span className="text-2xl">🏷️</span>
+                      </div>
+                    </div>
+                    <h3 className="font-heading font-bold text-xl text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">
                       {brand.name}
                     </h3>
-                    <p className="text-emerald-600 font-medium mb-2">
+                    <p className="text-gray-600 mb-3 leading-relaxed text-sm">
                       {brand.description}
                     </p>
-                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
                       <span>Est. {brand.yearEstablished}</span>
+                      <span>•</span>
                       <span>Premium Quality</span>
                     </div>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-gray-700 mb-6 leading-relaxed">
-                    {brand.longDescription}
-                  </p>
+                  {/* Short Description */}
+                  <div className="mb-4 flex-grow">
+                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                      {brand.longDescription}
+                    </p>
+                  </div>
 
-                  {/* Popular Products */}
-                  <div className="mb-6">
-                    <h4 className="font-heading font-semibold text-lg text-emerald-800 mb-3">
-                      Popular Products
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {brand.products.map((product, index) => (
+                  {/* Products */}
+                  <div className="mb-4">
+                    <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
+                      Popular Products:
+                    </p>
+                    <div className="flex flex-wrap gap-1">
+                      {brand.products.map((product, idx) => (
                         <span
-                          key={index}
-                          className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium"
+                          key={idx}
+                          className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full font-medium"
                         >
                           {product}
                         </span>
@@ -122,28 +142,31 @@ export default function BrandsPage() {
                     </div>
                   </div>
 
-                  {/* Key Features */}
-                  <div className="mb-6">
-                    <h4 className="font-heading font-semibold text-lg text-emerald-800 mb-3">
-                      Key Features
-                    </h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {brand.features.map((feature, index) => (
-                        <div key={index} className="flex items-center text-sm text-gray-600">
-                          <div className="w-2 h-2 bg-emerald-500 rounded-full mr-2"></div>
-                          {feature}
+                  {/* Features */}
+                  <div className="mb-4">
+                    <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
+                      Key Features:
+                    </p>
+                    <div className="space-y-1">
+                      {brand.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center space-x-2">
+                          <span className="text-primary text-sm">✓</span>
+                          <span className="text-gray-600 text-xs">{feature}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Certifications */}
-                  <div className="mb-6">
-                    <div className="flex flex-wrap gap-2">
-                      {brand.certifications.map((cert, index) => (
+                  <div className="mb-4">
+                    <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
+                      Certifications:
+                    </p>
+                    <div className="flex flex-wrap gap-1">
+                      {brand.certifications.map((cert, idx) => (
                         <span
-                          key={index}
-                          className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium"
+                          key={idx}
+                          className="bg-accent/10 text-accent text-xs px-2 py-1 rounded font-medium"
                         >
                           {cert}
                         </span>
@@ -152,13 +175,14 @@ export default function BrandsPage() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-4">
-                    <Button className="flex-1 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
+                  <div className="mt-auto">
+                    <Button className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 mb-2">
                       Explore {brand.name}
                     </Button>
+
                     <Button
-                      variant="outline"
-                      className="flex-1 border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-semibold transition-all duration-300"
+                      size="sm"
+                      className="w-full border border-primary bg-white text-primary hover:bg-white hover:scale-105 transition-all duration-300"
                     >
                       Request Samples
                     </Button>
@@ -166,6 +190,88 @@ export default function BrandsPage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Brand Story Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-16">
+            <div className="animate-fade-in-up">
+              <h3 className="font-heading font-bold text-3xl lg:text-4xl text-primary-dark mb-8">
+                Our Brand Story
+              </h3>
+              <div className="space-y-6">
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  Established in 2025, <strong>Ceylon Nature Link (Pvt) Ltd</strong> was founded with a mission to bring Sri Lanka's timeless agricultural treasures to the global stage. From the lush highlands that produce world-famous spices to the tropical orchards that yield fruits of unrivaled sweetness, we transform these gifts of nature into premium dehydrated fruits, spices, and herbal products—crafted to enrich lives and honor our heritage.
+                </p>
+                
+                <div className="flex items-center space-x-4">
+                  <div>
+                    <span className="text-primary text-xl">🍃</span>
+                  </div>
+                  <div>
+                    <h4 className="text-gray-700 font-semibold text-lg">
+                      Rooted in Heritage, Grown with Care
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div>
+                    <span className="text-primary text-xl">🔥</span>
+                  </div>
+                  <div>
+                    <h4 className="text-gray-700 font-semibold text-lg">
+                      Crafted with Passion, Delivered with Pride
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div>
+                    <span className="text-primary text-xl">🌍</span>
+                  </div>
+                  <div>
+                    <h4 className="text-gray-700 font-semibold text-lg">
+                      From Sri Lanka to the World
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="animate-fade-in-up animate-delay-200">
+              <div className="relative">
+                <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 shadow-2xl">
+                  <div className="text-center">
+                    <div className="mb-6">
+                      <span className="text-6xl">🌿</span>
+                    </div>
+                    <h4 className="font-heading font-bold text-2xl lg:text-3xl text-primary-dark mb-6">
+                      Partner With Our Brands
+                    </h4>
+                    <p className="text-gray-600 mb-8 leading-relaxed">
+                      Join us in bringing authentic Sri Lankan quality to your customers. 
+                      Partner with our brands and be part of our story.
+                    </p>
+                    <Button className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
+                      Become a Partner
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tagline */}
+          <div className="w-full bg-white py-16">
+            <div className="w-full">
+              <p className="text-center text-green-600 text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide px-4"
+                 style={{ fontFamily: 'Georgia, serif' }}>
+                <strong className="relative inline-block transform hover:scale-105 transition-transform duration-500 hover:text-green-700">
+                  Ceylon Nature Link – Nature's Legacy, Shared with the World.
+                  <span className="absolute -top-2 -right-2 text-green-500 text-xl animate-bounce">🌿</span>
+                </strong>
+              </p>
+            </div>
           </div>
         </div>
       </div>
