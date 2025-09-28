@@ -111,7 +111,7 @@ export default function ProductsPage() {
                 Our Products
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-                Discover our premium collection of authentic Sri Lankan natural products, carefully sourced and processed to bring you the finest quality from the Pearl of the Indian Ocean.
+                Each product represents our commitment to quality, authenticity, and the rich heritage of Sri Lankan natural products.
               </p>
             </div>
           </div>
@@ -137,11 +137,8 @@ export default function ProductsPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-orange-800 mb-6">
-              Our Premium Products
+              Our Products
             </h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-              Each product represents our commitment to quality, authenticity, and the rich heritage of Sri Lankan natural products.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

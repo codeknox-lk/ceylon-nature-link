@@ -80,7 +80,7 @@ export default function ServicesPage() {
                 Our Services
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-                Comprehensive solutions tailored to meet your business needs with our premium Sri Lankan natural products and expert industry knowledge.
+                Comprehensive solutions tailored to meet your business needs with premium quality and professional service.
               </p>
             </div>
           </div>
@@ -108,9 +108,6 @@ export default function ServicesPage() {
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-blue-800 mb-6">
               Our Services
             </h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-              Comprehensive solutions tailored to meet your business needs with premium quality and professional service
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

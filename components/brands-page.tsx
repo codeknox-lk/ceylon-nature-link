@@ -54,7 +54,7 @@ export default function BrandsPage() {
                 Our Brands
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-                Discover our carefully curated collection of premium Sri Lankan brands, each representing the finest quality and authentic heritage of our island nation.
+                Each brand represents our commitment to quality, authenticity, and the rich heritage of Sri Lankan natural products.
               </p>
             </div>
           </div>
@@ -80,11 +80,8 @@ export default function BrandsPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-heading font-bold text-4xl md:text-5xl text-emerald-800 mb-6">
-              Our Premium Brands
+              Our Brands
             </h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-              Each brand represents our commitment to quality, authenticity, and the rich heritage of Sri Lankan natural products.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
