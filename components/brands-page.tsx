@@ -49,14 +49,14 @@ export default function BrandsPage() {
       <div className="relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-green-50"></div>
-        <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-200/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 right-0 w-72 h-72 bg-green-300/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-emerald-400/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-200/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+        <div className="absolute top-0 right-0 w-72 h-72 bg-green-300/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+        <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-emerald-400/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
         
         <div className="container mx-auto px-4 py-20 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left side - Content */}
-            <div className="space-y-8 animate-fade-in-up">
+            <div className="space-y-8">
               <div>
                 <div className="flex items-center mb-4">
                   <span className="text-4xl mr-3 animate-bounce">🌿</span>
@@ -84,7 +84,7 @@ export default function BrandsPage() {
             </div>
             
             {/* Right side - Image container */}
-            <div className="flex justify-center lg:justify-end animate-fade-in-up animate-delay-200">
+            <div className="flex justify-center lg:justify-end">
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/40 to-green-300/40 rounded-3xl transform rotate-3 animate-pulse"></div>
                 <div className="absolute inset-2 bg-gradient-to-br from-emerald-100/60 to-green-200/60 rounded-3xl transform -rotate-2"></div>
@@ -236,7 +236,7 @@ export default function BrandsPage() {
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-green-300/20 rounded-full mix-blend-multiply filter blur-xl opacity-60"></div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
-            <div className="animate-fade-in-up">
+            <div>
               <h3 className="font-heading font-bold text-3xl lg:text-4xl text-emerald-800 mb-8">
                 Our Brand Story
               </h3>
@@ -306,7 +306,7 @@ export default function BrandsPage() {
               </div>
             </div>
 
-            <div className="animate-fade-in-up animate-delay-200">
+            <div>
               <div className="relative">
                 <div className="bg-gradient-to-br from-white/90 to-emerald-50/90 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white/20">
                   <div className="text-center">
