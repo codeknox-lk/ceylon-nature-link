@@ -160,17 +160,10 @@ export default function ServicesPage() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4 mt-auto">
+                  <div className="flex justify-center mt-auto">
                     <Button
                       size="sm"
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 rounded-full"
-                    >
-                      Learn More
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold transition-all duration-300 rounded-full"
+                      className="w-full max-w-xs bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 rounded-full"
                     >
                       Get Quote
                     </Button>
@@ -206,3 +199,4 @@ export default function ServicesPage() {
     </section>
   );
 }
+
