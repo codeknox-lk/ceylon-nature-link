@@ -63,36 +63,6 @@ const services = [
     ],
     benefits: "Streamlined ordering process with complete transparency.",
   },
-  {
-    id: 5,
-    title: "Quality Consultation",
-    description:
-      "Expert consultation on product selection and quality standards. Professional guidance for optimal product selection.",
-    image: "/quality-consultation.png",
-    icon: "🔍",
-    features: [
-      "Product Selection",
-      "Quality Standards",
-      "Market Analysis",
-      "Compliance Support",
-    ],
-    benefits: "Professional guidance for optimal market requirements.",
-  },
-  {
-    id: 6,
-    title: "Supply Chain Solutions",
-    description:
-      "End-to-end supply chain management from sourcing to delivery. Complete process management for consistent quality.",
-    image: "/supply-chain-solutions.png",
-    icon: "⚡",
-    features: [
-      "End-to-end Management",
-      "Inventory Planning",
-      "Risk Management",
-      "Cost Optimization",
-    ],
-    benefits: "Complete supply chain management reducing complexity.",
-  },
 ];
 
 export default function ServicesGrid() {
