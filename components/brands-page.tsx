@@ -141,7 +141,7 @@ export default function BrandsPage() {
                         className="mx-auto h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
-                    <h3 className="font-heading font-bold text-xl text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">
+                    <h3 className="font-heading font-bold text-xl text-emerald-800 mb-3 group-hover:text-emerald-600 transition-colors duration-300">
                       {brand.name}
                     </h3>
                     <p className="text-gray-600 mb-3 leading-relaxed text-sm">
@@ -170,7 +170,7 @@ export default function BrandsPage() {
                       {brand.products.map((product, idx) => (
                         <span
                           key={idx}
-                          className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full font-medium"
+                          className="bg-emerald-100 text-emerald-700 text-xs px-2 py-1 rounded-full font-medium"
                         >
                           {product}
                         </span>
@@ -186,7 +186,7 @@ export default function BrandsPage() {
                     <div className="space-y-1">
                       {brand.features.map((feature, idx) => (
                         <div key={idx} className="flex items-center space-x-2">
-                          <span className="text-primary text-sm">✓</span>
+                          <span className="text-emerald-600 text-sm">✓</span>
                           <span className="text-gray-600 text-xs">{feature}</span>
                         </div>
                       ))}
@@ -202,7 +202,7 @@ export default function BrandsPage() {
                       {brand.certifications.map((cert, idx) => (
                         <span
                           key={idx}
-                          className="bg-accent/10 text-accent text-xs px-2 py-1 rounded font-medium"
+                          className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded font-medium"
                         >
                           {cert}
                         </span>
@@ -212,13 +212,13 @@ export default function BrandsPage() {
 
                   {/* Action Buttons */}
                   <div className="mt-auto">
-                    <Button className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 mb-2">
+                    <Button className="w-full bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 mb-2">
                       Explore {brand.name}
                     </Button>
 
                     <Button
                       size="sm"
-                      className="w-full border border-primary bg-white text-primary hover:bg-white hover:scale-105 transition-all duration-300"
+                      className="w-full border border-emerald-600 bg-white text-emerald-600 hover:bg-emerald-50 hover:scale-105 transition-all duration-300"
                     >
                       Request Samples
                     </Button>
@@ -236,7 +236,7 @@ export default function BrandsPage() {
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
             <div className="animate-fade-in-up">
-              <h3 className="font-heading font-bold text-3xl lg:text-4xl text-primary-dark mb-8">
+              <h3 className="font-heading font-bold text-3xl lg:text-4xl text-emerald-800 mb-8">
                 Our Brand Story
               </h3>
               <div className="space-y-6">
@@ -246,7 +246,7 @@ export default function BrandsPage() {
                 
                 <div className="flex items-start space-x-4">
                   <div>
-                    <span className="text-primary text-xl">🍃</span>
+                    <span className="text-emerald-600 text-xl">🍃</span>
                   </div>
                   <div>
                     <h4 className="text-gray-700 font-semibold text-lg mb-2">
@@ -260,7 +260,7 @@ export default function BrandsPage() {
 
                 <div className="flex items-start space-x-4">
                   <div>
-                    <span className="text-primary text-xl">🔥</span>
+                    <span className="text-emerald-600 text-xl">🔥</span>
                   </div>
                   <div>
                     <h4 className="text-gray-700 font-semibold text-lg mb-2">
@@ -274,7 +274,7 @@ export default function BrandsPage() {
 
                 <div className="flex items-start space-x-4">
                   <div>
-                    <span className="text-primary text-xl">🌍</span>
+                    <span className="text-emerald-600 text-xl">🌍</span>
                   </div>
                   <div>
                     <h4 className="text-gray-700 font-semibold text-lg mb-2">
@@ -288,7 +288,7 @@ export default function BrandsPage() {
 
                 <div className="flex items-start space-x-4">
                   <div>
-                    <span className="text-primary text-xl">✨</span>
+                    <span className="text-emerald-600 text-xl">✨</span>
                   </div>
                   <div>
                     <h4 className="text-gray-700 font-semibold text-lg mb-2">
