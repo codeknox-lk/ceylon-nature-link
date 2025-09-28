@@ -45,30 +45,56 @@ export default function BrandsPage() {
   return (
     <section className="pt-20 lg:pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left side - Content */}
-          <div className="space-y-8">
-            <div>
-              <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-emerald-600 mb-6">
-                Our Premium Brands
-              </h1>
-              <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-                Discover our carefully curated collection of premium Sri Lankan brands, each representing the finest quality and authentic heritage. Every brand tells a story of tradition, quality, and excellence.
-              </p>
+      <div className="relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-green-50"></div>
+        <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-200/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute top-0 right-0 w-72 h-72 bg-green-300/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-emerald-400/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        
+        <div className="container mx-auto px-4 py-20 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left side - Content */}
+            <div className="space-y-8 animate-fade-in-up">
+              <div>
+                <div className="flex items-center mb-4">
+                  <span className="text-4xl mr-3 animate-bounce">🌿</span>
+                  <span className="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Premium Brands</span>
+                </div>
+                <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-emerald-600 mb-6 leading-tight">
+                  Our Premium Brands
+                </h1>
+                <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
+                  Discover our carefully curated collection of premium Sri Lankan brands, each representing the finest quality and authentic heritage. Every brand tells a story of tradition, quality, and excellence.
+                </p>
+              </div>
+              
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                  <div className="text-3xl font-bold text-emerald-600 mb-2">2</div>
+                  <div className="text-sm text-gray-600">Premium Brands</div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                  <div className="text-3xl font-bold text-emerald-600 mb-2">2025</div>
+                  <div className="text-sm text-gray-600">Established</div>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          {/* Right side - Image container */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-              <div className="absolute inset-0 bg-emerald-200/30 rounded-3xl transform rotate-3"></div>
-              <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
-                <img
-                  src="/corporate-gift-sets.png"
-                  alt="Corporate gift sets"
-                  className="w-full h-full object-cover"
-                />
+            
+            {/* Right side - Image container */}
+            <div className="flex justify-center lg:justify-end animate-fade-in-up animate-delay-200">
+              <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/40 to-green-300/40 rounded-3xl transform rotate-3 animate-pulse"></div>
+                <div className="absolute inset-2 bg-gradient-to-br from-emerald-100/60 to-green-200/60 rounded-3xl transform -rotate-2"></div>
+                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-500">
+                  <img
+                    src="/corporate-gift-sets.png"
+                    alt="Corporate gift sets"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -76,15 +102,34 @@ export default function BrandsPage() {
       </div>
 
       {/* Brands Showcase */}
-      <div className="py-16 bg-gradient-to-br from-gray-50 to-white nature-texture">
-        <div className="container mx-auto px-4">
+      <div className="py-20 bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-full h-full" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-6">
+              <span className="text-2xl">🏷️</span>
+            </div>
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-emerald-800 mb-6">
+              Meet Our Brands
+            </h2>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              Each brand represents our commitment to quality, authenticity, and the rich heritage of Sri Lankan natural products.
+            </p>
+          </div>
 
           {/* Brands Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16 max-w-6xl mx-auto">
             {brands.map((brand, index) => (
               <Card
                 key={brand.id}
-                className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card h-full"
+                className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-xl bg-white/95 backdrop-blur-lg premium-card h-full transform hover:scale-105 hover:-translate-y-2"
               >
                 <CardContent className="p-6 h-full flex flex-col">
                   {/* Logo and Basic Info */}
@@ -184,7 +229,12 @@ export default function BrandsPage() {
           </div>
 
           {/* Brand Story Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mt-16">
+          <div className="bg-gradient-to-br from-emerald-50 to-green-100 rounded-3xl p-12 lg:p-16 relative overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-200/20 rounded-full mix-blend-multiply filter blur-xl opacity-60"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-green-300/20 rounded-full mix-blend-multiply filter blur-xl opacity-60"></div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
             <div className="animate-fade-in-up">
               <h3 className="font-heading font-bold text-3xl lg:text-4xl text-primary-dark mb-8">
                 Our Brand Story
@@ -257,19 +307,21 @@ export default function BrandsPage() {
 
             <div className="animate-fade-in-up animate-delay-200">
               <div className="relative">
-                <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 shadow-2xl">
+                <div className="bg-gradient-to-br from-white/90 to-emerald-50/90 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white/20">
                   <div className="text-center">
                     <div className="mb-6">
-                      <span className="text-6xl">🌿</span>
+                      <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-green-600 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                        <span className="text-3xl text-white">🌿</span>
+                      </div>
                     </div>
-                    <h4 className="font-heading font-bold text-2xl lg:text-3xl text-primary-dark mb-6">
+                    <h4 className="font-heading font-bold text-2xl lg:text-3xl text-emerald-800 mb-6">
                       Partner With Our Brands
                     </h4>
                     <p className="text-gray-600 mb-8 leading-relaxed">
                       Join us in bringing authentic Sri Lankan quality to your customers. 
                       Partner with our brands and be part of our story.
                     </p>
-                    <Button className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
+                    <Button className="bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white font-semibold px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
                       Become a Partner
                     </Button>
                   </div>
@@ -279,13 +331,20 @@ export default function BrandsPage() {
           </div>
 
           {/* Tagline */}
-          <div className="w-full bg-white py-16">
-            <div className="w-full">
-              <p className="text-center text-green-600 text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide px-4"
+          <div className="mt-16 bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-700 rounded-3xl p-12 lg:p-16 relative overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/90 to-green-600/90"></div>
+            <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full mix-blend-multiply filter blur-xl opacity-60"></div>
+            <div className="absolute bottom-0 right-0 w-24 h-24 bg-white/10 rounded-full mix-blend-multiply filter blur-xl opacity-60"></div>
+            
+            <div className="relative z-10 text-center">
+              <div className="mb-6">
+                <span className="text-4xl animate-bounce">🌿</span>
+              </div>
+              <p className="text-white text-2xl md:text-3xl lg:text-4xl font-light italic tracking-wide leading-relaxed"
                  style={{ fontFamily: 'Georgia, serif' }}>
-                <strong className="relative inline-block transform hover:scale-105 transition-transform duration-500 hover:text-green-700">
+                <strong className="relative inline-block transform hover:scale-105 transition-transform duration-500">
                   Ceylon Nature Link – Nature's Legacy, Shared with the World.
-                  <span className="absolute -top-2 -right-2 text-green-500 text-xl animate-bounce">🌿</span>
                 </strong>
               </p>
             </div>
