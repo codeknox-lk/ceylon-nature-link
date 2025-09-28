@@ -43,7 +43,7 @@ export default function ContactHero() {
           {/* Left side - Content */}
           <div className="space-y-8">
             <div>
-              <h1 className="font-bold text-6xl md:text-7xl lg:text-8xl text-green-600 mb-6" style={{ fontFamily: 'Georgia, serif' }}>
+              <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-green-600 mb-6">
                 Contact Us
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
