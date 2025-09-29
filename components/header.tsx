@@ -5,13 +5,16 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, User, LogOut } from "lucide-react";
 import ShoppingCartComponent from "@/components/shopping-cart";
+import AuthModal from "@/components/auth-modal";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
   const { state } = useCart();
 
   // Handle scroll effect
@@ -22,6 +25,34 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Load user from localStorage on mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        const userData = JSON.parse(storedUser);
+        setUser(userData);
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        localStorage.removeItem('user');
+        localStorage.removeItem('session');
+      }
+    }
+  }, []);
+
+  // Handle authentication
+  const handleAuthSuccess = (userData: any) => {
+    setUser(userData);
+    setIsAuthOpen(false);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    // Clear any stored session data
+    localStorage.removeItem('user');
+    localStorage.removeItem('session');
+  };
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -95,6 +126,33 @@ export default function Header() {
                   </span>
                 )}
               </button>
+
+              {/* Authentication */}
+              {user ? (
+                <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-lg rounded-2xl px-4 py-2 shadow-lg border border-white/20">
+                    <User className="w-4 h-4 text-gray-700" />
+                    <span className="text-sm font-medium text-gray-700">
+                      {user.firstName}
+                    </span>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="bg-white/10 backdrop-blur-lg rounded-2xl p-2 shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300"
+                    title="Logout"
+                  >
+                    <LogOut className="w-4 h-4 text-gray-700" />
+                  </button>
+                </div>
+              ) : (
+                <Button
+                  onClick={() => setIsAuthOpen(true)}
+                  size="sm"
+                  className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white px-6 py-2 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0"
+                >
+                  Sign In
+                </Button>
+              )}
 
               {/* Marketplace Button */}
               <Link href="/marketplace">
@@ -194,6 +252,13 @@ export default function Header() {
       <ShoppingCartComponent 
         isOpen={isCartOpen} 
         onClose={() => setIsCartOpen(false)} 
+      />
+
+      {/* Authentication Modal */}
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+        onSuccess={handleAuthSuccess}
       />
     </header>
   );

@@ -49,7 +49,8 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        heading: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-montserrat)', 'Inter', 'system-ui', 'sans-serif'],
+        body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
     },
   },

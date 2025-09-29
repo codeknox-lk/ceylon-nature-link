@@ -13,6 +13,9 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ArrowLeft, CreditCard, Smartphone, Building2, Truck, Shield, CheckCircle, AlertCircle } from 'lucide-react';
 import { processPayment, createOrder, sendOrderConfirmation, calculateShipping, calculateTax, validatePaymentDetails, OrderData } from '@/lib/payment';
+import { SecurePaymentProcessor, PaymentFormValidator } from '@/lib/stripe';
+import { SecurityValidator } from '@/lib/security';
+import { UnifiedPaymentService, PaymentMethod } from '@/lib/unified-payments';
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -33,11 +36,9 @@ export default function CheckoutPage() {
     postalCode: '',
     
     // Payment
-    paymentMethod: 'card',
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
-    cardName: '',
+    paymentMethod: 'cod',
+    deliveryDate: '',
+    timeSlot: 'morning',
     
     // Additional
     notes: '',
@@ -100,12 +101,10 @@ export default function CheckoutPage() {
       errors.push('Please enter a valid Sri Lankan phone number');
     }
     
-    // Payment validation
-    if (formData.paymentMethod === 'card') {
-      if (!formData.cardNumber.trim()) errors.push('Card number is required');
-      if (!formData.expiryDate.trim()) errors.push('Expiry date is required');
-      if (!formData.cvv.trim()) errors.push('CVV is required');
-      if (!formData.cardName.trim()) errors.push('Cardholder name is required');
+    // COD validation
+    if (formData.paymentMethod === 'cod') {
+      if (!formData.deliveryDate.trim()) errors.push('Delivery date is required');
+      if (!formData.timeSlot.trim()) errors.push('Time slot is required');
     }
     
     // Terms agreement
@@ -130,24 +129,27 @@ export default function CheckoutPage() {
     setValidationErrors([]);
     
     try {
-      // Process payment
-      const paymentResult = await processPayment({
-        amount: calculateTotal(),
-        currency: 'LKR',
-        paymentMethod: formData.paymentMethod as 'card' | 'bank' | 'mobile',
-        cardDetails: formData.paymentMethod === 'card' ? {
-          number: formData.cardNumber,
-          expiry: formData.expiryDate,
-          cvv: formData.cvv,
-          name: formData.cardName
-        } : undefined,
-        customerInfo: {
+      // Process payment using unified payment system (COD only)
+      const paymentResult = await UnifiedPaymentService.createPayment(
+        'cod',
+        calculateTotal(),
+        {
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
-          phone: formData.phone
+          phone: formData.phone,
+          address: {
+            street: formData.address,
+            city: formData.city,
+            district: formData.district,
+            postalCode: formData.postalCode
+          }
+        },
+        {
+          deliveryDate: formData.deliveryDate,
+          timeSlot: formData.timeSlot
         }
-      });
+      );
       
       if (!paymentResult.success) {
         setValidationErrors([paymentResult.error || 'Payment failed']);

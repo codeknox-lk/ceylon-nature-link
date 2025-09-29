@@ -68,7 +68,7 @@ export default function BestSellingProducts() {
   const [isPaused, setIsPaused] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const animationRef = useRef<number | undefined>(undefined)
+  const animationRef = useRef<number>()
 
   // Duplicate products for seamless marquee effect
   const duplicatedProducts = [...products, ...products, ...products]
