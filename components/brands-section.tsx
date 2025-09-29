@@ -65,22 +65,22 @@ export default function BrandsSection() {
               key={brand.id}
               className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card h-full"
             >
-              <CardContent className="p-6 h-full flex flex-col">
+              <CardContent className="p-4 h-full flex flex-col">
                 {/* Logo and Basic Info */}
-                <div className="text-center mb-6">
-                  <div className="mb-4">
+                <div className="text-center mb-4">
+                  <div className="mb-3">
                     <Image
                       src={brand.logo || "/placeholder.svg"}
                       alt={`${brand.name} logo`}
-                      width={100}
-                      height={100}
-                      className="mx-auto h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                      width={200}
+                      height={200}
+                      className="mx-auto h-40 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
-                  <h3 className="font-heading font-bold text-xl text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="font-heading font-bold text-lg text-primary-dark mb-2 group-hover:text-primary transition-colors duration-300">
                     {brand.name}
                   </h3>
-                  <p className="text-gray-600 mb-3 leading-relaxed text-sm">
+                  <p className="text-gray-600 mb-2 leading-relaxed text-sm">
                     {brand.description}
                   </p>
                   <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
@@ -91,15 +91,15 @@ export default function BrandsSection() {
                 </div>
 
                 {/* Short Description */}
-                <div className="mb-4 flex-grow">
-                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                <div className="mb-3 flex-grow">
+                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">
                     {brand.longDescription}
                   </p>
                 </div>
 
                 {/* Products */}
-                <div className="mb-4">
-                  <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
+                <div className="mb-3">
+                  <p className="text-gray-500 text-xs font-semibold mb-1 uppercase tracking-wide">
                     Popular Products:
                   </p>
                   <div className="flex flex-wrap gap-1">
@@ -115,14 +115,14 @@ export default function BrandsSection() {
                 </div>
 
                 {/* Features */}
-                <div className="mb-4">
-                  <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
+                <div className="mb-3">
+                  <p className="text-gray-500 text-xs font-semibold mb-1 uppercase tracking-wide">
                     Key Features:
                   </p>
-                  <div className="space-y-1">
+                  <div className="grid grid-cols-2 gap-1">
                     {brand.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center space-x-2">
-                        <span className="text-primary text-sm">✓</span>
+                      <div key={idx} className="flex items-center space-x-1">
+                        <span className="text-primary text-xs">✓</span>
                         <span className="text-gray-600 text-xs">{feature}</span>
                       </div>
                     ))}
@@ -130,8 +130,8 @@ export default function BrandsSection() {
                 </div>
 
                 {/* Certifications */}
-                <div className="mb-4">
-                  <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
+                <div className="mb-3">
+                  <p className="text-gray-500 text-xs font-semibold mb-1 uppercase tracking-wide">
                     Certifications:
                   </p>
                   <div className="flex flex-wrap gap-1">
@@ -149,9 +149,7 @@ export default function BrandsSection() {
                 {/* Action Buttons */}
                 <div className="mt-auto">
                   <Link
-                    href={`/brands/${brand.name
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")}`}
+                    href={`/products-filter?brand=${brand.name}`}
                   >
                     <Button className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 mb-2">
                       Explore {brand.name}
@@ -221,32 +219,44 @@ export default function BrandsSection() {
           </div>
 
           <div className="animate-fade-in-up animate-delay-300">
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 lg:p-12">
-              <h4 className="font-heading font-bold text-2xl lg:text-3xl text-primary-dark mb-6">
-                Partner With Our Brands
-              </h4>
-              <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-                Whether you're looking to distribute our brands or create your
-                own private label, we offer flexible partnership opportunities
-                for businesses worldwide.
-              </p>
-              <div className="space-y-4">
-                <Link href="/brands">
-                  <Button
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border-0 mb-2 hover:scale-105"
-                  >
-                    View All Brands
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button
-                    size="lg"
-                    className="w-full border border-primary bg-white text-primary hover:bg-white hover:scale-105 font-semibold transition-all duration-300"
-                  >
-                    Become a Partner
-                  </Button>
-                </Link>
+            <div className="relative bg-gradient-to-br from-primary/15 via-white to-accent/15 rounded-3xl p-10 shadow-2xl overflow-hidden moving-border">
+              {/* Background decorative elements */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl opacity-60"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/10 rounded-full mix-blend-multiply filter blur-xl opacity-60"></div>
+              
+              <div className="relative z-10">
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-primary-dark rounded-full mb-4 shadow-lg">
+                    <span className="text-2xl text-white">🤝</span>
+                  </div>
+                  <h4 className="font-heading font-bold text-3xl text-primary-dark mb-4">
+                    Partner With Our Brands
+                  </h4>
+                  <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
+                    Whether you're looking to distribute our brands or create your
+                    own private label, we offer flexible partnership opportunities
+                    for businesses worldwide.
+                  </p>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                  <Link href="/products-filter" className="flex-1">
+                    <Button
+                      size="lg"
+                      className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border-0 py-3"
+                    >
+                      View All Brands
+                    </Button>
+                  </Link>
+                  <Link href="/contact" className="flex-1">
+                    <Button
+                      size="lg"
+                      className="w-full border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white hover:scale-105 font-semibold transition-all duration-300 py-3"
+                    >
+                      Become a Partner
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

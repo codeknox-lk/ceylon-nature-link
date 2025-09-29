@@ -126,16 +126,17 @@ export default function ProductsSection() {
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-3 flex flex-col items-center">
                   <Link
-                    href={`/products?category=${category.name.toLowerCase()}`}
+                    href={`/products-filter?category=${category.name.toLowerCase().replace(' ', '-')}`}
+                    className="w-full"
                   >
                     <Button className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 mb-2">
                       View Products
                     </Button>
                   </Link>
 
-                  <Link href="/contact">
+                  <Link href="/contact" className="w-full">
                     <Button
                       size="sm"
                       className="w-full border border-primary bg-white text-primary hover:bg-white hover:scale-105 transition-all duration-300"

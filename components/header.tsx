@@ -4,10 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import { ShoppingCart } from "lucide-react";
+import ShoppingCartComponent from "@/components/shopping-cart";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { state } = useCart();
 
   // Handle scroll effect
   useEffect(() => {
@@ -76,8 +81,22 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* CTA Button */}
-            <div className="ml-4">
+            {/* Cart and CTA Buttons */}
+            <div className="ml-4 flex items-center space-x-3">
+              {/* Cart Button */}
+              <button
+                onClick={() => setIsCartOpen(true)}
+                className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-3 shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300 group"
+              >
+                <ShoppingCart className="w-5 h-5 text-gray-700 group-hover:text-primary-dark transition-colors duration-300" />
+                {state.itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                    {state.itemCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Marketplace Button */}
               <Link href="/marketplace">
                 <Button
                   size="sm"
@@ -138,8 +157,20 @@ export default function Header() {
                 </Link>
               ))}
 
-              {/* Mobile CTA */}
-              <div className="pt-4 border-t border-white/20">
+              {/* Mobile Cart and CTA */}
+              <div className="pt-4 border-t border-white/20 space-y-3">
+                {/* Mobile Cart Button */}
+                <button
+                  onClick={() => {
+                    setIsCartOpen(true);
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full flex items-center justify-center space-x-2 bg-white/10 backdrop-blur-lg rounded-2xl p-3 shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300"
+                >
+                  <ShoppingCart className="w-5 h-5 text-gray-700" />
+                  <span className="font-medium text-gray-700">Cart ({state.itemCount})</span>
+                </button>
+
                 <Link href="/marketplace" onClick={() => setIsMenuOpen(false)}>
                   <Button
                     size="sm"
@@ -158,6 +189,12 @@ export default function Header() {
       {isScrolled && (
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-50"></div>
       )}
+
+      {/* Shopping Cart */}
+      <ShoppingCartComponent 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)} 
+      />
     </header>
   );
 }

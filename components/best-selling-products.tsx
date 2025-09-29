@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 const products = [
@@ -67,7 +68,7 @@ export default function BestSellingProducts() {
   const [isPaused, setIsPaused] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
 
   // Duplicate products for seamless marquee effect
   const duplicatedProducts = [...products, ...products, ...products]
@@ -109,23 +110,14 @@ export default function BestSellingProducts() {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-gradient-to-br from-white to-gray-50">
+      <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex-1">
-              <p className="text-gray-500 text-sm mb-2">Best Selling Products</p>
-              <h2 className="text-4xl font-bold text-black">Products</h2>
-            </div>
-            <Button
-              variant="outline"
-              className="border border-gray-300 text-black hover:bg-gray-50 px-6 py-2 rounded-lg flex-shrink-0 ml-8"
-            >
-              View all
-            </Button>
-          </div>
-          <p className="text-gray-600 max-w-2xl">
+        <div className="text-center mb-16 animate-fade-in-up">
+          <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary-dark mb-6">
+            Best Selling Products
+          </h2>
+          <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
             Discover our premium Sri Lankan products with authentic quality and traditional heritage.
           </p>
         </div>
@@ -220,6 +212,15 @@ export default function BestSellingProducts() {
               }`}
             />
           ))}
+        </div>
+
+        {/* View All Products Button */}
+        <div className="text-center mt-12">
+          <Link href="/products-filter">
+            <Button className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
+              View All Products
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

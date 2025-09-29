@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const brands = [
   {
@@ -43,11 +43,11 @@ const brands = [
 
 export default function BrandsPage() {
   return (
-    <div className="pt-20 lg:pt-24 min-h-screen bg-white">
+    <section className="pt-20 lg:pt-24 min-h-screen bg-gradient-to-br from-white via-emerald-50/30 to-green-50/30">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-green-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-white to-green-50/50"></div>
         <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-200/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
         <div className="absolute top-0 right-0 w-72 h-72 bg-green-300/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
         <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-emerald-400/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
@@ -88,9 +88,11 @@ export default function BrandsPage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/40 to-green-300/40 rounded-3xl transform rotate-3 animate-pulse"></div>
                 <div className="absolute inset-2 bg-gradient-to-br from-emerald-100/60 to-green-200/60 rounded-3xl transform -rotate-2"></div>
                 <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-500">
-                  <img
+                  <Image
                     src="/corporate-gift-sets.png"
                     alt="Corporate gift sets"
+                    width={400}
+                    height={400}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
@@ -154,19 +156,12 @@ export default function BrandsPage() {
                     </div>
                   </div>
 
-                  {/* Short Description */}
-                  <div className="mb-4 flex-grow">
-                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
-                      {brand.longDescription}
-                    </p>
-                  </div>
-
                   {/* Products */}
-                  <div className="mb-4">
-                    <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
+                  <div className="mb-6">
+                    <h4 className="font-heading font-semibold text-sm text-emerald-700 mb-3">
                       Popular Products:
-                    </p>
-                    <div className="flex flex-wrap gap-1">
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
                       {brand.products.map((product, idx) => (
                         <span
                           key={idx}
@@ -179,11 +174,11 @@ export default function BrandsPage() {
                   </div>
 
                   {/* Features */}
-                  <div className="mb-4">
-                    <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
+                  <div className="mb-6">
+                    <h4 className="font-heading font-semibold text-sm text-emerald-700 mb-3">
                       Key Features:
-                    </p>
-                    <div className="space-y-1">
+                    </h4>
+                    <div className="grid grid-cols-2 gap-2">
                       {brand.features.map((feature, idx) => (
                         <div key={idx} className="flex items-center space-x-2">
                           <span className="text-emerald-600 text-sm">✓</span>
@@ -194,11 +189,11 @@ export default function BrandsPage() {
                   </div>
 
                   {/* Certifications */}
-                  <div className="mb-4">
-                    <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
+                  <div className="mb-6">
+                    <h4 className="font-heading font-semibold text-sm text-emerald-700 mb-3">
                       Certifications:
-                    </p>
-                    <div className="flex flex-wrap gap-1">
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
                       {brand.certifications.map((cert, idx) => (
                         <span
                           key={idx}
@@ -245,63 +240,63 @@ export default function BrandsPage() {
                 </p>
                 
                 <div className="flex items-start space-x-4">
-                  <div>
-                    <span className="text-emerald-600 text-xl">🍃</span>
+                    <div>
+                      <span className="text-emerald-600 text-xl">🍃</span>
+                    </div>
+                    <div>
+                      <h4 className="text-gray-700 font-semibold text-lg mb-2">
+                        Rooted in Heritage, Grown with Care
+                      </h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Our journey begins with the farmers of Sri Lanka, who nurture every crop using sustainable and traditional methods passed down through generations. By partnering directly with these communities, we ensure authenticity, purity, and fairness at every step. Each product carries the story of our land, our people, and their dedication to natural excellence.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-gray-700 font-semibold text-lg mb-2">
-                      Rooted in Heritage, Grown with Care
-                    </h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Our journey begins with the farmers of Sri Lanka, who nurture every crop using sustainable and traditional methods passed down through generations. By partnering directly with these communities, we ensure authenticity, purity, and fairness at every step. Each product carries the story of our land, our people, and their dedication to natural excellence.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-start space-x-4">
-                  <div>
-                    <span className="text-emerald-600 text-xl">🔥</span>
+                  <div className="flex items-start space-x-4">
+                    <div>
+                      <span className="text-emerald-600 text-xl">🔥</span>
+                    </div>
+                    <div>
+                      <h4 className="text-gray-700 font-semibold text-lg mb-2">
+                        Crafted with Innovation, Preserved with Purity
+                      </h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        At CNL, we blend ancient wisdom with modern technology. Our advanced dehydration and processing methods lock in natural flavors, vibrant colors, and vital nutrients—without chemicals or additives. The result is a collection of products that embody the essence of Sri Lanka: bold in taste, rich in aroma, and uncompromising in quality.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-gray-700 font-semibold text-lg mb-2">
-                      Crafted with Innovation, Preserved with Purity
-                    </h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      At CNL, we blend ancient wisdom with modern technology. Our advanced dehydration and processing methods lock in natural flavors, vibrant colors, and vital nutrients—without chemicals or additives. The result is a collection of products that embody the essence of Sri Lanka: bold in taste, rich in aroma, and uncompromising in quality.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-start space-x-4">
-                  <div>
-                    <span className="text-emerald-600 text-xl">🌍</span>
+                  <div className="flex items-start space-x-4">
+                    <div>
+                      <span className="text-emerald-600 text-xl">🌍</span>
+                    </div>
+                    <div>
+                      <h4 className="text-gray-700 font-semibold text-lg mb-2">
+                        Connecting Sri Lanka to the World
+                      </h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Though deeply rooted in Sri Lankan soil, our vision is global. With a focus on ethical trade, eco-friendly packaging, and premium quality, we aim to share the island's bounty with health-conscious consumers, retailers, and culinary creators worldwide. Each shipment from CNL is more than a product—it's an invitation to experience Sri Lanka's rich natural heritage.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-gray-700 font-semibold text-lg mb-2">
-                      Connecting Sri Lanka to the World
-                    </h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Though deeply rooted in Sri Lankan soil, our vision is global. With a focus on ethical trade, eco-friendly packaging, and premium quality, we aim to share the island's bounty with health-conscious consumers, retailers, and culinary creators worldwide. Each shipment from CNL is more than a product—it's an invitation to experience Sri Lanka's rich natural heritage.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-start space-x-4">
-                  <div>
-                    <span className="text-emerald-600 text-xl">✨</span>
+                  <div className="flex items-start space-x-4">
+                    <div>
+                      <span className="text-emerald-600 text-xl">✨</span>
+                    </div>
+                    <div>
+                      <h4 className="text-gray-700 font-semibold text-lg mb-2">
+                        Our Commitment
+                      </h4>
+                      <ul className="text-gray-600 text-sm leading-relaxed space-y-1">
+                        <li>• To deliver products that are natural, chemical-free, and full of goodness</li>
+                        <li>• To empower farming communities through fair trade and sustainable practices</li>
+                        <li>• To innovate continuously while preserving Sri Lanka's authenticity</li>
+                        <li>• To be a trusted global ambassador of Sri Lankan flavors and wellness</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-gray-700 font-semibold text-lg mb-2">
-                      Our Commitment
-                    </h4>
-                    <ul className="text-gray-600 text-sm leading-relaxed space-y-1">
-                      <li>• To deliver products that are natural, chemical-free, and full of goodness</li>
-                      <li>• To empower farming communities through fair trade and sustainable practices</li>
-                      <li>• To innovate continuously while preserving Sri Lanka's authenticity</li>
-                      <li>• To be a trusted global ambassador of Sri Lankan flavors and wellness</li>
-                    </ul>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -351,6 +346,6 @@ export default function BrandsPage() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
