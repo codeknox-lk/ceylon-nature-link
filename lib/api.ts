@@ -23,7 +23,7 @@ export class ApiSecurity {
 
   // Rate limiting middleware
   static checkRateLimit(request: NextRequest): { allowed: boolean; remaining?: number } {
-    const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
     const identifier = `${ip}_${request.url}`;
     
     if (!RateLimiter.isAllowed(identifier)) {
@@ -209,7 +209,7 @@ export class ApiHandlers {
       }
       
       const body = await request.json();
-      const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+      const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
       const userAgent = request.headers.get('user-agent') || 'unknown';
       
       // Validate input
