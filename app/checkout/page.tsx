@@ -28,6 +28,7 @@ export default function CheckoutPage() {
     firstName: '',
     lastName: '',
     phone: '',
+    email: '',
     
     // Address
     address: '',
@@ -37,6 +38,9 @@ export default function CheckoutPage() {
     // Delivery
     deliveryDate: '',
     timeSlot: '',
+    
+    // Payment
+    selectedBank: '',
     
     // Additional
     notes: '',
