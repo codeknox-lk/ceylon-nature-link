@@ -57,10 +57,8 @@ const nextConfig = {
   // Compression
   compress: true,
 
-  // Experimental features for security
-  experimental: {
-    serverComponentsExternalPackages: ['@stripe/stripe-js'],
-  },
+  // External packages for server components
+  serverExternalPackages: ['@stripe/stripe-js'],
 
   // Webpack configuration for security
   webpack: (config, { isServer }) => {

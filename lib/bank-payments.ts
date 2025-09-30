@@ -26,28 +26,28 @@ export interface BankTransfer {
 // Sri Lankan Bank Details
 export const SRI_LANKAN_BANKS = {
   'Commercial Bank': {
-    name: 'Commercial Bank of Ceylon',
+    bankName: 'Commercial Bank of Ceylon',
     accountNumber: '1234567890',
     accountName: 'Ceylon Nature Link',
     branch: 'Colombo 03',
     swiftCode: 'COCEYSLX'
   },
   'People\'s Bank': {
-    name: 'People\'s Bank',
+    bankName: 'People\'s Bank',
     accountNumber: '9876543210',
     accountName: 'Ceylon Nature Link',
     branch: 'Colombo 07',
     swiftCode: 'PEOBSLKL'
   },
   'Sampath Bank': {
-    name: 'Sampath Bank',
+    bankName: 'Sampath Bank',
     accountNumber: '1122334455',
     accountName: 'Ceylon Nature Link',
     branch: 'Colombo 05',
     swiftCode: 'SAMPBSLKL'
   },
   'Hatton National Bank': {
-    name: 'Hatton National Bank',
+    bankName: 'Hatton National Bank',
     accountNumber: '5566778899',
     accountName: 'Ceylon Nature Link',
     branch: 'Colombo 01',
@@ -89,7 +89,7 @@ export class BankPaymentService {
 PAYMENT INSTRUCTIONS FOR ORDER ${transfer.reference}
 
 Amount: LKR ${transfer.amount.toLocaleString()}
-Bank: ${transfer.bankDetails.name}
+Bank: ${transfer.bankDetails.bankName}
 Account Number: ${transfer.bankDetails.accountNumber}
 Account Name: ${transfer.bankDetails.accountName}
 Branch: ${transfer.bankDetails.branch}
