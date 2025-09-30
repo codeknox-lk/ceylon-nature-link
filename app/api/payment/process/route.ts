@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { AuthMiddleware, ApiSecurity } from '@/lib/api';
+import { AuthMiddleware, ApiSecurity, ApiHandlers } from '@/lib/api';
 
 export async function POST(request: NextRequest) {
   try {
