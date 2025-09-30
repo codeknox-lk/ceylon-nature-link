@@ -456,7 +456,7 @@ function ProductsFilterContent() {
                         Available Pack Sizes
                       </h4>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        {selectedProduct.packSizes.map((pack, index) => (
+                        {selectedProduct.packSizes.map((pack: any, index: number) => (
                           <div key={index} className="bg-white rounded-xl p-4 border border-gray-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
                             <div className="font-bold text-gray-800 text-center">{pack.size}</div>
                           </div>
