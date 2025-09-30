@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
+import { AnimatedCartButton } from '@/components/ui/animated-cart-button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -242,9 +243,6 @@ export default function ProductDetailPage() {
                     >
                       <div className="text-sm font-semibold">{pack.size}</div>
                       <div className="text-xs text-gray-500">LKR {pack.price.toLocaleString()}</div>
-                      <div className="text-xs text-gray-400">
-                        {pack.stock === 0 ? 'Out of Stock' : `${pack.stock} available`}
-                      </div>
                     </button>
                   ))}
                 </div>
@@ -271,9 +269,6 @@ export default function ProductDetailPage() {
                       <Plus className="w-4 h-4" />
                     </button>
                   </div>
-                  <span className="text-sm text-gray-500">
-                    {currentStock} available
-                  </span>
                 </div>
               </div>
 
@@ -298,13 +293,13 @@ export default function ProductDetailPage() {
                   </div>
                 </div>
 
-                <Button
+                <AnimatedCartButton
                   onClick={handleAddToCart}
                   disabled={currentStock === 0 || isAddingToCart}
-                  className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 text-lg"
+                  className="w-full text-lg"
                 >
-                  {isAddingToCart ? 'Adding...' : currentStock === 0 ? 'Out of Stock' : 'Add to Cart'}
-                </Button>
+                  {isAddingToCart ? 'Adding...' : currentStock === 0 ? 'Out of Stock' : 'ADD TO CART'}
+                </AnimatedCartButton>
               </div>
 
               {/* Features */}

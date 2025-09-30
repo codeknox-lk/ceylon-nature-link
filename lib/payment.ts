@@ -185,43 +185,60 @@ export async function sendOrderConfirmation(order: OrderData): Promise<boolean> 
   return true;
 }
 
-// Calculate shipping cost
+// Calculate shipping cost based on distance from Matale
 export function calculateShipping(subtotal: number, district: string): number {
   // Free shipping for orders over LKR 2,000
   if (subtotal >= 2000) {
     return 0;
   }
 
-  // Different shipping rates based on district
+  // Shipping rates based on distance from Matale (delivery origin)
   const shippingRates: { [key: string]: number } = {
-    'Colombo': 150,
-    'Gampaha': 200,
-    'Kalutara': 250,
-    'Kandy': 300,
-    'Matale': 350,
-    'Nuwara Eliya': 400,
-    'Galle': 300,
-    'Matara': 350,
-    'Hambantota': 400,
-    'Jaffna': 500,
-    'Kilinochchi': 550,
-    'Mannar': 500,
-    'Vavuniya': 450,
-    'Mullaitivu': 500,
-    'Batticaloa': 400,
-    'Ampara': 450,
-    'Trincomalee': 400,
-    'Kurunegala': 300,
-    'Puttalam': 350,
-    'Anuradhapura': 400,
-    'Polonnaruwa': 350,
-    'Badulla': 400,
-    'Moneragala': 450,
-    'Ratnapura': 300,
-    'Kegalle': 250
+    // Central Province (closest to Matale)
+    'Matale': 200,        // Same district - lowest cost
+    'Kandy': 250,         // Very close to Matale
+    'Nuwara Eliya': 300,  // Close to Matale
+    
+    // Western Province (moderate distance)
+    'Colombo': 400,       // Capital city - moderate distance
+    'Gampaha': 450,       // Close to Colombo
+    'Kalutara': 500,      // Further west
+    
+    // Sabaragamuwa Province (close to central)
+    'Ratnapura': 300,     // Close to central province
+    'Kegalle': 350,       // Between Kandy and Colombo
+    
+    // North Western Province (moderate distance)
+    'Kurunegala': 400,    // Moderate distance from Matale
+    'Puttalam': 450,      // Further north west
+    
+    // North Central Province (moderate distance)
+    'Anuradhapura': 450,  // Moderate distance
+    'Polonnaruwa': 400,   // Moderate distance
+    
+    // Uva Province (moderate distance)
+    'Badulla': 400,       // Moderate distance
+    'Moneragala': 450,    // Further south east
+    
+    // Southern Province (further distance)
+    'Galle': 500,         // Further south
+    'Matara': 550,        // Further south
+    'Hambantota': 600,    // Furthest south
+    
+    // Eastern Province (further distance)
+    'Batticaloa': 550,    // Further east
+    'Ampara': 600,        // Further east
+    'Trincomalee': 500,   // Further east
+    
+    // Northern Province (furthest distance)
+    'Jaffna': 700,        // Furthest north
+    'Kilinochchi': 750,   // Furthest north
+    'Mannar': 700,        // Furthest north west
+    'Vavuniya': 650,      // Far north
+    'Mullaitivu': 750     // Furthest north east
   };
 
-  return shippingRates[district] || 500; // Default rate for other districts
+  return shippingRates[district] || 600; // Default rate for other districts
 }
 
 // Calculate tax (15% VAT)

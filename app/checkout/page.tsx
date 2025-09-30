@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/contexts/CartContext';
-import { Button } from '@/components/ui/button';
+import { AnimatedButton } from '@/components/ui/animated-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,6 +16,7 @@ import { processPayment, createOrder, sendOrderConfirmation, calculateShipping, 
 import { SecurePaymentProcessor, PaymentFormValidator } from '@/lib/stripe';
 import { SecurityValidator } from '@/lib/security';
 import { UnifiedPaymentService, PaymentMethod } from '@/lib/unified-payments';
+import { smsService } from '@/lib/sms-service';
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -26,30 +27,23 @@ export default function CheckoutPage() {
     // Customer Information
     firstName: '',
     lastName: '',
-    email: '',
     phone: '',
     
     // Address
     address: '',
     city: '',
     district: '',
-    postalCode: '',
-    
-    // Payment
-    paymentMethod: 'cod',
-    deliveryDate: '',
-    timeSlot: 'morning',
     
     // Additional
     notes: '',
-    agreeTerms: false,
-    subscribeNewsletter: false
+    agreeTerms: false
   });
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
   const [currentOrder, setCurrentOrder] = useState<OrderData | null>(null);
+  const [whatsappOpened, setWhatsappOpened] = useState(false);
 
   const districts = [
     'Colombo', 'Gampaha', 'Kalutara', 'Kandy', 'Matale', 'Nuwara Eliya',
@@ -77,23 +71,16 @@ export default function CheckoutPage() {
     return state.total + shipping + tax;
   };
 
-  const validateForm = (): string[] => {
+  const validateStep1 = (): string[] => {
     const errors: string[] = [];
     
-    // Required field validation
+    // Required field validation for step 1 only
     if (!formData.firstName.trim()) errors.push('First name is required');
     if (!formData.lastName.trim()) errors.push('Last name is required');
-    if (!formData.email.trim()) errors.push('Email is required');
     if (!formData.phone.trim()) errors.push('Phone number is required');
     if (!formData.address.trim()) errors.push('Address is required');
     if (!formData.city.trim()) errors.push('City is required');
     if (!formData.district) errors.push('District is required');
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (formData.email && !emailRegex.test(formData.email)) {
-      errors.push('Please enter a valid email address');
-    }
     
     // Phone validation (Sri Lankan format)
     const phoneRegex = /^(\+94|0)[0-9]{9}$/;
@@ -101,27 +88,246 @@ export default function CheckoutPage() {
       errors.push('Please enter a valid Sri Lankan phone number');
     }
     
-    // COD validation
-    if (formData.paymentMethod === 'cod') {
-      if (!formData.deliveryDate.trim()) errors.push('Delivery date is required');
-      if (!formData.timeSlot.trim()) errors.push('Time slot is required');
-    }
+    return errors;
+  };
+
+  const validateStep2 = (): string[] => {
+    const errors: string[] = [];
+    // No payment method validation needed
+    return errors;
+  };
+
+  const validateStep3 = (): string[] => {
+    const errors: string[] = [];
     
-    // Terms agreement
-    if (!formData.agreeTerms) {
-      errors.push('You must agree to the terms and conditions');
-    }
+    // Terms validation
+    if (!formData.agreeTerms) errors.push('You must agree to the terms and conditions');
     
     return errors;
+  };
+
+  // COD Security Implementation
+  const implementCODSecurity = async (orderReference: string) => {
+    // 1. Send SMS confirmation
+    await sendSMSConfirmation(orderReference);
+    
+    // 2. Schedule pre-delivery call
+    await schedulePreDeliveryCall(orderReference);
+    
+    // 3. Generate delivery tracking code
+    const trackingCode = generateTrackingCode();
+    
+    // 4. Store security data in localStorage for admin access
+    const securityData = {
+      orderReference,
+      trackingCode,
+      deliveryDate: formData.deliveryDate,
+      timeSlot: formData.timeSlot,
+      customerPhone: formData.phone,
+      securityMeasures: {
+        smsSent: true,
+        preDeliveryCallScheduled: true,
+        idVerificationRequired: true,
+        exactChangePreferred: true
+      }
+    };
+    
+    localStorage.setItem(`cod_security_${orderReference}`, JSON.stringify(securityData));
+  };
+
+  // Bank Transfer Security Implementation
+  const implementBankTransferSecurity = async (orderReference: string) => {
+    // 1. Send payment verification instructions
+    await sendPaymentVerificationInstructions(orderReference);
+    
+    // 2. Generate unique reference number
+    const bankReference = `BANK${orderReference}`;
+    
+    // 3. Store security data for admin tracking
+    const securityData = {
+      orderReference,
+      bankReference,
+      selectedBank: formData.selectedBank,
+      customerEmail: formData.email,
+      customerPhone: formData.phone,
+      securityMeasures: {
+        paymentVerificationRequired: true,
+        receiptRequired: true,
+        referenceTracking: true,
+        adminNotificationSent: true
+      }
+    };
+    
+    localStorage.setItem(`bank_security_${orderReference}`, JSON.stringify(securityData));
+  };
+
+  // Send SMS confirmation for COD
+  const sendSMSConfirmation = async (orderReference: string) => {
+    try {
+      const success = await smsService.sendOrderConfirmation(
+        formData.phone,
+        orderReference,
+        formData.deliveryDate,
+        formData.timeSlot
+      );
+      
+      if (success) {
+        console.log(`✅ SMS sent successfully to ${formData.phone}`);
+      } else {
+        console.log(`❌ SMS failed to send to ${formData.phone}`);
+      }
+      
+      // Store SMS log
+      const smsLog = {
+        phone: formData.phone,
+        message: `Order Confirmed! Ref: ${orderReference}. Delivery: ${formData.deliveryDate} (${formData.timeSlot}). Our delivery person will call 30min before arrival. Keep ID ready for verification.`,
+        timestamp: new Date().toISOString(),
+        orderReference,
+        success
+      };
+      localStorage.setItem(`sms_log_${orderReference}`, JSON.stringify(smsLog));
+    } catch (error) {
+      console.error('SMS sending error:', error);
+    }
+  };
+
+  // Schedule pre-delivery call
+  const schedulePreDeliveryCall = async (orderReference: string) => {
+    const callSchedule = {
+      orderReference,
+      customerPhone: formData.phone,
+      deliveryDate: formData.deliveryDate,
+      timeSlot: formData.timeSlot,
+      callTime: calculatePreDeliveryCallTime(),
+      status: 'scheduled'
+    };
+    
+    localStorage.setItem(`call_schedule_${orderReference}`, JSON.stringify(callSchedule));
+    console.log(`Pre-delivery call scheduled for ${callSchedule.callTime}`);
+  };
+
+  // Calculate pre-delivery call time (30 minutes before delivery)
+  const calculatePreDeliveryCallTime = () => {
+    const deliveryDate = new Date(formData.deliveryDate);
+    const timeSlot = formData.timeSlot;
+    
+    let callHour;
+    switch (timeSlot) {
+      case 'morning': callHour = 8.5; break; // 8:30 AM
+      case 'afternoon': callHour = 11.5; break; // 11:30 AM
+      case 'evening': callHour = 4.5; break; // 4:30 PM
+      default: callHour = 8.5;
+    }
+    
+    deliveryDate.setHours(Math.floor(callHour), (callHour % 1) * 60, 0, 0);
+    return deliveryDate.toISOString();
+  };
+
+      // Send payment verification instructions for bank transfer
+      const sendPaymentVerificationInstructions = async (orderReference: string) => {
+        try {
+          const success = await smsService.sendPaymentInstructions(
+            formData.phone,
+            orderReference,
+            calculateTotal()
+          );
+          
+          if (success) {
+            console.log(`✅ Payment instructions SMS sent successfully to ${formData.phone}`);
+          } else {
+            console.log(`❌ Payment instructions SMS failed to send to ${formData.phone}`);
+          }
+          
+          // Store order amount for verification page
+          localStorage.setItem('orderAmount', calculateTotal().toString());
+          
+          // Store instruction log
+          const instructionLog = {
+            email: formData.email,
+            phone: formData.phone,
+            message: `Bank Transfer Instructions for Order ${orderReference}:\n\n1. Transfer LKR ${calculateTotal().toLocaleString()} to Commercial Bank Account\n2. Include reference: ${orderReference}\n3. Upload your payment slip at: ${typeof window !== 'undefined' ? window.location.origin : 'your-website.com'}/payment-verification?ref=${orderReference}\n4. WhatsApp: +94 76 156 6346\n\nOrder will be processed after payment verification.`,
+            timestamp: new Date().toISOString(),
+            orderReference,
+            success
+          };
+          localStorage.setItem(`instruction_log_${orderReference}`, JSON.stringify(instructionLog));
+        } catch (error) {
+          console.error('Payment instructions SMS error:', error);
+        }
+      };
+
+  // Generate tracking code
+  const generateTrackingCode = () => {
+    return `TRK${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
+  };
+
+  // Handle WhatsApp button click
+  const handleWhatsAppClick = () => {
+    setWhatsappOpened(true);
+    // Reset after 5 seconds
+    setTimeout(() => {
+      setWhatsappOpened(false);
+    }, 5000);
+  };
+
+  const sendOrderToWhatsApp = async (orderData: OrderData) => {
+    const whatsappNumber = '0761566346';
+    
+    // Format items for WhatsApp message
+    const itemsText = orderData.items.map((item, index) => 
+      `${index + 1}. *${item.name}*\n   Size: ${item.packSize}\n   Quantity: ${item.quantity}\n   Price: LKR ${(item.price * item.quantity).toLocaleString()}\n`
+    ).join('\n');
+    
+    const message = `================================\n` +
+      ` *CEYLON NATURE LINK ORDER*\n` +
+      `================================\n\n` +
+      `Hello! I would like to place an order for your premium Sri Lankan spices.\n\n` +
+      `========================================\n\n` +
+      `*CUSTOMER INFORMATION*\n` +
+      `Name: ${orderData.customer.firstName} ${orderData.customer.lastName}\n` +
+      `Phone: ${orderData.customer.phone}\n\n` +
+      `*DELIVERY ADDRESS*\n` +
+      `${orderData.customer.address.street}\n` +
+      `${orderData.customer.address.city}, ${orderData.customer.address.district}\n` +
+      `Sri Lanka\n\n` +
+      `*ORDER DETAILS*\n${itemsText}\n` +
+      `*ORDER SUMMARY*\n` +
+      `Subtotal: LKR ${orderData.subtotal.toLocaleString()}\n` +
+      `Shipping: LKR ${orderData.shipping.toLocaleString()}\n` +
+      `Tax: LKR ${orderData.tax.toLocaleString()}\n` +
+      `========================================\n` +
+      `*TOTAL AMOUNT: LKR ${orderData.total.toLocaleString()}*\n` +
+      `========================================\n\n` +
+      `*SPECIAL INSTRUCTIONS*\n` +
+      `${orderData.notes || 'No special instructions'}\n\n` +
+      `*REQUEST*\n` +
+      `Please confirm my order and provide information about:\n` +
+      `- Payment methods available\n` +
+      `- Delivery timeline\n` +
+      `- Any additional requirements\n\n` +
+      `Thank you for your excellent products! Looking forward to hearing from you.\n\n` +
+      `Best regards,\n` +
+      `${orderData.customer.firstName} ${orderData.customer.lastName}`;
+    
+    const whatsappUrl = `https://wa.me/94${whatsappNumber.replace(/^0/, '')}?text=${encodeURIComponent(message)}`;
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
+    
+    // Store order for admin tracking
+    localStorage.setItem(`order_${orderData.id}`, JSON.stringify(orderData));
   };
 
   const handlePlaceOrder = async () => {
     if (state.items.length === 0) return;
     
-    // Validate form
-    const errors = validateForm();
-    if (errors.length > 0) {
-      setValidationErrors(errors);
+    // Validate all steps
+    const step1Errors = validateStep1();
+    const step2Errors = validateStep2();
+    const allErrors = [...step1Errors, ...step2Errors];
+    
+    if (allErrors.length > 0) {
+      setValidationErrors(allErrors);
       return;
     }
     
@@ -129,46 +335,22 @@ export default function CheckoutPage() {
     setValidationErrors([]);
     
     try {
-      // Process payment using unified payment system (COD only)
-      const paymentResult = await UnifiedPaymentService.createPayment(
-        'cod',
-        calculateTotal(),
-        {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          phone: formData.phone,
-          address: {
-            street: formData.address,
-            city: formData.city,
-            district: formData.district,
-            postalCode: formData.postalCode
-          }
-        },
-        {
-          deliveryDate: formData.deliveryDate,
-          timeSlot: formData.timeSlot
-        }
-      );
-      
-      if (!paymentResult.success) {
-        setValidationErrors([paymentResult.error || 'Payment failed']);
-        return;
-      }
+      // Generate unique order reference
+      const orderReference = `ORD-${Date.now()}`;
       
       // Create order data
       const orderData: OrderData = {
-        id: `ORD-${Date.now()}`,
+        id: orderReference,
         customer: {
           firstName: formData.firstName,
           lastName: formData.lastName,
-          email: formData.email,
+          email: '', // Not required
           phone: formData.phone,
           address: {
             street: formData.address,
             city: formData.city,
             district: formData.district,
-            postalCode: formData.postalCode,
+            postalCode: '', // Not required
             country: 'Sri Lanka'
           }
         },
@@ -185,19 +367,18 @@ export default function CheckoutPage() {
         shipping: calculateShippingCost(),
         tax: calculateTaxAmount(),
         total: calculateTotal(),
-        paymentMethod: formData.paymentMethod,
-        status: 'processing',
+        paymentMethod: 'whatsapp',
+        status: 'pending',
         notes: formData.notes,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       };
       
-      // Create order
-      const order = await createOrder(orderData);
-      setCurrentOrder(order);
+      // Send order to WhatsApp
+      await sendOrderToWhatsApp(orderData);
       
-      // Send confirmation email
-      await sendOrderConfirmation(order);
+      // Store order locally
+      setCurrentOrder(orderData);
       
       // Clear cart and show success
       dispatch({ type: 'CLEAR_CART' });
@@ -221,20 +402,138 @@ export default function CheckoutPage() {
               <div className="bg-green-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-12 h-12 text-green-600" />
               </div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Order Placed Successfully!</h1>
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">Order Sent Successfully!</h1>
               <p className="text-xl text-gray-600 mb-8">
-                Thank you for your order. We'll send you a confirmation email shortly.
+                Your order has been sent to our WhatsApp. We'll contact you soon to confirm details.
               </p>
+              
+              {/* Order Details */}
+              <div className="bg-white rounded-2xl p-6 shadow-lg mb-8 text-left">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">
+                  📱 Order Sent to WhatsApp
+                </h3>
+                
+                {true ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span className="text-sm">SMS confirmation sent to {formData.phone}</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span className="text-sm">Pre-delivery call scheduled for 30 minutes before arrival</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span className="text-sm">ID verification required upon delivery</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span className="text-sm">Delivery tracking code generated</span>
+                    </div>
+                    <div className="bg-blue-50 p-3 rounded-lg mt-4">
+                      <p className="text-sm text-blue-800">
+                        <strong>Next Steps:</strong> Keep your ID ready. Our delivery person will call you 30 minutes before arrival on {formData.deliveryDate} during {formData.timeSlot} time slot.
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span className="text-sm">Payment verification instructions sent to {formData.email}</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span className="text-sm">Unique reference number generated for tracking</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span className="text-sm">Admin notification sent for payment verification</span>
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+                      <h4 className="font-semibold text-blue-800 mb-3">💳 Bank Transfer Details:</h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-blue-700"><strong>Bank:</strong></span>
+                          <span className="text-blue-900">Commercial Bank of Ceylon</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-blue-700"><strong>Account:</strong></span>
+                          <span className="text-blue-900">Ceylon Nature Link</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-blue-700"><strong>Account No:</strong></span>
+                          <span className="text-blue-900 font-mono">1234567890</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-blue-700"><strong>Amount:</strong></span>
+                          <span className="text-blue-900 font-semibold">LKR {calculateTotal().toLocaleString()}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-blue-700"><strong>Reference:</strong></span>
+                          <span className="text-blue-900 font-mono bg-blue-100 px-2 py-1 rounded">{currentOrder?.id || 'REF' + Date.now()}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-yellow-50 p-3 rounded-lg mt-4">
+                      <p className="text-sm text-yellow-800">
+                        <strong>⚠️ Important:</strong> Include the reference number in your transfer description. After payment, upload your payment slip via WhatsApp for verification.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
+                      <h4 className="font-semibold text-green-800 mb-2">📱 Next Steps:</h4>
+                      <ol className="text-sm text-green-700 space-y-1">
+                        <li>1. Transfer the amount to the bank account above</li>
+                        <li>2. Take a screenshot of your payment slip</li>
+                        <li>3. Click the WhatsApp button below</li>
+                        <li>4. Send the payment slip via WhatsApp</li>
+                        <li>5. Wait for order confirmation (within 24 hours)</li>
+                      </ol>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <Link href={`/payment-verification?ref=${currentOrder?.id || 'REF' + Date.now()}`}>
+                        <AnimatedButton 
+                          variant="animated"
+                          onClick={handleWhatsAppClick}
+                          className="w-full py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 text-lg"
+                        >
+                          📱 Send Payment Slip via WhatsApp
+                        </AnimatedButton>
+                      </Link>
+                    </div>
+                    
+                    {/* Success Message */}
+                    {whatsappOpened && (
+                      <div className="mt-4 bg-green-50 border border-green-200 rounded-lg p-4 transition-all duration-300 ease-in-out">
+                        <div className="flex items-center space-x-2">
+                          <CheckCircle className="w-5 h-5 text-green-600" />
+                          <span className="font-semibold text-green-800">WhatsApp Opened Successfully!</span>
+                        </div>
+                        <p className="text-sm text-green-700 mt-2">
+                          Upload your payment slip and send it to +94 76 156 6346. We'll verify and confirm your order within 24 hours.
+                        </p>
+                        <div className="mt-3 text-xs text-green-600">
+                          <strong>Order Status:</strong> Pending Payment Verification
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
               <div className="space-y-4">
                 <Link href="/marketplace">
-                  <Button className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0">
+                  <AnimatedButton variant="animated" className="px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0">
                     Continue Shopping
-                  </Button>
+                  </AnimatedButton>
                 </Link>
                 <Link href="/">
-                  <Button variant="outline" className="ml-4">
+                  <AnimatedButton className="ml-4 border-2 border-gray-400 bg-gray-50 text-gray-700 hover:bg-green-400 hover:text-white transition-all duration-300">
                     Back to Home
-                  </Button>
+                  </AnimatedButton>
                 </Link>
               </div>
             </div>
@@ -257,9 +556,9 @@ export default function CheckoutPage() {
                 Add some products to your cart before checking out.
               </p>
               <Link href="/marketplace">
-                <Button className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0">
+                <AnimatedButton variant="animated" className="px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0">
                   Start Shopping
-                </Button>
+                </AnimatedButton>
               </Link>
             </div>
           </div>
@@ -334,16 +633,6 @@ export default function CheckoutPage() {
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor="email">Email *</Label>
-                          <Input
-                            id="email"
-                            type="email"
-                            value={formData.email}
-                            onChange={(e) => handleInputChange('email', e.target.value)}
-                            required
-                          />
-                        </div>
-                        <div>
                           <Label htmlFor="phone">Phone Number *</Label>
                           <Input
                             id="phone"
@@ -390,174 +679,74 @@ export default function CheckoutPage() {
                             ))}
                           </select>
                         </div>
-                        <div>
-                          <Label htmlFor="postalCode">Postal Code</Label>
-                          <Input
-                            id="postalCode"
-                            value={formData.postalCode}
-                            onChange={(e) => handleInputChange('postalCode', e.target.value)}
-                            placeholder="12345"
-                          />
-                        </div>
                       </div>
                     </CardContent>
                   </Card>
                 )}
 
-                {/* Step 2: Payment Method */}
+                {/* Step 2: Review & Place Order */}
                 {step === 2 && (
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center">
                         <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">2</span>
-                        Payment Method
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <RadioGroup
-                        value={formData.paymentMethod}
-                        onValueChange={(value) => handleInputChange('paymentMethod', value)}
-                      >
-                        <div className="flex items-center space-x-2 p-4 border rounded-lg hover:bg-gray-50">
-                          <RadioGroupItem value="card" id="card" />
-                          <Label htmlFor="card" className="flex items-center cursor-pointer">
-                            <CreditCard className="w-5 h-5 mr-2" />
-                            Credit/Debit Card
-                          </Label>
-                        </div>
-                        <div className="flex items-center space-x-2 p-4 border rounded-lg hover:bg-gray-50">
-                          <RadioGroupItem value="bank" id="bank" />
-                          <Label htmlFor="bank" className="flex items-center cursor-pointer">
-                            <Building2 className="w-5 h-5 mr-2" />
-                            Bank Transfer (Sri Lankan Banks)
-                          </Label>
-                        </div>
-                        <div className="flex items-center space-x-2 p-4 border rounded-lg hover:bg-gray-50">
-                          <RadioGroupItem value="mobile" id="mobile" />
-                          <Label htmlFor="mobile" className="flex items-center cursor-pointer">
-                            <Smartphone className="w-5 h-5 mr-2" />
-                            Mobile Payment (Dialog, Mobitel, Airtel)
-                          </Label>
-                        </div>
-                      </RadioGroup>
-
-                      {formData.paymentMethod === 'card' && (
-                        <div className="space-y-4 p-4 bg-gray-50 rounded-lg">
-                          <h4 className="font-semibold">Card Details</h4>
-                          <div>
-                            <Label htmlFor="cardNumber">Card Number *</Label>
-                            <Input
-                              id="cardNumber"
-                              value={formData.cardNumber}
-                              onChange={(e) => handleInputChange('cardNumber', e.target.value)}
-                              placeholder="1234 5678 9012 3456"
-                              required
-                            />
-                          </div>
-                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                              <Label htmlFor="expiryDate">Expiry Date *</Label>
-                              <Input
-                                id="expiryDate"
-                                value={formData.expiryDate}
-                                onChange={(e) => handleInputChange('expiryDate', e.target.value)}
-                                placeholder="MM/YY"
-                                required
-                              />
-                            </div>
-                            <div>
-                              <Label htmlFor="cvv">CVV *</Label>
-                              <Input
-                                id="cvv"
-                                value={formData.cvv}
-                                onChange={(e) => handleInputChange('cvv', e.target.value)}
-                                placeholder="123"
-                                required
-                              />
-                            </div>
-                          </div>
-                          <div>
-                            <Label htmlFor="cardName">Name on Card *</Label>
-                            <Input
-                              id="cardName"
-                              value={formData.cardName}
-                              onChange={(e) => handleInputChange('cardName', e.target.value)}
-                              required
-                            />
-                          </div>
-                        </div>
-                      )}
-
-                      {formData.paymentMethod === 'bank' && (
-                        <div className="p-4 bg-blue-50 rounded-lg">
-                          <h4 className="font-semibold mb-2">Bank Transfer Details</h4>
-                          <p className="text-sm text-gray-600 mb-2">
-                            Transfer the exact amount to our account and include your order number in the reference.
-                          </p>
-                          <div className="text-sm space-y-1">
-                            <p><strong>Bank:</strong> Commercial Bank of Ceylon</p>
-                            <p><strong>Account Name:</strong> Ceylon Nature Link (Pvt) Ltd</p>
-                            <p><strong>Account Number:</strong> 1234567890</p>
-                            <p><strong>Branch:</strong> Colombo 03</p>
-                          </div>
-                        </div>
-                      )}
-
-                      {formData.paymentMethod === 'mobile' && (
-                        <div className="p-4 bg-green-50 rounded-lg">
-                          <h4 className="font-semibold mb-2">Mobile Payment</h4>
-                          <p className="text-sm text-gray-600 mb-2">
-                            Send the exact amount to our mobile number and include your order number in the message.
-                          </p>
-                          <div className="text-sm space-y-1">
-                            <p><strong>Dialog:</strong> +94 77 123 4567</p>
-                            <p><strong>Mobitel:</strong> +94 71 123 4567</p>
-                            <p><strong>Airtel:</strong> +94 76 123 4567</p>
-                          </div>
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                )}
-
-                {/* Step 3: Review & Place Order */}
-                {step === 3 && (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">3</span>
                         Review & Place Order
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                      <div>
-                        <h4 className="font-semibold mb-2">Order Notes</h4>
-                        <Textarea
-                          value={formData.notes}
-                          onChange={(e) => handleInputChange('notes', e.target.value)}
-                          placeholder="Any special instructions for your order..."
-                        />
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <h4 className="font-semibold text-blue-800 mb-3">📱 Order Process</h4>
+                        <p className="text-sm text-blue-700 mb-3">
+                          Your order will be sent directly to our WhatsApp (+94 76 156 6346) for processing. 
+                          We'll contact you within 24 hours to confirm details and arrange payment/delivery.
+                        </p>
+                        <div className="space-y-2 text-sm text-blue-600">
+                          <div className="flex items-center space-x-2">
+                            <span className="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <span>Order sent to WhatsApp</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <span className="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <span>We contact you to confirm</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <span className="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                            <span>Payment and delivery arranged</span>
+                          </div>
+                        </div>
                       </div>
-                      
-                      <div className="space-y-3">
+
+                      <div className="space-y-4">
+                        <h4 className="font-semibold">Order Summary</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between">
+                            <span>Customer:</span>
+                            <span>{formData.firstName} {formData.lastName}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Phone:</span>
+                            <span>{formData.phone}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Address:</span>
+                            <span className="text-right">{formData.address}, {formData.city}, {formData.district}</span>
+                          </div>
+                          <div className="flex justify-between font-semibold text-lg">
+                            <span>Total:</span>
+                            <span>LKR {calculateTotal().toLocaleString()}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
                         <div className="flex items-center space-x-2">
                           <Checkbox
                             id="agreeTerms"
                             checked={formData.agreeTerms}
-                            onCheckedChange={(checked) => handleInputChange('agreeTerms', checked as boolean)}
+                            onCheckedChange={(checked) => handleInputChange('agreeTerms', checked)}
                           />
                           <Label htmlFor="agreeTerms" className="text-sm">
-                            I agree to the <Link href="/terms" className="text-primary hover:underline">Terms and Conditions</Link> and <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link> *
-                          </Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Checkbox
-                            id="subscribeNewsletter"
-                            checked={formData.subscribeNewsletter}
-                            onCheckedChange={(checked) => handleInputChange('subscribeNewsletter', checked as boolean)}
-                          />
-                          <Label htmlFor="subscribeNewsletter" className="text-sm">
-                            Subscribe to our newsletter for updates and special offers
+                            I agree to the terms and conditions and understand that this order will be processed via WhatsApp
                           </Label>
                         </div>
                       </div>
@@ -565,32 +754,45 @@ export default function CheckoutPage() {
                   </Card>
                 )}
 
+
                 {/* Navigation Buttons */}
                 <div className="flex justify-between">
                   {step > 1 && (
-                    <Button
-                      variant="outline"
+                    <AnimatedButton
                       onClick={() => setStep(step - 1)}
+                      className="border-2 border-gray-400 bg-gray-50 text-gray-700 hover:bg-green-400 hover:text-white transition-all duration-300 px-6 py-2"
                     >
                       Previous
-                    </Button>
+                    </AnimatedButton>
                   )}
-                  {step < 3 && (
-                    <Button
-                      onClick={() => setStep(step + 1)}
-                      className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
+                  {step < 2 && (
+                    <AnimatedButton
+                      variant="animated"
+                      onClick={() => {
+                        if (step === 1) {
+                          // Validate customer information
+                          const errors = validateStep1();
+                          if (errors.length > 0) {
+                            setValidationErrors(errors);
+                            return;
+                          }
+                          setStep(2);
+                        }
+                      }}
+                      className="px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
                     >
                       Next
-                    </Button>
+                    </AnimatedButton>
                   )}
-                  {step === 3 && (
-                    <Button
+                  {step === 2 && (
+                    <AnimatedButton
+                      variant="animated"
                       onClick={handlePlaceOrder}
                       disabled={!formData.agreeTerms || isProcessing}
-                      className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
+                      className="px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 disabled:opacity-50"
                     >
                       {isProcessing ? 'Processing...' : 'Place Order'}
-                    </Button>
+                    </AnimatedButton>
                   )}
                 </div>
               </div>

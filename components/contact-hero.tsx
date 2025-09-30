@@ -3,7 +3,7 @@
 import type React from "react";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { AnimatedButton } from "@/components/ui/animated-button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -18,6 +18,9 @@ export default function ContactHero() {
     inquiryType: "general",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -29,10 +32,44 @@ export default function ContactHero() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Thank you for your inquiry! We'll get back to you soon.");
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          subject: "",
+          message: "",
+          inquiryType: "general",
+        });
+      } else {
+        setSubmitStatus('error');
+        console.error('Form submission error:', result.error);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Network error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -145,6 +182,7 @@ export default function ContactHero() {
                         value={formData.inquiryType}
                         onChange={handleChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white"
+                        autoComplete="off"
                       >
                         <option value="general">General Inquiry</option>
                         <option value="product">Product Information</option>
@@ -169,6 +207,7 @@ export default function ContactHero() {
                           onChange={handleChange}
                           required
                           className="focus:ring-green-500 focus:border-green-500 rounded-lg"
+                          autoComplete="name"
                         />
                       </div>
                       <div>
@@ -183,6 +222,7 @@ export default function ContactHero() {
                           onChange={handleChange}
                           required
                           className="focus:ring-green-500 focus:border-green-500 rounded-lg"
+                          autoComplete="email"
                         />
                       </div>
                     </div>
@@ -199,6 +239,7 @@ export default function ContactHero() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="focus:ring-green-500 focus:border-green-500 rounded-lg"
+                        autoComplete="tel"
                       />
                     </div>
 
@@ -215,6 +256,7 @@ export default function ContactHero() {
                         onChange={handleChange}
                         required
                         className="focus:ring-green-500 focus:border-green-500 rounded-lg"
+                        autoComplete="off"
                       />
                     </div>
 
@@ -232,17 +274,43 @@ export default function ContactHero() {
                         rows={4}
                         className="focus:ring-green-500 focus:border-green-500 rounded-lg"
                         placeholder="Tell us about your requirements..."
+                        autoComplete="off"
                       />
                     </div>
 
+                    {/* Status Messages */}
+                    {submitStatus === 'success' && (
+                      <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg text-center">
+                        ✅ Thank you for your inquiry! We'll get back to you soon.
+                      </div>
+                    )}
+                    
+                    {submitStatus === 'error' && (
+                      <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-center">
+                        ❌ There was an error sending your message. Please try again.
+                      </div>
+                    )}
+
                     {/* Submit Button */}
                     <div className="text-center">
-                      <Button
+                      <AnimatedButton
                         type="submit"
-                        className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-8 py-3 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0"
+                        disabled={isSubmitting}
+                        variant="animated"
+                        className="px-8 py-3 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                       >
-                        Send Message
-                      </Button>
+                        {isSubmitting ? (
+                          <div className="flex items-center">
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Sending...
+                          </div>
+                        ) : (
+                          'Send Message'
+                        )}
+                      </AnimatedButton>
                     </div>
                   </form>
                 </CardContent>

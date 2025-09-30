@@ -2,74 +2,19 @@
 
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-
-const products = [
-  {
-    id: 1,
-    name: "Ceylon Cinnamon Sticks",
-    variant: "Premium Grade",
-    image: "/ceylon-cinnamon-sticks.png",
-    brand: "Saadambara",
-  },
-  {
-    id: 2,
-    name: "Earl Grey Tea Blend",
-    variant: "Classic Blend",
-    image: "/earl-grey-tea-blend.png",
-    brand: "Trekola",
-  },
-  {
-    id: 3,
-    name: "Dried Mango Strips",
-    variant: "Natural Dried",
-    image: "/sri-lankan-dehydrated-fruits.png",
-    brand: "Trekola",
-  },
-  {
-    id: 4,
-    name: "Turmeric Powder",
-    variant: "High Curcumin",
-    image: "/ceylon-turmeric-powder.png",
-    brand: "Saadambara",
-  },
-  {
-    id: 5,
-    name: "Herbal Wellness Tea",
-    variant: "Ayurvedic Blend",
-    image: "/sri-lankan-herbal-plants.png",
-    brand: "Trekola",
-  },
-  {
-    id: 6,
-    name: "Cardamom Pods",
-    variant: "Green Cardamom",
-    image: "/sri-lankan-spices.png",
-    brand: "Saadambara",
-  },
-  {
-    id: 7,
-    name: "Black Pepper",
-    variant: "Whole Peppercorns",
-    image: "/sri-lankan-spices.png",
-    brand: "Saadambara",
-  },
-  {
-    id: 8,
-    name: "Clove",
-    variant: "Whole Cloves",
-    image: "/sri-lankan-spices.png",
-    brand: "Saadambara",
-  },
-]
+import { AnimatedButton } from "@/components/ui/animated-button"
+import { PRODUCTS } from "@/lib/products"
 
 export default function BestSellingProducts() {
   const [isHovered, setIsHovered] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
 
+  // Get best selling products from real data
+  const products = PRODUCTS.filter(product => product.bestSeller)
+  
   // Duplicate products for seamless marquee effect
   const duplicatedProducts = [...products, ...products, ...products]
 
@@ -145,11 +90,12 @@ export default function BestSellingProducts() {
             }}
           >
             {duplicatedProducts.map((product, index) => (
-            <div
+            <Link
               key={`${product.id}-${index}`}
-              className="flex-shrink-0 w-64 h-96 relative"
+              href={`/products/${product.id}`}
+              className="flex-shrink-0 w-64 h-96 relative block"
             >
-                <div className="bg-white/20 backdrop-blur-lg rounded-3xl transition-all duration-500 border border-white/30 border-b-2 border-b-gray-200 overflow-hidden h-full flex flex-col shadow-sm hover:border-lime-400 hover:border-2">
+                <div className="bg-white/20 backdrop-blur-lg rounded-3xl transition-all duration-500 border border-white/30 border-b-2 border-b-gray-200 overflow-hidden h-full flex flex-col shadow-sm hover:border-lime-400 hover:border-2 cursor-pointer">
                   <div className="h-48 relative flex-shrink-0 rounded-t-3xl overflow-hidden group">
                     <img
                       src={product.image || "/placeholder.svg"}
@@ -161,7 +107,7 @@ export default function BestSellingProducts() {
                   <div className="p-6 pb-12 space-y-2 flex-1 flex flex-col justify-between relative">
                     <div className="space-y-1 h-[72px] flex flex-col justify-start">
                       <h3 className="font-bold text-gray-800 text-lg leading-tight line-clamp-2">{product.name}</h3>
-                      <p className="text-gray-600 text-sm font-medium line-clamp-1">{product.variant}</p>
+                      <p className="text-gray-600 text-sm font-medium line-clamp-1">{product.selectedPackSize}</p>
                     </div>
                     <div className="flex items-center justify-between pt-1">
                       <div className="flex items-center space-x-1">
@@ -175,7 +121,7 @@ export default function BestSellingProducts() {
                     <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-t from-white/10 to-transparent rounded-b-3xl"></div>
                   </div>
                 </div>
-              </div>
+            </Link>
             ))}
           </div>
 
@@ -217,9 +163,9 @@ export default function BestSellingProducts() {
         {/* View All Products Button */}
         <div className="text-center mt-12">
           <Link href="/products-filter">
-            <Button className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
+            <AnimatedButton variant="animated" className="px-8 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
               View All Products
-            </Button>
+            </AnimatedButton>
           </Link>
         </div>
       </div>

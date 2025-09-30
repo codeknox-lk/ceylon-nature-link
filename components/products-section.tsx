@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { AnimatedButton } from "@/components/ui/animated-button";
 import Link from "next/link";
 
 const productCategories = [
@@ -131,18 +131,18 @@ export default function ProductsSection() {
                     href={`/products-filter?category=${category.name.toLowerCase().replace(' ', '-')}`}
                     className="w-full"
                   >
-                    <Button className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 mb-2">
+                    <AnimatedButton variant="animated" className="w-full mb-2">
                       View Products
-                    </Button>
+                    </AnimatedButton>
                   </Link>
 
                   <Link href="/contact" className="w-full">
-                    <Button
+                    <AnimatedButton
                       size="sm"
-                      className="w-full border border-primary bg-white text-primary hover:bg-white hover:scale-105 transition-all duration-300"
+                      className="w-full border-2 border-purple-500 bg-purple-50 text-purple-700 hover:bg-green-400 hover:text-white hover:scale-105 transition-all duration-300 font-semibold"
                     >
                       Request Quote
-                    </Button>
+                    </AnimatedButton>
                   </Link>
                 </div>
               </CardContent>
@@ -162,20 +162,21 @@ export default function ProductsSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center">
               <Link href="/services">
-                <Button
+                <AnimatedButton
+                  variant="animated"
                   size="lg"
-                  className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white px-8 py-3 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border-0"
+                  className="px-8 py-3 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border-0"
                 >
                   Explore Services
-                </Button>
+                </AnimatedButton>
               </Link>
               <Link href="/contact">
-                <Button
+                <AnimatedButton
                   size="lg"
-                  className="border border-primary bg-white text-primary hover:bg-white hover:scale-105 px-8 py-3 font-semibold transition-all duration-300"
+                  className="border-2 border-teal-500 bg-teal-50 text-teal-700 hover:bg-green-400 hover:text-white hover:scale-105 px-8 py-3 font-semibold transition-all duration-300"
                 >
                   Get Custom Quote
-                </Button>
+                </AnimatedButton>
               </Link>
             </div>
           </div>

@@ -77,7 +77,7 @@ export default function ServicesPage() {
           {/* Left side - Content */}
           <div className="space-y-8">
             <div>
-              <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-blue-600 mb-6">
+              <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-green-600 mb-6">
                 Our Services
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
@@ -86,25 +86,31 @@ export default function ServicesPage() {
             </div>
           </div>
           
-          {/* Right side - Image container */}
+          {/* Right side - Image */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-              <div className="absolute inset-0 bg-blue-200/30 rounded-3xl transform rotate-3"></div>
-              <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
-                <img
-                  src="/supply-chain-solutions.png"
-                  alt="Supply chain solutions"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div className="relative w-96 h-96 lg:w-[28rem] lg:h-[28rem]">
+              <img
+                src="/supply-chain-solutions.png"
+                alt="Supply chain solutions"
+                className="w-full h-full object-contain drop-shadow-2xl"
+              />
             </div>
           </div>
         </div>
       </div>
 
       {/* Services Grid */}
-      <div className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100">
-        <div className="container mx-auto px-4">
+      <div className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary-dark mb-6">
+              What We Offer
+            </h2>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
+              From private labeling to bulk exports, we provide comprehensive solutions 
+              tailored to meet your business needs with our premium Sri Lankan natural products.
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
@@ -138,7 +144,7 @@ export default function ServicesPage() {
                     </p>
 
                     <div className="mb-6">
-                      <h4 className="font-heading font-semibold text-lg text-blue-800 mb-3">
+                      <h4 className="font-heading font-semibold text-lg text-primary-dark mb-3">
                         Key Features:
                       </h4>
                       <div className="grid grid-cols-2 gap-2">
@@ -147,14 +153,14 @@ export default function ServicesPage() {
                             key={featureIndex}
                             className="flex items-center text-sm text-gray-600"
                           >
-                            <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                            <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
                             {feature}
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg mb-6 border-l-4 border-blue-500">
+                    <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-4 rounded-lg mb-6 border-l-4 border-primary">
                       <p className="text-sm text-gray-700 font-medium italic">
                         {service.benefits}
                       </p>
@@ -164,7 +170,7 @@ export default function ServicesPage() {
                   <div className="flex justify-center mt-auto">
                     <Button
                       size="sm"
-                      className="w-full max-w-xs bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 rounded-full"
+                      className="w-full max-w-xs bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0"
                     >
                       Get Quote
                     </Button>
@@ -176,8 +182,10 @@ export default function ServicesPage() {
 
           {/* Call to Action */}
           <div className="mt-20">
-            <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white rounded-3xl p-10 md:p-16 shadow-2xl relative overflow-hidden">
-              <div className="absolute inset-0 opacity-30"></div>
+            <div className="bg-gradient-to-r from-primary via-primary-dark to-secondary text-white rounded-3xl p-10 md:p-16 shadow-2xl relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 opacity-50"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full mix-blend-multiply filter blur-xl"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full mix-blend-multiply filter blur-xl"></div>
               <div className="relative z-10 text-center">
                 <h3 className="font-heading font-bold text-3xl md:text-4xl mb-6">
                   Need a Custom Solution?
@@ -188,7 +196,7 @@ export default function ServicesPage() {
                 <Button
                   size="lg"
                   variant="secondary"
-                  className="bg-white text-blue-800 hover:bg-gray-100 px-12 py-4 text-lg font-semibold shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 rounded-full border-0"
+                  className="bg-white text-primary-dark hover:bg-gray-100 px-12 py-4 text-lg font-semibold shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0"
                 >
                   Contact Our Team
                 </Button>

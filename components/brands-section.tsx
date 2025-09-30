@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { AnimatedButton } from "@/components/ui/animated-button";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -66,20 +66,19 @@ export default function BrandsSection() {
               className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card h-full"
             >
               <CardContent className="p-4 h-full flex flex-col">
-                {/* Logo and Basic Info */}
+                {/* Logo */}
                 <div className="text-center mb-4">
-                  <div className="mb-3">
-                    <Image
-                      src={brand.logo || "/placeholder.svg"}
-                      alt={`${brand.name} logo`}
-                      width={200}
-                      height={200}
-                      className="mx-auto h-40 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
-                    />
+                  <div className="mb-3 flex justify-center">
+                    <div className="bg-transparent p-4 rounded-2xl">
+                      <Image
+                        src={brand.logo || "/placeholder.svg"}
+                        alt={`${brand.name} logo`}
+                        width={300}
+                        height={300}
+                        className="mx-auto h-48 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
                   </div>
-                  <h3 className="font-heading font-bold text-lg text-primary-dark mb-2 group-hover:text-primary transition-colors duration-300">
-                    {brand.name}
-                  </h3>
                   <p className="text-gray-600 mb-2 leading-relaxed text-sm">
                     {brand.description}
                   </p>
@@ -149,20 +148,20 @@ export default function BrandsSection() {
                 {/* Action Buttons */}
                 <div className="mt-auto">
                   <Link
-                    href={`/products-filter?brand=${brand.name}`}
+                    href="/brands"
                   >
-                    <Button className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 mb-2">
+                    <AnimatedButton variant="animated" className="w-full mb-2">
                       Explore {brand.name}
-                    </Button>
+                    </AnimatedButton>
                   </Link>
 
                   <Link href="/contact">
-                    <Button
+                    <AnimatedButton
                       size="sm"
-                      className="w-full border border-primary bg-white text-primary hover:bg-white hover:scale-105 transition-all duration-300"
+                      className="w-full border-2 border-emerald-500 bg-emerald-50 text-emerald-700 hover:bg-green-400 hover:text-white hover:scale-105 transition-all duration-300 font-semibold"
                     >
                       Request Samples
-                    </Button>
+                    </AnimatedButton>
                   </Link>
                 </div>
               </CardContent>
@@ -240,21 +239,22 @@ export default function BrandsSection() {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                  <Link href="/products-filter" className="flex-1">
-                    <Button
+                  <Link href="/brands" className="flex-1">
+                    <AnimatedButton
+                      variant="animated"
                       size="lg"
-                      className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border-0 py-3"
+                      className="w-full py-3"
                     >
                       View All Brands
-                    </Button>
+                    </AnimatedButton>
                   </Link>
                   <Link href="/contact" className="flex-1">
-                    <Button
+                    <AnimatedButton
                       size="lg"
-                      className="w-full border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white hover:scale-105 font-semibold transition-all duration-300 py-3"
+                      className="w-full border-2 border-orange-500 bg-orange-50 text-orange-700 hover:bg-green-400 hover:text-white hover:scale-105 font-semibold transition-all duration-300 py-3"
                     >
                       Become a Partner
-                    </Button>
+                    </AnimatedButton>
                   </Link>
                 </div>
               </div>

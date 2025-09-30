@@ -4,7 +4,7 @@ import { MobilePaymentService, MobilePayment } from './mobile-payments';
 import { CODPaymentService, CODPayment } from './cod-payments';
 import { PayPalPaymentService, PayPalPayment } from './paypal-payments';
 
-export type PaymentMethod = 'cod';
+export type PaymentMethod = 'cod' | 'bank_transfer';
 
 export interface UnifiedPayment {
   id: string;
@@ -183,6 +183,14 @@ export class UnifiedPaymentService {
         icon: '💰',
         fees: 200,
         processingTime: 'On delivery'
+      },
+      {
+        id: 'bank_transfer',
+        name: 'Bank Transfer',
+        description: 'Direct bank transfer to our account',
+        icon: '🏦',
+        fees: 0,
+        processingTime: '1-2 business days'
       }
     ];
   }
@@ -195,6 +203,12 @@ export class UnifiedPaymentService {
           deliveryDates: CODPaymentService.getAvailableDeliveryDates(),
           timeSlots: CODPaymentService.getAvailableTimeSlots(new Date().toISOString().split('T')[0]),
           deliveryFees: require('./cod-payments').DELIVERY_FEES
+        };
+
+      case 'bank_transfer':
+        return {
+          banks: Object.keys(require('./bank-payments').SRI_LANKAN_BANKS),
+          instructions: 'Transfer money to our bank account'
         };
 
       default:

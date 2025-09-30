@@ -67,6 +67,44 @@ export default function PaymentOptions({ selectedMethod, onMethodChange, formDat
       </RadioGroup>
 
       {/* Payment Method Specific Forms */}
+      {selectedMethod === 'bank_transfer' && (
+        <Card className="border-primary/20 bg-primary/5">
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Building2 className="w-5 h-5 text-primary" />
+              <span>Bank Transfer Details</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <Label htmlFor="selectedBank" className="text-sm font-medium text-gray-700">
+                Select Bank
+              </Label>
+              <Select 
+                value={formData.selectedBank} 
+                onValueChange={(value) => handleFormDataChange('selectedBank', value)}
+              >
+                <SelectTrigger className="mt-1">
+                  <SelectValue placeholder="Choose your bank" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Commercial Bank">Commercial Bank of Ceylon</SelectItem>
+                  <SelectItem value="People's Bank">People's Bank</SelectItem>
+                  <SelectItem value="Sampath Bank">Sampath Bank</SelectItem>
+                  <SelectItem value="Hatton National Bank">Hatton National Bank</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p className="text-sm text-blue-800">
+                <strong>Instructions:</strong> After placing your order, you'll receive bank transfer details. 
+                Transfer the exact amount and include the reference number.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {selectedMethod === 'cod' && (
         <Card className="border-primary/20 bg-primary/5">
           <CardHeader>

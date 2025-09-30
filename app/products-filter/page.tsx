@@ -4,193 +4,14 @@ import React, { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { AnimatedButton } from "@/components/ui/animated-button";
 import { Card, CardContent } from "@/components/ui/card";
+import { PRODUCTS } from "@/lib/products";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 // Complete product data with all Saadambara products
-const allProducts = [
-  // Saadambara Spices
-  {
-    id: 1,
-    name: "Saadambara Chilli Powder",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $8.99",
-    image: "/sri-lankan-spices.png",
-    description: "Finely ground from premium-quality sun-ripened chillies, delivering vibrant color, rich aroma, and bold flavor to your curries and stir-fries.",
-    ingredients: "100% Dried Chillies (Capsicum annuum)",
-    benefits: "Rich in vitamins A & C for immunity, contains capsaicin to aid digestion and metabolism, supports cardiovascular health",
-    packSizes: "50g | 100g | 250g | 500g | 1kg"
-  },
-  {
-    id: 2,
-    name: "Saadambara Chilli Pieces",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $7.99",
-    image: "/sri-lankan-spices.png",
-    description: "Bring the authentic heat and aroma of Sri Lankan spices with Saadambara Chilli Pieces. Made from premium chillies and dehydrated using advanced heat pump technology.",
-    ingredients: "100% Dried Chillies (Capsicum annuum)",
-    benefits: "Natural antioxidants, boosts metabolism and circulation, supports digestive health",
-    packSizes: "50g | 100g | 250g | 500g | 1kg"
-  },
-  {
-    id: 3,
-    name: "Saadambara Turmeric Powder",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $9.99",
-    image: "/ceylon-turmeric-powder.png",
-    description: "Golden and fragrant, Saadambara Turmeric is ground from the finest rhizomes to bring warmth and color to your dishes. Packed under strict hygienic conditions.",
-    ingredients: "100% Turmeric (Curcuma longa)",
-    benefits: "Strong anti-inflammatory and antioxidant properties, supports joint and heart health, boosts immunity and digestion",
-    packSizes: "25g | 50g | 100g | 250g | 500g | 1kg"
-  },
-  {
-    id: 4,
-    name: "Saadambara Curry Powder",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $10.99",
-    image: "/sri-lankan-spices.png",
-    description: "A perfect blend of roasted and ground spices, Saadambara Curry Powder gives your dishes authentic Sri Lankan flavor. Crafted with care to balance aroma, color, and taste.",
-    ingredients: "Blend of premium-quality Sri Lankan spices",
-    benefits: "Packed with antioxidants, aids digestion and boosts immunity, enhances appetite naturally",
-    packSizes: "50g | 100g | 250g | 500g | 1kg"
-  },
-  {
-    id: 5,
-    name: "Saadambara Roasted Curry Powder",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $11.99",
-    image: "/sri-lankan-spices.png",
-    description: "Carefully roasted to perfection, Roasted Curry Powder delivers a deeper, smokier aroma and robust flavor – a staple for traditional Sri Lankan dishes.",
-    ingredients: "Blend of roasted spices",
-    benefits: "Improves digestion, enhances metabolism, rich in plant-based antioxidants",
-    packSizes: "50g | 100g | 250g | 500g | 1kg"
-  },
-  {
-    id: 6,
-    name: "Saadambara Cloves",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $12.99",
-    image: "/sri-lankan-spices.png",
-    description: "Handpicked from the best harvests, Saadambara Cloves add a strong, sweet, and warming flavor to your curries, teas, and desserts.",
-    ingredients: "100% Whole Cloves (Syzygium aromaticum)",
-    benefits: "Natural antiseptic and anti-inflammatory, supports dental and digestive health, rich in antioxidants",
-    packSizes: "25g | 50g | 100g | 250g"
-  },
-  {
-    id: 7,
-    name: "Saadambara Pepper Seeds",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $9.99",
-    image: "/sri-lankan-spices.png",
-    description: "Harvested from the lush spice gardens of Sri Lanka, our Pepper Seeds bring a sharp, pungent flavor and bold aroma to your cooking.",
-    ingredients: "100% Black Pepper Seeds (Piper nigrum)",
-    benefits: "Aids digestion and metabolism, improves nutrient absorption, natural antioxidant and antibacterial properties",
-    packSizes: "50g | 100g | 250g | 500g | 1kg"
-  },
-  {
-    id: 8,
-    name: "Saadambara Cardamom",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $15.99",
-    image: "/sri-lankan-spices.png",
-    description: "Known as the 'Queen of Spices,' Saadambara Cardamom offers a sweet, aromatic flavor that enriches curries, sweets, and teas.",
-    ingredients: "100% Whole Cardamom (Elettaria cardamomum)",
-    benefits: "Supports digestion and oral health, natural detoxifying spice, helps regulate blood pressure",
-    packSizes: "25g | 50g | 100g"
-  },
-  {
-    id: 9,
-    name: "Saadambara Cinnamon Sticks (C5 Grade)",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $13.99",
-    image: "/ceylon-cinnamon-sticks.png",
-    description: "Delicately rolled from the finest Sri Lankan cinnamon bark, our Cinnamon Sticks (C5) are prized for their sweet aroma and smooth texture.",
-    ingredients: "100% Pure Ceylon Cinnamon (Cinnamomum verum)",
-    benefits: "Supports heart and blood sugar health, anti-inflammatory and antioxidant-rich, promotes digestion and weight management",
-    packSizes: "25g | 50g | 100g"
-  },
-  {
-    id: 10,
-    name: "Saadambara Garlic Powder",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $8.99",
-    image: "/sri-lankan-spices.png",
-    description: "Convenient and aromatic, Garlic Powder is made from carefully dehydrated garlic, preserving its strong flavor and nutritional values.",
-    ingredients: "100% Garlic (Allium sativum)",
-    benefits: "Supports heart health and immunity, natural antibacterial and antiviral properties, may help reduce cholesterol levels",
-    packSizes: "50g | 100g"
-  },
-  {
-    id: 11,
-    name: "Saadambara Coriander Seeds (Koththamalli)",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $7.99",
-    image: "/sri-lankan-spices.png",
-    description: "Fragrant and earthy, Coriander Seeds are a key base spice for Sri Lankan cooking, enhancing both flavor and aroma.",
-    ingredients: "100% Coriander Seeds (Coriandrum sativum)",
-    benefits: "Aids digestion and detoxification, helps regulate blood sugar, anti-inflammatory and cooling properties",
-    packSizes: "50g | 100g | 250g | 500g"
-  },
-  {
-    id: 12,
-    name: "Saadambara Cumin Seeds (Suduru)",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $8.99",
-    image: "/sri-lankan-spices.png",
-    description: "Warm, nutty, and aromatic, Cumin Seeds are a staple spice with a distinctive taste, ideal for curries, rice, and spice blends.",
-    ingredients: "100% Cumin Seeds (Cuminum cyminum)",
-    benefits: "Improves digestion and nutrient absorption, supports immunity and metabolism, rich in iron and antioxidants",
-    packSizes: "50g | 100g | 250g"
-  },
-  {
-    id: 13,
-    name: "Saadambara Fennel Seeds (Mahaduru)",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $9.99",
-    image: "/sri-lankan-spices.png",
-    description: "Sweet and fragrant, Fennel Seeds are prized for their refreshing flavor and digestive properties.",
-    ingredients: "100% Fennel Seeds (Foeniculum vulgare)",
-    benefits: "Relieves bloating and indigestion, supports lactation and hormonal balance, rich in antioxidants and fiber",
-    packSizes: "50g | 100g | 250g"
-  },
-  {
-    id: 14,
-    name: "Saadambara Curry Leaves Powder",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $11.99",
-    image: "/sri-lankan-spices.png",
-    description: "Dehydrated and ground to perfection, Curry Leaves Powder brings the distinct aroma and taste of fresh curry leaves into a long-lasting form.",
-    ingredients: "100% Curry Leaves (Murraya koenigii)",
-    benefits: "Promotes hair and skin health, helps control blood sugar and cholesterol, supports digestion and weight management",
-    packSizes: "50g | 100g"
-  },
-  {
-    id: 15,
-    name: "Saadambara Pandan Powder",
-    brand: "Saadambara",
-    category: "Spices",
-    price: "From $12.99",
-    image: "/sri-lankan-spices.png",
-    description: "Made from freshly dehydrated pandan leaves, Pandan Powder imparts a unique aroma and flavor to rice, curries, and desserts.",
-    ingredients: "100% Pandan Leaves (Pandanus amaryllifolius)",
-    benefits: "Natural detoxifier, supports digestion and reduces stress, provides calming, aromatic compounds",
-    packSizes: "30g"
-  }
-];
+const allProducts = PRODUCTS;
 
 const brands = [
   { name: "Saadambara", logo: "/brand-logos/Saadambara.png" },
@@ -254,50 +75,18 @@ function ProductsFilterContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-green-50">
+      <Header />
       {/* Hero Header */}
-      <div className="relative bg-gradient-to-br from-primary via-primary-dark to-secondary py-20 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-        </div>
-        
-        {/* Floating Elements */}
-        <div className="absolute top-10 left-10 text-white/20 text-4xl animate-float">
-          🌿
-        </div>
-        <div className="absolute top-20 right-20 text-white/20 text-3xl animate-float" style={{ animationDelay: "1s" }}>
-          🍃
-        </div>
-        <div className="absolute bottom-20 left-20 text-white/20 text-5xl animate-float" style={{ animationDelay: "2s" }}>
-          🌱
-        </div>
-        <div className="absolute bottom-10 right-10 text-white/20 text-3xl animate-float" style={{ animationDelay: "0.5s" }}>
-          🌾
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-6 animate-fade-in-up">
-              Premium Product
-              <span className="block text-accent">Catalog</span>
-            </h1>
-            <p className="text-white/90 text-lg md:text-xl mb-8 leading-relaxed animate-fade-in-up animate-delay-200">
-              Discover our complete collection of authentic Sri Lankan natural products. 
-              Filter by brand, category, or explore everything we have to offer.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up animate-delay-400">
-              <Link href="/">
-                <Button 
-                  size="lg" 
-                  className="bg-white text-primary-dark hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0"
-                >
-                  ← Back to Home
-                </Button>
-              </Link>
-            </div>
-          </div>
+      <div className="container mx-auto px-4 py-16" style={{ marginTop: '80px' }}>
+        <div className="text-center">
+          <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-green-600 mb-6">
+            Premium Product
+            <span className="block text-primary-dark">Catalog</span>
+          </h1>
+          <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            Discover our complete collection of authentic Sri Lankan natural products. 
+            Filter by brand, category, or explore everything we have to offer.
+          </p>
         </div>
       </div>
       
@@ -379,13 +168,12 @@ function ProductsFilterContent() {
             </div>
 
             {/* Clear Filters */}
-            <Button 
+            <AnimatedButton 
               onClick={clearFilters}
-              variant="outline"
               className="w-full bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 border-gray-300 text-gray-700 font-semibold py-3 rounded-xl transition-all duration-300 hover:scale-105"
             >
               🗑️ Clear All Filters
-            </Button>
+            </AnimatedButton>
           </div>
 
           {/* Right Content */}
@@ -458,15 +246,15 @@ function ProductsFilterContent() {
                         {product.description}
                       </p>
                       
-                      <div className="flex items-center justify-between pt-1">
-                        <span className="text-lg font-bold text-primary">{product.price}</span>
-                        <Button 
+                      <div className="flex justify-end pt-1">
+                        <AnimatedButton 
+                          variant="animated"
                           onClick={() => setSelectedProduct(product)}
                           size="sm"
-                          className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 text-xs px-3 py-1"
+                          className="text-xs px-3 py-1"
                         >
                           View Details
-                        </Button>
+                        </AnimatedButton>
                       </div>
                     </div>
                   </CardContent>
@@ -484,12 +272,13 @@ function ProductsFilterContent() {
                   <p className="text-gray-600 mb-6">
                     No products match your current filters. Try adjusting your selection.
                   </p>
-                  <Button 
+                  <AnimatedButton 
+                    variant="animated"
                     onClick={clearFilters} 
-                    className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
+                    className="px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
                   >
                     Clear All Filters
-                  </Button>
+                  </AnimatedButton>
                 </div>
               </div>
             )}
@@ -528,18 +317,18 @@ function ProductsFilterContent() {
                       </div>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <Button 
+                      <AnimatedButton 
+                        variant="animated"
                         onClick={() => setSelectedBrands(selectedBrands.filter(b => b !== "Trekola"))}
-                        className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
+                        className="px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
                       >
                         View Saadambara Products
-                      </Button>
-                      <Button 
-                        variant="outline"
-                        className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
+                      </AnimatedButton>
+                      <AnimatedButton 
+                        className="border-2 border-blue-500 bg-blue-50 text-blue-700 hover:bg-green-400 hover:text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
                       >
                         Get Notified
-                      </Button>
+                      </AnimatedButton>
                     </div>
                   </div>
                 </div>
@@ -552,7 +341,7 @@ function ProductsFilterContent() {
       {/* Product Details Modal */}
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white/95 backdrop-blur-sm rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20 animate-scale-in">
+          <div className="bg-white/95 backdrop-blur-sm rounded-3xl max-w-4xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-white/20 animate-scale-in">
             <div className="p-8">
               <div className="flex justify-between items-start mb-8">
                 <div>
@@ -577,15 +366,60 @@ function ProductsFilterContent() {
               </div>
               
               <div className="grid lg:grid-cols-2 gap-8">
-                <div className="aspect-square relative rounded-3xl overflow-hidden shadow-2xl">
-                  <Image
-                    src={selectedProduct.image}
-                    alt={selectedProduct.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                    Premium Quality
+                <div className="space-y-6">
+                  <div className="aspect-square relative rounded-3xl overflow-hidden shadow-2xl">
+                    <Image
+                      src={selectedProduct.image}
+                      alt={selectedProduct.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute top-4 right-4 bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                      Premium Quality
+                    </div>
+                  </div>
+                  
+                  {/* Action Buttons */}
+                  <div className="grid grid-cols-1 gap-4">
+                    <Link href="/marketplace">
+                      <AnimatedButton 
+                        variant="animated"
+                        className="w-full py-4 text-lg rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
+                      >
+                        🛍️ Visit Marketplace
+                      </AnimatedButton>
+                    </Link>
+                    <AnimatedButton 
+                      className="w-full border-2 border-emerald-500 bg-emerald-50 text-emerald-700 hover:bg-green-400 hover:text-white font-semibold py-4 text-lg rounded-xl transition-all duration-300 hover:scale-105"
+                    >
+                      📞 Contact for Bulk Order
+                    </AnimatedButton>
+                  </div>
+                  
+                  {/* Why Choose This Product */}
+                  <div className="bg-gray-50 rounded-2xl p-6">
+                    <h4 className="font-semibold text-gray-800 mb-4 flex items-center">
+                      <span className="text-xl mr-2">✨</span>
+                      Why Choose This Product?
+                    </h4>
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-green-500 text-xl">✓</span>
+                        <span className="text-gray-600">100% Authentic Sri Lankan Origin</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <span className="text-green-500 text-xl">✓</span>
+                        <span className="text-gray-600">Premium Export Quality</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <span className="text-green-500 text-xl">✓</span>
+                        <span className="text-gray-600">Natural Processing Methods</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <span className="text-green-500 text-xl">✓</span>
+                        <span className="text-gray-600">Global Shipping Available</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
@@ -621,59 +455,23 @@ function ProductsFilterContent() {
                         <span className="text-xl mr-2">📦</span>
                         Available Pack Sizes
                       </h4>
-                      <p className="text-gray-600 text-sm font-medium">{selectedProduct.packSizes}</p>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        {selectedProduct.packSizes.map((pack, index) => (
+                          <div key={index} className="bg-white rounded-xl p-4 border border-gray-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                            <div className="font-bold text-gray-800 text-center">{pack.size}</div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
                   
-                  <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-6">
-                    <div className="text-4xl font-bold text-primary mb-2">{selectedProduct.price}</div>
-                    <p className="text-gray-600 text-sm">Premium Sri Lankan Quality</p>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <Button 
-                      className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold py-4 text-lg rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
-                    >
-                      🛒 Add to Cart
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-4 text-lg rounded-xl transition-all duration-300 hover:scale-105"
-                    >
-                      📞 Contact for Bulk Order
-                    </Button>
-                  </div>
-                  
-                  <div className="bg-gray-50 rounded-2xl p-6">
-                    <h4 className="font-semibold text-gray-800 mb-3 flex items-center">
-                      <span className="text-xl mr-2">✨</span>
-                      Why Choose This Product?
-                    </h4>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-center">
-                        <span className="text-primary mr-2">✓</span>
-                        100% Authentic Sri Lankan Origin
-                      </li>
-                      <li className="flex items-center">
-                        <span className="text-primary mr-2">✓</span>
-                        Premium Export Quality
-                      </li>
-                      <li className="flex items-center">
-                        <span className="text-primary mr-2">✓</span>
-                        Natural Processing Methods
-                      </li>
-                      <li className="flex items-center">
-                        <span className="text-primary mr-2">✓</span>
-                        Global Shipping Available
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 }

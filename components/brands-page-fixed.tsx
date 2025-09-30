@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { AnimatedButton } from "@/components/ui/animated-button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const brands = [
@@ -22,7 +22,7 @@ const brands = [
       "Export Standards",
     ],
     yearEstablished: "2025",
-    certifications: ["GMP (Good Manufacturing Practices – Under Process)"],
+    certifications: ["GMP (Under Process)"],
   },
   {
     id: 2,
@@ -39,7 +39,7 @@ const brands = [
       "Premium Export Quality",
     ],
     yearEstablished: "2025",
-    certifications: ["GMP (Good Manufacturing Practices – Under Process)"],
+    certifications: ["GMP (Under Process)"],
   },
 ];
 
@@ -72,19 +72,14 @@ export default function BrandsPage() {
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/products-filter">
-                  <AnimatedButton variant="animated" className="px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
+                  <Button className="bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
                     Explore Products
-                  </AnimatedButton>
+                  </Button>
                 </Link>
                 <Link href="/contact">
-                  <button className="custom-btn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span>Partner With Us</span>
-                  </button>
+                  <Button variant="outline" className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105">
+                    Partner With Us
+                  </Button>
                 </Link>
               </div>
             </div>
@@ -121,108 +116,60 @@ export default function BrandsPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {brands.map((brand, index) => (
-            <Card key={brand.id} className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card">
-              <CardContent className="p-5 flex flex-col">
-                {/* Logo */}
-                <div className="text-center mb-5">
-                  <div className="mb-4 flex justify-center">
-                    <div className="bg-transparent p-3 rounded-2xl">
-                      <Image
-                        src={brand.logo}
-                        alt={`${brand.name} Logo`}
-                        width={250}
-                        height={250}
-                        className="mx-auto h-36 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
-                      />
-                    </div>
+            <Card key={brand.id} className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-green-100 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <Image
+                      src={brand.logo}
+                      alt={`${brand.name} Logo`}
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
                   </div>
-                  <h3 className="font-heading font-bold text-2xl text-primary-dark mb-2">
-                    {brand.name}
-                  </h3>
-                  <p className="text-gray-600 mb-3 leading-relaxed text-base font-medium">
-                    {brand.description}
-                  </p>
-                  <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
-                    <span className="font-semibold">Est. {brand.yearEstablished}</span>
-                    <span>•</span>
-                    <span className="font-semibold text-primary">Premium Quality</span>
-                  </div>
-                </div>
-
-                {/* Full Description */}
-                <div className="mb-5">
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {brand.longDescription}
-                  </p>
-                </div>
-
-                {/* Products and Features in two columns */}
-                <div className="grid grid-cols-2 gap-6 mb-5">
-                  {/* Products */}
                   <div>
-                    <h4 className="text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide">
-                      Popular Products:
-                    </h4>
-                    <div className="space-y-2">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-1">{brand.name}</h3>
+                    <p className="text-emerald-600 font-medium">{brand.yearEstablished}</p>
+                  </div>
+                </div>
+
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {brand.longDescription}
+                </p>
+
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <h4 className="font-semibold text-gray-800 mb-2">Key Products:</h4>
+                    <div className="flex flex-wrap gap-2">
                       {brand.products.map((product, idx) => (
-                        <div key={idx} className="flex items-center space-x-2">
-                          <span className="text-primary text-sm">•</span>
-                          <span className="text-gray-600 text-sm font-medium">{product}</span>
-                        </div>
+                        <span key={idx} className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
+                          {product}
+                        </span>
                       ))}
                     </div>
                   </div>
 
-                  {/* Features */}
                   <div>
-                    <h4 className="text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide">
-                      Key Features:
-                    </h4>
-                    <div className="space-y-2">
+                    <h4 className="font-semibold text-gray-800 mb-2">Key Features:</h4>
+                    <div className="grid grid-cols-2 gap-2">
                       {brand.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center space-x-2">
-                          <span className="text-primary text-sm font-bold">•</span>
-                          <span className="text-gray-600 text-sm">{feature}</span>
+                        <div key={idx} className="flex items-center text-sm text-gray-600">
+                          <div className="w-2 h-2 bg-emerald-500 rounded-full mr-2"></div>
+                          {feature}
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                {/* Certifications */}
-                <div className="mb-5">
-                  <h4 className="text-gray-700 text-sm font-bold mb-3 uppercase tracking-wide">
-                    Certifications (In Progress):
-                  </h4>
-                  <div className="space-y-2">
-                    {brand.certifications.map((cert, idx) => (
-                      <div key={idx} className="flex items-center space-x-2">
-                        <span className="text-accent text-sm font-bold">•</span>
-                        <span className="text-gray-600 text-sm">{cert}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="mt-auto">
-                  <Link
-                    href={`/products-filter?brand=${brand.name}`}
-                  >
-                    <AnimatedButton variant="animated" className="w-full mb-3">
-                      Explore {brand.name} Products
-                    </AnimatedButton>
-                  </Link>
-
-                  <Link href="/contact">
-                    <AnimatedButton
-                      size="sm"
-                      className="w-full border-2 border-emerald-500 bg-emerald-50 text-emerald-700 hover:bg-green-400 hover:text-white hover:scale-105 transition-all duration-300 font-semibold"
-                    >
-                      Request Samples
-                    </AnimatedButton>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link href={`/products-filter?brand=${brand.name}`}>
+                    <Button className="w-full bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0 mb-2">
+                      Explore {brand.name}
+                    </Button>
                   </Link>
                 </div>
               </CardContent>
@@ -264,14 +211,14 @@ export default function BrandsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/products-filter">
-              <AnimatedButton className="bg-white text-primary hover:bg-primary/10 font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
+              <Button className="bg-white text-emerald-600 hover:bg-emerald-50 font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
                 Browse All Products
-              </AnimatedButton>
+              </Button>
             </Link>
             <Link href="/contact">
-              <AnimatedButton className="border-2 border-blue-500 bg-blue-50 text-blue-700 hover:bg-green-400 hover:text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105">
+              <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-emerald-600 font-semibold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105">
                 Get in Touch
-              </AnimatedButton>
+              </Button>
             </Link>
           </div>
         </div>

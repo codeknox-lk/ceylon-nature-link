@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { AnimatedButton } from "@/components/ui/animated-button";
 import Link from "next/link";
 
 export default function CallToActionSection() {
@@ -49,22 +49,22 @@ export default function CallToActionSection() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link href="/contact">
-                <Button 
+                <AnimatedButton 
+                  variant="animated"
                   size="lg" 
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className="px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
                   Get Started Today
-                </Button>
+                </AnimatedButton>
               </Link>
               
               <Link href="/products-filter">
-                <Button 
-                  variant="outline" 
+                <AnimatedButton 
                   size="lg" 
-                  className="border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
+                  className="border-2 border-indigo-500 bg-indigo-50 text-indigo-700 hover:bg-green-400 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
                 >
                   Explore Products
-                </Button>
+                </AnimatedButton>
               </Link>
             </div>
 

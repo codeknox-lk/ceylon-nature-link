@@ -4,18 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/contexts/CartContext";
-import { ShoppingCart, User, LogOut } from "lucide-react";
-import ShoppingCartComponent from "@/components/shopping-cart";
-import AuthModal from "@/components/auth-modal";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
-  const { state } = useCart();
 
   // Handle scroll effect
   useEffect(() => {
@@ -26,33 +18,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Load user from localStorage on mount
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      try {
-        const userData = JSON.parse(storedUser);
-        setUser(userData);
-      } catch (error) {
-        console.error('Error parsing user data:', error);
-        localStorage.removeItem('user');
-        localStorage.removeItem('session');
-      }
-    }
-  }, []);
-
-  // Handle authentication
-  const handleAuthSuccess = (userData: any) => {
-    setUser(userData);
-    setIsAuthOpen(false);
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    // Clear any stored session data
-    localStorage.removeItem('user');
-    localStorage.removeItem('session');
-  };
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -112,48 +77,8 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* Cart and CTA Buttons */}
+            {/* CTA Button */}
             <div className="ml-4 flex items-center space-x-3">
-              {/* Cart Button */}
-              <button
-                onClick={() => setIsCartOpen(true)}
-                className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-3 shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300 group"
-              >
-                <ShoppingCart className="w-5 h-5 text-gray-700 group-hover:text-primary-dark transition-colors duration-300" />
-                {state.itemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
-                    {state.itemCount}
-                  </span>
-                )}
-              </button>
-
-              {/* Authentication */}
-              {user ? (
-                <div className="flex items-center space-x-2">
-                  <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-lg rounded-2xl px-4 py-2 shadow-lg border border-white/20">
-                    <User className="w-4 h-4 text-gray-700" />
-                    <span className="text-sm font-medium text-gray-700">
-                      {user.firstName}
-                    </span>
-                  </div>
-                  <button
-                    onClick={handleLogout}
-                    className="bg-white/10 backdrop-blur-lg rounded-2xl p-2 shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300"
-                    title="Logout"
-                  >
-                    <LogOut className="w-4 h-4 text-gray-700" />
-                  </button>
-                </div>
-              ) : (
-                <Button
-                  onClick={() => setIsAuthOpen(true)}
-                  size="sm"
-                  className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white px-6 py-2 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0"
-                >
-                  Sign In
-                </Button>
-              )}
-
               {/* Marketplace Button */}
               <Link href="/marketplace">
                 <Button
@@ -215,20 +140,8 @@ export default function Header() {
                 </Link>
               ))}
 
-              {/* Mobile Cart and CTA */}
+              {/* Mobile CTA */}
               <div className="pt-4 border-t border-white/20 space-y-3">
-                {/* Mobile Cart Button */}
-                <button
-                  onClick={() => {
-                    setIsCartOpen(true);
-                    setIsMenuOpen(false);
-                  }}
-                  className="w-full flex items-center justify-center space-x-2 bg-white/10 backdrop-blur-lg rounded-2xl p-3 shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300"
-                >
-                  <ShoppingCart className="w-5 h-5 text-gray-700" />
-                  <span className="font-medium text-gray-700">Cart ({state.itemCount})</span>
-                </button>
-
                 <Link href="/marketplace" onClick={() => setIsMenuOpen(false)}>
                   <Button
                     size="sm"
@@ -248,18 +161,7 @@ export default function Header() {
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary opacity-50"></div>
       )}
 
-      {/* Shopping Cart */}
-      <ShoppingCartComponent 
-        isOpen={isCartOpen} 
-        onClose={() => setIsCartOpen(false)} 
-      />
 
-      {/* Authentication Modal */}
-      <AuthModal
-        isOpen={isAuthOpen}
-        onClose={() => setIsAuthOpen(false)}
-        onSuccess={handleAuthSuccess}
-      />
     </header>
   );
 }

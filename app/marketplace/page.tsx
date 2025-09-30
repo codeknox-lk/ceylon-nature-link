@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/contexts/CartContext';
-import { Button } from '@/components/ui/button';
+import { AnimatedButton } from '@/components/ui/animated-button';
+import { AnimatedCartButton } from '@/components/ui/animated-cart-button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -33,7 +34,7 @@ export default function MarketplacePage() {
       type: 'ADD_ITEM',
       payload: {
         productId: product.id,
-        packSize: product.selectedPackSize,
+        packSize: product.selectedPackSize, // Use the selected pack size
         quantity: 1
       }
     });
@@ -77,31 +78,29 @@ export default function MarketplacePage() {
   }, [searchTerm, selectedCategory, sortBy]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-green-50">
+    <div className="min-h-screen bg-white">
       <Header />
       <main className="pt-20 lg:pt-24">
         {/* Hero Section */}
-        <div className="bg-gradient-to-br from-primary via-primary-dark to-secondary py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center text-white">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Premium Sri Lankan Marketplace
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 opacity-90">
-                Authentic spices, herbs, and natural products delivered to your doorstep
-              </p>
-              
-              {/* Search Bar */}
-              <div className="max-w-2xl mx-auto relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <Input
-                  type="text"
-                  placeholder="Search for products, brands, or categories..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-12 pr-4 py-4 text-lg rounded-2xl border-0 shadow-lg focus:ring-2 focus:ring-white/50"
-                />
-              </div>
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center">
+            <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-green-600 mb-6">
+              Premium Sri Lankan Marketplace
+            </h1>
+            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
+              Authentic spices, herbs, and natural products delivered to your doorstep
+            </p>
+            
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Input
+                type="text"
+                placeholder="Search for products, brands, or categories..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-12 pr-4 py-4 text-lg rounded-2xl border border-gray-300 shadow-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              />
             </div>
           </div>
         </div>
@@ -297,25 +296,24 @@ export default function MarketplacePage() {
                           </div>
                         </div>
                         
-                        <div className="space-y-2">
-                          <Button 
+                        <div className="space-y-6">
+                          <AnimatedCartButton 
                             onClick={(e) => {
                               e.preventDefault();
                               addToCart(product);
                             }}
                             disabled={!product.inStock || isAddingToCart === product.id}
-                            className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
+                            className="w-full"
                           >
-                            {isAddingToCart === product.id ? 'Adding...' : !product.inStock ? 'Out of Stock' : 'Add to Cart'}
-                          </Button>
+                            {isAddingToCart === product.id ? 'Adding...' : !product.inStock ? 'Out of Stock' : 'ADD TO CART'}
+                          </AnimatedCartButton>
                           
                           <Link href={`/products/${product.id}`}>
-                            <Button 
-                              variant="outline" 
-                              className="w-full border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300"
+                            <AnimatedButton 
+                              className="w-full border-2 border-emerald-500 bg-emerald-50 text-emerald-700 hover:bg-green-400 hover:text-white transition-all duration-300 mt-4 font-semibold"
                             >
                               View Details
-                            </Button>
+                            </AnimatedButton>
                           </Link>
                         </div>
                       </div>
@@ -333,15 +331,16 @@ export default function MarketplacePage() {
                   <p className="text-gray-600 mb-6">
                     Try adjusting your search or filters to find what you're looking for.
                   </p>
-                  <Button
+                  <AnimatedButton
+                    variant="animated"
                     onClick={() => {
                       setSearchTerm('');
                       setSelectedCategory('All');
                     }}
-                    className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
+                    className="px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
                   >
                     Clear Filters
-                  </Button>
+                  </AnimatedButton>
                 </div>
               )}
             </div>

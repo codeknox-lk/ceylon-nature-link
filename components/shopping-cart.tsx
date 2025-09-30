@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/contexts/CartContext';
-import { Button } from '@/components/ui/button';
+import { AnimatedButton } from '@/components/ui/animated-button';
 import { Card, CardContent } from '@/components/ui/card';
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
 
@@ -40,7 +40,7 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
+    <div className="fixed inset-0 z-[9999] overflow-hidden">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
@@ -48,7 +48,7 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
       />
       
       {/* Cart Panel */}
-      <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl transform transition-transform duration-300 ease-in-out">
+      <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-[10000]">
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-primary to-primary-dark">
@@ -75,12 +75,13 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
                 <h3 className="text-lg font-semibold text-gray-600 mb-2">Your cart is empty</h3>
                 <p className="text-gray-500 mb-6">Add some products to get started!</p>
                 <Link href="/marketplace">
-                  <Button 
+                  <AnimatedButton 
+                    variant="animated"
                     onClick={onClose}
-                    className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
+                    className="px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
                   >
                     Continue Shopping
-                  </Button>
+                  </AnimatedButton>
                 </Link>
               </div>
             ) : (
@@ -92,10 +93,10 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
                       isAnimating ? 'opacity-50 scale-95' : 'opacity-100 scale-100'
                     }`}
                   >
-                    <CardContent className="p-4">
-                      <div className="flex items-center space-x-4">
+                    <CardContent className="pl-1 pr-4 py-0">
+                      <div className="flex items-center space-x-1">
                         {/* Product Image */}
-                        <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                        <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
                           <Image
                             src={item.image}
                             alt={item.name}
@@ -106,43 +107,40 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
 
                         {/* Product Details */}
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-semibold text-gray-900 text-sm line-clamp-2">
+                          <h3 className="font-semibold text-gray-900 text-xs line-clamp-1 my-0 leading-tight">
                             {item.name}
                           </h3>
-                          <p className="text-xs text-gray-500">{item.brand}</p>
+                          <p className="text-xs text-gray-500 my-0 leading-tight">{item.brand}</p>
                           {item.packSize && (
-                            <p className="text-xs text-gray-400">{item.packSize}</p>
+                            <p className="text-xs text-gray-400 my-0 leading-tight">{item.packSize}</p>
                           )}
-                          <p className="text-sm font-bold text-primary mt-1">
+                          <p className="text-xs font-bold text-primary my-0 leading-tight">
                             LKR {item.price.toLocaleString()}
                           </p>
                         </div>
 
                         {/* Quantity Controls */}
-                        <div className="flex flex-col items-center space-y-2">
-                          <div className="flex items-center space-x-2">
-                            <button
-                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                              className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200"
-                            >
-                              <Minus className="w-4 h-4 text-gray-600" />
-                            </button>
-                            <span className="w-8 text-center font-semibold text-gray-900">
-                              {item.quantity}
-                            </span>
-                            <button
-                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                              className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200"
-                            >
-                              <Plus className="w-4 h-4 text-gray-600" />
-                            </button>
-                          </div>
-                          
+                        <div className="flex items-center space-x-1">
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            className="w-5 h-5 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200"
+                          >
+                            <Minus className="w-3 h-3 text-gray-600" />
+                          </button>
+                          <span className="w-5 text-center font-semibold text-gray-900 text-xs">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            className="w-5 h-5 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200"
+                          >
+                            <Plus className="w-3 h-3 text-gray-600" />
+                          </button>
                           <button
                             onClick={() => removeItem(item.id)}
-                            className="text-red-500 hover:text-red-700 transition-colors duration-200"
+                            className="w-5 h-5 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition-colors duration-200 ml-1"
                           >
-                            <X className="w-4 h-4" />
+                            <X className="w-3 h-3 text-red-600" />
                           </button>
                         </div>
                       </div>
@@ -166,22 +164,24 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="space-y-3">
-                  <Button
+                <div>
+                  <AnimatedButton
                     onClick={clearCart}
-                    variant="outline"
-                    className="w-full border-red-300 text-red-600 hover:bg-red-50 font-semibold py-3 rounded-xl transition-all duration-300"
+                    className="w-full border-2 border-red-300 bg-red-50 text-red-600 hover:bg-green-400 hover:text-white font-semibold py-3 rounded-xl transition-all duration-300"
                   >
                     Clear Cart
-                  </Button>
+                  </AnimatedButton>
+                  
+                  <div className="mt-3"></div>
                   
                   <Link href="/checkout">
-                    <Button 
+                    <AnimatedButton 
+                      variant="animated"
                       onClick={onClose}
-                      className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
+                      className="w-full py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
                     >
                       Proceed to Checkout
-                    </Button>
+                    </AnimatedButton>
                   </Link>
                 </div>
               </div>
