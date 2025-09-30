@@ -34,6 +34,10 @@ export default function CheckoutPage() {
     city: '',
     district: '',
     
+    // Delivery
+    deliveryDate: '',
+    timeSlot: '',
+    
     // Additional
     notes: '',
     agreeTerms: false
