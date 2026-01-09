@@ -853,3 +853,232 @@ select:focus-visible {
     opacity: 1;
   }
 }
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  /* Improve touch targets */
+  button, a[role="button"], input[type="button"], input[type="submit"], input[type="reset"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Touch-friendly interactive elements */
+  a, button, input, select, textarea, [role="button"] {
+    touch-action: manipulation;
+  }
+  
+  /* Better spacing for mobile */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Optimize text sizes for mobile */
+  h1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  h4 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  /* Improve card spacing */
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  /* Better button spacing */
+  .space-y-3 > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  /* Optimize grid gaps */
+  .grid {
+    gap: 1rem;
+  }
+  
+  /* Improve form inputs - prevent zoom on iOS */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="url"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+  
+  /* Better mobile navigation */
+  .mobile-menu {
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Better mobile scrolling */
+  .overflow-x-auto,
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile-specific improvements */
+  .hero-section {
+    min-height: 60vh;
+    max-height: 90vh;
+  }
+  
+  /* Better mobile cards */
+  .product-card {
+    padding: 1rem;
+  }
+  
+  /* Mobile button improvements */
+  .btn-mobile {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
+  
+  /* Mobile text improvements */
+  .text-mobile {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  /* Mobile spacing */
+  .space-mobile > * + * {
+    margin-top: 1rem;
+  }
+  
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  /* Better table responsiveness */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  /* Improve modals and dialogs for mobile */
+  [role="dialog"] {
+    max-width: calc(100vw - 2rem);
+    margin: 1rem;
+  }
+}
+
+/* Additional mobile-specific utilities */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent text selection on buttons and interactive elements */
+button, [role="button"], .button-like {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Improve focus visibility on mobile */
+@media (max-width: 640px) {
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .grid {
+    gap: 1.5rem;
+  }
+  
+  /* Tablet-specific text sizes */
+  h1 {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+  
+  h3 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+}
+
+/* Small mobile devices (landscape) */
+@media (max-width: 640px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 100vh;
+  }
+}
+
+/* Larger mobile devices */
+@media (min-width: 481px) and (max-width: 640px) {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+/* Very small mobile devices */
+@media (max-width: 360px) {
+  h1 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  button, a[role="button"] {
+    font-size: 0.875rem;
+    padding: 0.625rem 1rem;
+  }
+}

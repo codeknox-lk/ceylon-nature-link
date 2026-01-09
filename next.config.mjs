@@ -24,7 +24,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.stripe.com; frame-src 'self' https://js.stripe.com https://www.google.com;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob: http://localhost:* http://127.0.0.1:*; font-src 'self' data:; connect-src 'self' https://api.stripe.com http://localhost:* http://127.0.0.1:*; frame-src 'self' https://js.stripe.com https://www.google.com;",
           },
           {
             key: 'Referrer-Policy',
@@ -50,8 +50,18 @@ const nextConfig = {
 
   // Image optimization
   images: {
-    domains: ['localhost', 'ceylonnaturelink.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ceylonnaturelink.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.ceylonnaturelink.com',
+      },
+    ],
     formats: ['image/webp', 'image/avif'],
+    unoptimized: process.env.NODE_ENV === 'development',
   },
 
   // Compression

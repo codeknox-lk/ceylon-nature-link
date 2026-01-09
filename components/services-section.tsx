@@ -79,40 +79,40 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="font-heading font-bold text-4xl md:text-5xl text-primary-dark mb-6">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16 animate-fade-in-up">
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-primary-dark mb-4 sm:mb-6 px-2">
             Our Services
           </h2>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed px-4">
             Comprehensive solutions tailored to meet your business needs with
             our premium Sri Lankan natural products. From private labeling to
             bulk exports, we've got you covered.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-10 sm:mb-12 md:mb-16">
           {services.map((service, index) => (
             <Card
               key={service.id}
               className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 shadow-lg bg-white/90 backdrop-blur-sm premium-card"
             >
-              <CardContent className="p-6 text-center">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+              <CardContent className="p-5 sm:p-6 text-center">
+                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
 
-                <h3 className="font-heading font-bold text-lg text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">
+                <h3 className="font-heading font-bold text-base sm:text-lg text-primary-dark mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
 
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
                   {service.description}
                 </p>
 
                 {/* Features */}
-                <div className="mb-4">
+                <div className="mb-3 sm:mb-4">
                   <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
                     What's Included:
                   </p>
@@ -122,7 +122,7 @@ export default function ServicesSection() {
                         key={idx}
                         className="flex items-center justify-center space-x-2"
                       >
-                        <span className="text-primary text-sm">✓</span>
+                        <span className="text-primary text-xs sm:text-sm">✓</span>
                         <span className="text-gray-600 text-xs">{feature}</span>
                       </div>
                     ))}
@@ -130,7 +130,7 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Benefits */}
-                <div className="mb-4">
+                <div className="mb-3 sm:mb-4">
                   <p className="text-gray-500 text-xs font-semibold mb-2 uppercase tracking-wide">
                     Benefits:
                   </p>
@@ -140,17 +140,17 @@ export default function ServicesSection() {
                         key={idx}
                         className="flex items-center justify-center space-x-2"
                       >
-                        <span className="text-accent text-sm">★</span>
+                        <span className="text-accent text-xs sm:text-sm">★</span>
                         <span className="text-gray-600 text-xs">{benefit}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <Link href="/contact">
+                <Link href="/contact" className="block">
                   <Button
                     size="sm"
-                    className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-0"
+                    className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl border-0 min-h-[44px] text-sm sm:text-base touch-manipulation"
                   >
                     Learn More
                   </Button>
@@ -161,49 +161,49 @@ export default function ServicesSection() {
         </div>
 
         {/* Service Highlights */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
           <div className="animate-fade-in-up">
-            <h3 className="font-heading font-bold text-3xl text-primary-dark mb-6">
+            <h3 className="font-heading font-bold text-2xl sm:text-3xl text-primary-dark mb-4 sm:mb-6">
               Why Choose Our Services?
             </h3>
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="bg-primary/10 rounded-full p-3">
-                  <span className="text-2xl">🏆</span>
+            <div className="space-y-5 sm:space-y-6">
+              <div className="flex items-start space-x-3 sm:space-x-4">
+                <div className="bg-primary/10 rounded-full p-2.5 sm:p-3 flex-shrink-0">
+                  <span className="text-xl sm:text-2xl">🏆</span>
                 </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-lg text-primary-dark mb-2">
+                <div className="min-w-0 flex-1">
+                  <h4 className="font-heading font-semibold text-base sm:text-lg text-primary-dark mb-1 sm:mb-2">
                     Fresh Vision, Trusted Roots
                   </h4>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                     Founded in 2025, built on Sri Lanka's timeless spice and fruit legacy.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="bg-primary/10 rounded-full p-3">
-                  <span className="text-2xl">🌍</span>
+              <div className="flex items-start space-x-3 sm:space-x-4">
+                <div className="bg-primary/10 rounded-full p-2.5 sm:p-3 flex-shrink-0">
+                  <span className="text-xl sm:text-2xl">🌍</span>
                 </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-lg text-primary-dark mb-2">
+                <div className="min-w-0 flex-1">
+                  <h4 className="font-heading font-semibold text-base sm:text-lg text-primary-dark mb-1 sm:mb-2">
                     Global Reach
                   </h4>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                     Delivering premium dehydrated fruits, spices, and herbs worldwide with reliable logistics.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="bg-primary/10 rounded-full p-3">
-                  <span className="text-2xl">🛡️</span>
+              <div className="flex items-start space-x-3 sm:space-x-4">
+                <div className="bg-primary/10 rounded-full p-2.5 sm:p-3 flex-shrink-0">
+                  <span className="text-xl sm:text-2xl">🛡️</span>
                 </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-lg text-primary-dark mb-2">
+                <div className="min-w-0 flex-1">
+                  <h4 className="font-heading font-semibold text-base sm:text-lg text-primary-dark mb-1 sm:mb-2">
                     Quality Assured
                   </h4>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                     Strict sourcing, hygienic processing, and testing ensure freshness, purity, and global standards.
                   </p>
                 </div>
@@ -212,30 +212,30 @@ export default function ServicesSection() {
           </div>
 
           <div className="animate-fade-in-up animate-delay-300">
-            <div className="relative bg-gradient-to-br from-primary/15 via-white to-accent/15 rounded-3xl p-10 shadow-2xl overflow-hidden moving-border">
+            <div className="relative bg-gradient-to-br from-primary/15 via-white to-accent/15 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl overflow-hidden moving-border">
               {/* Background decorative elements */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl opacity-60"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/10 rounded-full mix-blend-multiply filter blur-xl opacity-60"></div>
               
               <div className="relative z-10">
-                <div className="text-center mb-8">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-primary-dark rounded-full mb-4 shadow-lg">
-                    <span className="text-2xl text-white">🚀</span>
+                <div className="text-center mb-6 sm:mb-8">
+                  <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-primary to-primary-dark rounded-full mb-3 sm:mb-4 shadow-lg">
+                    <span className="text-xl sm:text-2xl text-white">🚀</span>
                   </div>
-                  <h4 className="font-heading font-bold text-3xl text-primary-dark mb-4">
+                  <h4 className="font-heading font-bold text-2xl sm:text-3xl text-primary-dark mb-3 sm:mb-4">
                     Ready to Get Started?
                   </h4>
-                  <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
+                  <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto px-2">
                     Contact our team today to discuss your requirements and get a
                     personalized quote for our services.
                   </p>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md mx-auto">
                   <Link href="/contact" className="flex-1">
                     <Button
                       size="lg"
-                      className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border-0 py-3"
+                      className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 border-0 py-3 min-h-[48px] text-sm sm:text-base touch-manipulation"
                     >
                       Request Quote
                     </Button>
@@ -243,7 +243,7 @@ export default function ServicesSection() {
                   <Link href="/services" className="flex-1">
                     <Button
                       size="lg"
-                      className="w-full border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white hover:scale-105 font-semibold transition-all duration-300 py-3"
+                      className="w-full border-2 border-primary bg-white text-primary hover:bg-primary hover:text-white hover:scale-105 active:scale-95 font-semibold transition-all duration-300 py-3 min-h-[48px] text-sm sm:text-base touch-manipulation"
                     >
                       View All Services
                     </Button>

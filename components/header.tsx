@@ -39,11 +39,11 @@ export default function Header() {
       {/* Background blur effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/3 to-white/5 backdrop-blur-xl"></div>
 
-      <div className="container mx-auto px-4 relative">
-        <div className="flex items-center justify-between h-16 lg:h-20 py-2">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 relative">
+        <div className="flex items-center justify-between h-16 sm:h-18 lg:h-20 py-2">
           {/* Logo */}
           <Link href="/" className="flex items-center group relative z-10">
-            <div className="relative w-24 h-24 lg:w-32 lg:h-32">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20">
               <Image
                 src="/ceylon-nature-link-logo.png"
                 alt="Ceylon Nature Link"
@@ -95,24 +95,25 @@ export default function Header() {
           <Button
             variant="ghost"
             size="sm"
-            className="lg:hidden relative z-10 bg-white/10 backdrop-blur-lg rounded-2xl p-3 shadow-lg border border-white/20 hover:bg-white/20 transition-all duration-300"
+            className="lg:hidden relative z-10 bg-white/20 backdrop-blur-lg rounded-xl p-3 min-w-[44px] min-h-[44px] shadow-lg border border-white/30 hover:bg-white/30 transition-all duration-300 touch-manipulation"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
           >
-            <span className="sr-only">Toggle menu</span>
-            <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+            <div className="w-6 h-6 flex flex-col justify-center space-y-1.5">
               <span
-                className={`w-full h-0.5 bg-gray-700 transition-all duration-300 ${
-                  isMenuOpen ? "rotate-45 translate-y-1.5" : ""
+                className={`w-full h-0.5 bg-gray-800 transition-all duration-300 ${
+                  isMenuOpen ? "rotate-45 translate-y-2" : ""
                 }`}
               ></span>
               <span
-                className={`w-full h-0.5 bg-gray-700 transition-all duration-300 ${
+                className={`w-full h-0.5 bg-gray-800 transition-all duration-300 ${
                   isMenuOpen ? "opacity-0" : ""
                 }`}
               ></span>
               <span
-                className={`w-full h-0.5 bg-gray-700 transition-all duration-300 ${
-                  isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+                className={`w-full h-0.5 bg-gray-800 transition-all duration-300 ${
+                  isMenuOpen ? "-rotate-45 -translate-y-2" : ""
                 }`}
               ></span>
             </div>
@@ -122,30 +123,30 @@ export default function Header() {
         {/* Mobile Navigation */}
         <div
           className={`lg:hidden relative overflow-hidden transition-all duration-500 ease-in-out ${
-            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+            isMenuOpen ? "max-h-[600px] opacity-100 pb-4" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="bg-white/10 backdrop-blur-2xl rounded-3xl mt-4 p-6 shadow-2xl border border-white/20">
-            <nav className="space-y-3">
+          <div className="bg-white/95 backdrop-blur-2xl rounded-2xl mt-3 sm:mt-4 p-4 sm:p-6 shadow-2xl border border-white/30">
+            <nav className="space-y-2">
               {navItems.map((item, index) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group flex items-center justify-between px-4 py-3 rounded-2xl text-gray-700 hover:text-primary-dark hover:bg-primary-dark/10 transition-all duration-300 animate-fade-in-left"
+                  className="group flex items-center justify-between px-4 py-3 sm:py-4 rounded-xl text-gray-800 hover:text-primary-dark hover:bg-primary-dark/10 transition-all duration-300 animate-fade-in-left font-medium min-h-[48px] touch-manipulation"
                   style={{ animationDelay: `${index * 100}ms` }}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <span className="font-medium">{item.label}</span>
+                  <span className="text-base sm:text-lg">{item.label}</span>
                   <div className="w-2 h-2 bg-primary-dark rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100"></div>
                 </Link>
               ))}
 
               {/* Mobile CTA */}
-              <div className="pt-4 border-t border-white/20 space-y-3">
-                <Link href="/marketplace" onClick={() => setIsMenuOpen(false)}>
+              <div className="pt-4 border-t border-gray-200 space-y-3">
+                <Link href="/marketplace" onClick={() => setIsMenuOpen(false)} className="block">
                   <Button
                     size="sm"
-                    className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white py-3 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white py-3 sm:py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 min-h-[48px] text-base sm:text-lg"
                   >
                     Marketplace
                   </Button>

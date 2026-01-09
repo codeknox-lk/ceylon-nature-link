@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Montserrat, Inter } from "next/font/google"
 import { CartProvider } from "@/contexts/CartContext"
 import "./globals.css"
@@ -23,6 +23,12 @@ export const metadata: Metadata = {
   generator: "v0.dev",
 }
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${montserrat.variable} ${inter.variable} antialiased`}>
-      <body>
+      <body className="min-h-screen overflow-x-hidden">
         <CartProvider>
           {children}
         </CartProvider>

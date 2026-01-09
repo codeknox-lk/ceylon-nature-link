@@ -86,7 +86,7 @@ export default function HeroSlider() {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-[60vh] min-h-[500px] sm:h-[70vh] md:h-[80vh] lg:h-screen overflow-hidden">
       {/* Slides */}
       <div className="relative h-full">
         {slides.map((slide, index) => (
@@ -103,38 +103,38 @@ export default function HeroSlider() {
               loading="eager"
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
 
             {/* Content Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center pt-20 lg:pt-24">
-              <div className="container mx-auto px-4">
+            <div className="absolute inset-0 flex items-center justify-center pt-16 sm:pt-20 md:pt-24 px-3 sm:px-4 md:px-6">
+              <div className="container mx-auto">
                 <div className="max-w-4xl mx-auto text-center">
                   {/* Badge */}
-                  <div className="inline-block bg-primary/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-fade-in-up border border-white/20">
+                  <div className="inline-block bg-primary/30 backdrop-blur-sm text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4 md:mb-6 animate-fade-in-up border border-white/30 shadow-lg">
                     {slide.badge}
                   </div>
 
                   {/* Title */}
-                  <h1 className="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-6 animate-fade-in-up animate-delay-200 leading-tight">
+                  <h1 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl text-white mb-3 sm:mb-4 md:mb-6 animate-fade-in-up animate-delay-200 leading-tight px-2">
                     {slide.title}
                   </h1>
 
                   {/* Subtitle */}
-                  <p className="text-xl sm:text-2xl md:text-3xl text-gray-200 mb-6 animate-fade-in-up animate-delay-300 font-medium">
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gray-100 mb-3 sm:mb-4 md:mb-6 animate-fade-in-up animate-delay-300 font-medium px-2">
                     {slide.subtitle}
                   </p>
 
                   {/* Description */}
-                  <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animate-delay-400">
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animate-delay-400 px-4">
                     {slide.description}
                   </p>
 
                   {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center animate-fade-in-up animate-delay-500">
-                    <Link href={slide.ctaLink}>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-up animate-delay-500 px-4">
+                    <Link href={slide.ctaLink} className="w-full sm:w-auto">
                       <Button
                         size="lg"
-                        className="bg-white/10 backdrop-blur-md border border-primary text-white hover:bg-primary/20 px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
+                        className="bg-white/20 backdrop-blur-md border-2 border-white/30 text-white hover:bg-white/30 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 w-full sm:w-auto min-h-[48px] touch-manipulation"
                       >
                         {slide.ctaText}
                       </Button>
@@ -150,10 +150,11 @@ export default function HeroSlider() {
       {/* Navigation arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-4 rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-110 z-20"
+        className="absolute left-2 sm:left-4 md:left-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-3 sm:p-4 rounded-full hover:bg-white/30 active:bg-white/40 transition-all duration-300 hover:scale-110 active:scale-95 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
+        aria-label="Previous slide"
       >
         <svg
-          className="w-6 h-6"
+          className="w-5 h-5 sm:w-6 sm:h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -169,10 +170,11 @@ export default function HeroSlider() {
 
       <button
         onClick={nextSlide}
-        className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-4 rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-110 z-20"
+        className="absolute right-2 sm:right-4 md:right-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-3 sm:p-4 rounded-full hover:bg-white/30 active:bg-white/40 transition-all duration-300 hover:scale-110 active:scale-95 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
+        aria-label="Next slide"
       >
         <svg
-          className="w-6 h-6"
+          className="w-5 h-5 sm:w-6 sm:h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -198,9 +200,9 @@ export default function HeroSlider() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/60 animate-bounce z-20">
+      <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 text-white/60 animate-bounce z-20 hidden sm:block">
         <svg
-          className="w-6 h-6"
+          className="w-5 h-5 sm:w-6 sm:h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

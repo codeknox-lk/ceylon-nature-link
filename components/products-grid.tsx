@@ -98,9 +98,9 @@ const products = [
 
 export default function ProductsGrid() {
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <section className="py-12 sm:py-16 bg-white">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           {products.map((product) => (
             <Card
               key={product.id}
@@ -110,55 +110,55 @@ export default function ProductsGrid() {
                 <img
                   src={product.image || "/placeholder.svg"}
                   alt={product.name}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-48 sm:h-56 md:h-64 object-cover"
                 />
-                <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-primary text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
                   {product.category}
                 </div>
               </div>
 
-              <CardContent className="p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-heading font-bold text-2xl text-primary-dark">
+              <CardContent className="p-5 sm:p-6 md:p-8">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 sm:mb-4 gap-2">
+                  <h3 className="font-heading font-bold text-xl sm:text-2xl text-primary-dark">
                     {product.name}
                   </h3>
-                  <span className="text-xl font-semibold text-primary">
+                  <span className="text-lg sm:text-xl font-semibold text-primary">
                     {product.price}
                   </span>
                 </div>
 
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                   {product.description}
                 </p>
 
                 {/* Features */}
-                <div className="mb-6">
-                  <h4 className="font-heading font-semibold text-lg text-primary-dark mb-3">
+                <div className="mb-4 sm:mb-6">
+                  <h4 className="font-heading font-semibold text-base sm:text-lg text-primary-dark mb-2 sm:mb-3">
                     Key Features
                   </h4>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {product.features.map((feature, index) => (
                       <div
                         key={index}
-                        className="flex items-center text-sm text-gray-600"
+                        className="flex items-center text-xs sm:text-sm text-gray-600"
                       >
-                        <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                        {feature}
+                        <span className="w-2 h-2 bg-primary rounded-full mr-2 flex-shrink-0"></span>
+                        <span className="break-words">{feature}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Product List */}
-                <div className="mb-6">
-                  <h4 className="font-heading font-semibold text-lg text-primary-dark mb-3">
+                <div className="mb-4 sm:mb-6">
+                  <h4 className="font-heading font-semibold text-base sm:text-lg text-primary-dark mb-2 sm:mb-3">
                     Available Products
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {product.products.map((item, index) => (
                       <span
                         key={index}
-                        className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                        className="bg-gray-100 text-gray-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm"
                       >
                         {item}
                       </span>
@@ -166,11 +166,11 @@ export default function ProductsGrid() {
                   </div>
                 </div>
 
-                <div className="flex gap-4">
-                  <Button className="flex-1 bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <Button className="flex-1 bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary text-white font-semibold shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 hover:scale-105 border-0 min-h-[48px] text-sm sm:text-base touch-manipulation">
                     View Details
                   </Button>
-                  <Button className="flex-1 border border-primary bg-white text-primary hover:bg-white hover:scale-105 transition-all duration-300">
+                  <Button className="flex-1 border border-primary bg-white text-primary hover:bg-primary hover:text-white active:scale-95 transition-all duration-300 hover:scale-105 min-h-[48px] text-sm sm:text-base touch-manipulation">
                     Request Quote
                   </Button>
                 </div>
