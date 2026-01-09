@@ -70,7 +70,10 @@ const nextConfig = {
   // External packages for server components
   serverExternalPackages: ['@stripe/stripe-js'],
 
-  // Webpack configuration for security
+  // Turbopack configuration (Next.js 16+ default)
+  turbopack: {},
+
+  // Webpack configuration for security (fallback for compatibility)
   webpack: (config, { isServer }) => {
     // Add source map support for production debugging
     if (!isServer) {
